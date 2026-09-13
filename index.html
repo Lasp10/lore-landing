@@ -3,90 +3,99 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>lore - ai that lives in your group chat</title>
+<title>lore - the ai teammate in your group chat</title>
 <meta name="description" content="lore is an ai that lives in your group chat. it remembers everyone, settles arguments with receipts, catches you up, and does real work when asked. add it to any instagram group chat in 60 seconds.">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    background:#fff;color:#000;
+    background:#0B0B0D;color:#F2F0EB;
     font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     -webkit-font-smoothing:antialiased;overflow-x:hidden;
   }
 
-  /* ---------- TAB STRIP (the only non-diegetic element) ---------- */
+  /* ---------- TAB STRIP ---------- */
   .tabs{
     position:fixed;top:0;left:0;right:0;z-index:60;height:44px;
     display:flex;align-items:center;justify-content:center;gap:6px;
-    background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
-    border-bottom:.5px solid #d4d4d6;
+    background:rgba(11,11,13,.92);backdrop-filter:blur(12px);
+    border-bottom:1px solid #1C1C1E;
   }
+  .tabs .wm{position:absolute;left:16px;font-weight:700;font-size:15px;letter-spacing:-.2px;color:#F2F0EB}
   .tabs button{
-    font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;
-    padding:5px 14px;border-radius:100px;border:none;background:transparent;color:#555;
+    font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;
+    padding:5px 14px;border-radius:100px;border:none;background:transparent;color:#6E6E73;
   }
-  .tabs button.on{background:#000;color:#fff}
+  .tabs button.on{background:#F2F0EB;color:#000}
 
-  /* ---------- CHAT HEADERS ---------- */
-  .chatbar{position:fixed;top:44px;left:0;right:0;z-index:50}
+  /* ---------- CHAT HEADERS (dark) ---------- */
+  .chatbar{position:fixed;top:44px;left:0;right:0;z-index:50;max-width:720px;margin:0 auto}
   .bar-ig{display:none}
   body.tab-ig .bar-im{display:none}
   body.tab-ig .bar-ig{display:block}
 
-  /* iMessage header */
-  .bar-im .statusbar{display:flex;align-items:center;padding:8px 26px 2px;font-size:14px;font-weight:600;background:rgba(249,249,249,.94)}
+  .bar-im .statusbar{display:flex;align-items:center;padding:8px 26px 2px;font-size:14px;font-weight:600;background:rgba(20,20,22,.96);color:#fff}
   .sb-icons{margin-left:auto;display:flex;align-items:center;gap:6px}
   .sb-bars{display:inline-flex;align-items:flex-end;gap:1.5px;height:11px}
-  .sb-bars i{width:3px;background:#000;border-radius:1px}
+  .sb-bars i{width:3px;background:#fff;border-radius:1px}
   .sb-bars i:nth-child(1){height:4px}.sb-bars i:nth-child(2){height:6px}.sb-bars i:nth-child(3){height:8px}.sb-bars i:nth-child(4){height:10px}
-  .sb-batt{display:inline-block;width:22px;height:11px;border:1.5px solid rgba(0,0,0,.4);border-radius:3px;position:relative}
-  .sb-batt::after{content:"";position:absolute;left:1.5px;top:1.5px;bottom:1.5px;width:70%;background:#000;border-radius:1px}
+  .sb-batt{display:inline-block;width:22px;height:11px;border:1.5px solid rgba(255,255,255,.45);border-radius:3px;position:relative}
+  .sb-batt::after{content:"";position:absolute;left:1.5px;top:1.5px;bottom:1.5px;width:70%;background:#fff;border-radius:1px}
   .bar-im .navbar{
     display:flex;align-items:center;gap:4px;padding:6px 14px 9px;
-    border-bottom:.5px solid #C6C6C8;background:rgba(249,249,249,.94);
+    border-bottom:.5px solid #2C2C2E;background:rgba(20,20,22,.96);
   }
-  .nb-back{color:#007AFF;font-size:25px;line-height:1}
-  .nb-count{color:#007AFF;font-size:15px;margin-left:-4px;margin-right:6px}
+  .nb-back{color:#0A84FF;font-size:25px;line-height:1}
+  .nb-count{color:#0A84FF;font-size:15px;margin-left:-4px;margin-right:6px}
   .nb-group{display:flex;flex-direction:column;align-items:center;margin:0 auto}
   .nb-photo{width:40px;height:40px;border-radius:50%;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;overflow:hidden;margin-bottom:2px}
   .nb-photo span{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:#fff}
-  .nb-name{font-size:13.5px;font-weight:600}
-  .nb-name .chev{color:#C7C7CC;font-weight:400}
-  .nb-video{color:#007AFF;margin-left:auto}
+  .nb-name{font-size:13.5px;font-weight:600;color:#fff}
+  .nb-name .chev{color:#48484A;font-weight:400}
+  .nb-video{margin-left:auto}
 
-  /* Instagram header */
   .bar-ig .igbar{
     display:flex;align-items:center;gap:14px;padding:10px 14px;
-    background:#fff;border-bottom:.5px solid #DBDBDB;
+    background:#000;border-bottom:1px solid #1C1C1E;
   }
-  .ig-back{font-size:27px;line-height:1;font-weight:300;color:#000}
+  .ig-back{font-size:27px;line-height:1;font-weight:300;color:#fff}
   .ig-pfps{position:relative;width:44px;height:38px;flex-shrink:0}
   .ig-pfps .p1,.ig-pfps .p2{
     position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    color:#fff;font-weight:600;border:2px solid #fff;
+    color:#fff;font-weight:600;border:2px solid #000;
   }
   .ig-pfps .p1{width:30px;height:30px;left:0;top:0;background:#FF9500;font-size:12px}
   .ig-pfps .p2{width:30px;height:30px;right:0;bottom:0;background:#5E5CE6;font-size:12px}
   .ig-meta{min-width:0}
-  .ig-name{font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ig-name{font-size:15px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .ig-sub{font-size:12px;color:#8E8E8E}
-  .ig-icons{margin-left:auto;display:flex;align-items:center;gap:18px;color:#000}
-  .ig-icons svg{display:block}
+  .ig-icons{margin-left:auto;display:flex;align-items:center;gap:18px}
 
   /* ---------- CONVERSATION ---------- */
-  main{max-width:720px;margin:0 auto;padding:150px 10px 120px}
+  main{max-width:720px;margin:0 auto;padding:150px 10px 120px;border-left:1px solid #1C1C1E;border-right:1px solid #1C1C1E;background:#000;min-height:100vh}
   body.tab-ig main{padding-top:118px}
-  .sysm{text-align:center;font-size:12px;color:#8E8E93;margin:14px 0 10px}
-  .ts{text-align:center;font-size:12px;color:#8E8E93;margin:18px 0 8px}
+  .sysm{text-align:center;font-size:12px;color:#636366;margin:14px 0 10px}
+  .ts{text-align:center;font-size:12px;color:#636366;margin:18px 0 8px}
   .ts b{font-weight:600}
-  .cap{text-align:center;font-size:12px;color:#8E8E93;margin:6px 0 16px;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.45}
+  .cap{text-align:center;font-size:11.5px;color:#57575C;margin:8px 0 18px;max-width:430px;margin-left:auto;margin-right:auto;line-height:1.5;letter-spacing:.02em}
+
+  /* hero */
+  .hero{padding:26px 14px 10px;border-bottom:1px solid #1C1C1E;margin-bottom:6px}
+  .hero h1{font-size:30px;font-weight:700;letter-spacing:-.6px;line-height:1.15;max-width:560px}
+  .hero .sub{font-size:15.5px;color:#8E8E93;line-height:1.55;margin-top:12px;max-width:560px}
+  .hero .hint{font-size:12px;color:#57575C;margin-top:14px;letter-spacing:.04em}
+
+  /* manifesto */
+  .manifesto{padding:34px 20px;border-top:1px solid #1C1C1E;border-bottom:1px solid #1C1C1E;margin:26px 0}
+  .manifesto .mline{font-size:19px;font-weight:600;letter-spacing:-.3px;line-height:1.4;padding:9px 0;color:#F2F0EB;max-width:560px;margin:0 auto}
+  .manifesto .mline span{color:#57575C}
 
   .m{display:flex;align-items:flex-end;gap:7px;margin-bottom:2px}
   .m.cluster-gap{margin-top:11px}
   .revealed{opacity:0;transform:translateY(8px);transition:opacity .25s ease,transform .25s ease}
   .revealed.show{opacity:1;transform:none}
   .m .stack{display:flex;flex-direction:column;align-items:flex-start;max-width:76%;min-width:0}
-  .m .nm{font-size:11px;color:#8E8E93;margin:0 0 2px 16px}
+  .m .nm{font-size:11px;color:#636366;margin:0 0 2px 16px}
   .m .b{
     border-radius:19px;padding:8px 13px;font-size:16.5px;line-height:1.32;
     width:fit-content;letter-spacing:-.01em;
@@ -96,53 +105,48 @@
   .m.me .stack{align-items:flex-end}
   .m.me .b{color:#fff}
 
-  /* iMessage skin */
-  body.tab-im .m .b{background:#E9E9EB;color:#000}
+  body.tab-im .m .b{background:#2C2C2E;color:#fff}
   body.tab-im .m.me .b{background:#0A84FF;color:#fff}
-  /* Instagram skin */
   body.tab-ig .m .pfp{display:flex}
   body.tab-ig .m .stack{max-width:72%}
-  body.tab-ig .m .b{background:#EFEFEF;color:#000;border-radius:22px;padding:10px 15px}
+  body.tab-ig .m .b{background:#262626;color:#fff;border-radius:22px;padding:10px 15px}
   body.tab-ig .m.me .b{background:linear-gradient(135deg,#8338EC,#3A86FF);color:#fff}
   body.tab-ig .m .nm{margin-left:15px}
 
-  /* typing */
-  .tdots{display:inline-flex;gap:4px;border-radius:19px;padding:11px 13px;width:fit-content;background:#E9E9EB}
-  body.tab-ig .tdots{background:#EFEFEF;border-radius:22px}
+  .tdots{display:inline-flex;gap:4px;border-radius:19px;padding:11px 13px;width:fit-content;background:#2C2C2E}
+  body.tab-ig .tdots{background:#262626;border-radius:22px}
   .tdots i{width:8px;height:8px;border-radius:50%;background:#8E8E93;animation:tp 1s infinite}
   .tdots i:nth-child(2){animation-delay:.15s}.tdots i:nth-child(3){animation-delay:.3s}
   @keyframes tp{0%,60%,100%{opacity:.45}30%{opacity:1}}
 
-  /* doc link preview */
   .linkprev{
-    display:flex;align-items:center;background:#fff;border:.5px solid #D1D1D6;
+    display:flex;align-items:center;background:#1C1C1E;border:.5px solid #3A3A3C;
     border-radius:13px;overflow:hidden;margin-top:8px;max-width:270px;
   }
-  .linkprev .lp-img{width:62px;height:62px;background:#F2F2F7;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .linkprev .lp-img{width:62px;height:62px;background:#2C2C2E;display:flex;align-items:center;justify-content:center;flex-shrink:0}
   .linkprev .lp-meta{padding:8px 11px;min-width:0}
-  .linkprev .lp-t{font-size:14px;font-weight:600;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .linkprev .lp-d{font-size:12px;color:#8E8E93;margin-top:2px}
+  .linkprev .lp-t{font-size:14px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .linkprev .lp-d{font-size:12px;color:#636366;margin-top:2px}
 
-  /* ---------- COMPOSER ---------- */
+  /* ---------- COMPOSER (dark) ---------- */
   .cmpwrap{
     position:fixed;bottom:0;left:0;right:0;z-index:55;
-    background:rgba(249,249,249,.96);backdrop-filter:blur(12px);
-    border-top:.5px solid #C6C6C8;padding:8px 12px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(20,20,22,.96);backdrop-filter:blur(12px);
+    border-top:1px solid #2C2C2E;padding:8px 12px calc(10px + env(safe-area-inset-bottom));
   }
-  body.tab-ig .cmpwrap{background:#fff;border-top-color:#DBDBDB}
-  .cmp{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:9px}
-  .cmp .cplus{width:30px;height:30px;border-radius:50%;background:#E9E9EB;color:#8E8E93;display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:300;flex-shrink:0}
-  .cmp .ccam{width:34px;height:34px;border-radius:50%;background:#EFEFEF;display:none;align-items:center;justify-content:center;flex-shrink:0;color:#000}
+  body.tab-ig .cmpwrap{background:rgba(0,0,0,.96);border-top-color:#1C1C1E}
+  .cmp{max-width:696px;margin:0 auto;display:flex;align-items:center;gap:9px}
+  .cmp .cplus{width:30px;height:30px;border-radius:50%;background:#2C2C2E;color:#8E8E93;display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:300;flex-shrink:0}
+  .cmp .ccam{width:34px;height:34px;border-radius:50%;background:#262626;display:none;align-items:center;justify-content:center;flex-shrink:0}
   body.tab-ig .cmp .cplus{display:none}
   body.tab-ig .cmp .ccam{display:flex}
   .cmp input{
-    flex:1;border:1px solid #D1D1D6;background:#fff;color:#000;
+    flex:1;border:1px solid #3A3A3C;background:#1C1C1E;color:#fff;
     border-radius:18px;padding:8px 13px;font-size:16.5px;outline:none;
     font-family:inherit;letter-spacing:-.01em;min-width:0;
   }
-  body.tab-ig .cmp input{border:none;background:#EFEFEF;border-radius:22px;padding:11px 16px}
-  .cmp input::placeholder{color:#C7C7CC}
-  body.tab-ig .cmp input::placeholder{color:#8E8E8E}
+  body.tab-ig .cmp input{border:none;background:#262626;border-radius:22px;padding:11px 16px}
+  .cmp input::placeholder{color:#636366}
   .cmp .snd{
     width:29px;height:29px;border-radius:50%;background:#0A84FF;border:none;flex-shrink:0;
     display:flex;align-items:center;justify-content:center;cursor:pointer;
@@ -150,25 +154,27 @@
   body.tab-ig .cmp .snd{background:none;width:auto;height:auto}
   body.tab-ig .cmp .snd svg{display:none}
   body.tab-ig .cmp .snd::after{content:"Send";color:#0095F6;font-weight:600;font-size:15px}
-  .cmp-fine{max-width:720px;margin:6px auto 0;font-size:11.5px;color:#8E8E93;text-align:center}
-  .cmp-fine a{color:#007AFF;text-decoration:none}
-  body.tab-ig .cmp-fine a{color:#00376B}
+  .cmp-fine{max-width:696px;margin:6px auto 0;font-size:11.5px;color:#57575C;text-align:center}
+  .cmp-fine a{color:#0A84FF;text-decoration:none}
 
-  .footline{max-width:720px;margin:26px auto 0;padding:0 16px;text-align:center;font-size:12px;color:#8E8E93;line-height:1.6}
-  .footline a{color:#007AFF;text-decoration:none}
+  .footline{max-width:720px;margin:26px auto 0;padding:0 16px;text-align:center;font-size:12px;color:#57575C;line-height:1.6}
+  .footline a{color:#0A84FF;text-decoration:none}
+  .oneliner{font-size:14px;color:#8E8E93;margin-top:22px}
 
-  /* shot mode */
   body.shot .revealed{opacity:1 !important;transform:none !important}
 
   @media (max-width:640px){
     .m .stack{max-width:80%}
     .bar-im .statusbar{padding:8px 22px 2px}
+    main{border-left:none;border-right:none}
+    .hero h1{font-size:26px}
   }
 </style>
 </head>
 <body class="tab-im">
 
 <div class="tabs">
+  <span class="wm">lore</span>
   <button id="tabIm" class="on" onclick="setTab('im')">iMessage</button>
   <button id="tabIg" onclick="setTab('ig')">Instagram</button>
 </div>
@@ -202,6 +208,12 @@
 </div>
 
 <main id="chat">
+  <div class="hero">
+    <h1>The personal AI super-agent - multiplayer, for your team.</h1>
+    <p class="sub">lore is a full agent - it books, researches, remembers, watches, runs tasks - living inside your team's group chat like a teammate. Not a tool one person manages: it works for everyone in the room, at once, and every claim comes with receipts. The demo below is the pitch.</p>
+    <p class="hint">↓ scroll - the chat plays as you do. the composer is live.</p>
+  </div>
+
 
   <!-- BEAT 1: you're in / catch-up -->
   <section data-beat>
@@ -212,7 +224,7 @@
     <div class="m revealed cluster-gap"><span class="pfp" style="background:#FF9500">J</span><div class="stack"><div class="nm">Joshua</div><div class="b">lore catch them up</div></div></div>
     <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="nm">lore</div><div class="b">While you were lurking: the sandwich war got settled (hot dog is NOT a sandwich, receipts from Aug 19), Suitcase Andy earned his name on July 12, Friday moved to bowling at 7, and Maya is still undefeated at trivia.</div></div></div>
     <div class="m revealed" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="b">I'm lore. I live in this chat. I remember everything the group decides is worth keeping - and I can prove where I learned it.</div></div></div>
-    <div class="cap">the catch-up you just read is the product. lore is a member of the group, like a person.</div>
+    <div class="cap">omniscient about the conversation - hears everything, forgets nothing, cites every claim.</div>
   </section>
 
   <!-- BEAT 2: docs -->
@@ -227,7 +239,7 @@
     </div></div></div>
     <div class="m revealed cluster-gap"><span class="pfp" style="background:#FF9500">J</span><div class="stack"><div class="nm">Joshua</div><div class="b">it just DID that??</div></div></div>
     <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="nm">lore</div><div class="b">Ask me to make things. Docs, lists, the plan. I'll put it where everyone can reach it.</div></div></div>
-    <div class="cap">natural language in, shareable doc out. real agent work, live in production today.</div>
+    <div class="cap">asks in plain language, ships real artifacts. docs are live in production today.</div>
   </section>
 
 
@@ -238,7 +250,7 @@
     <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="nm">lore</div><div class="b">Done. Westside Bowl, Friday 7:00, lanes 7-8, 90 minutes, confirmation is in the doc. Snacks are locked to the good fries.</div></div></div>
     <div class="m revealed cluster-gap"><span class="pfp" style="background:#FF9500">J</span><div class="stack"><div class="nm">Joshua</div><div class="b">it's a personal assistant now??</div></div></div>
     <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="nm">lore</div><div class="b">For the group. You ask, it's handled - docs, plans, bookings. That's the job.</div></div></div>
-    <div class="cap">agentic tasks: lore doesn't suggest, it does. the group asks, lore handles it.</div>
+    <div class="cap">agentic tasks: the group asks, lore handles it. research, bookings, follow-ups.</div>
   </section>
 
   <!-- BEAT 3: memory + receipts -->
@@ -252,7 +264,7 @@
     <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="nm">lore</div><div class="b">No. And Joshua, you argued the opposite on Aug 3. The chat remembers. I remember.</div></div></div>
     <div class="m revealed cluster-gap"><span class="pfp" style="background:#FF9500">J</span><div class="stack"><div class="nm">Joshua</div><div class="b">💀💀💀</div></div></div>
     <div class="m me revealed"><div class="stack"><div class="b">ok that's actually crazy</div></div></div>
-    <div class="cap">per-person and relationship memory - every claim cited to the message it came from.</div>
+    <div class="cap">accountability with receipts - who committed to what, cited to the exact message.</div>
   </section>
 
   <!-- BEAT 4: 200 messages -->
@@ -274,7 +286,7 @@
     <div class="m me revealed"><div class="stack"><div class="b">lore catch me up i can't read all that</div></div></div>
     <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="nm">lore</div><div class="b">You missed 4 things: plans are locked for Friday, Andy's dog is fine, Andy owes Maya $14, and the other 196 messages were about cereal again.</div></div></div>
     <div class="m revealed" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="b">That's the whole job. 200 messages → the 4 that mattered.</div></div></div>
-    <div class="cap">you just used it. that was the feature.</div>
+    <div class="cap">nobody on the team ever reads the backlog again.</div>
   </section>
 
   <!-- BEAT 5: games -->
@@ -286,7 +298,7 @@
     <div class="m revealed"><span class="pfp" style="background:#30D158">A</span><div class="stack"><div class="nm">Andy</div><div class="b">graduation and i want lore to read it</div></div></div>
     <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="nm">lore</div><div class="b">Noted, and for the record I'd be honored. Graduation 2, dinner 1. The scoreboard is 11 games deep this month - Maya is somehow still winning.</div></div></div>
     <div class="m revealed" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="b">You can play too. This composer is live - type anything and I'll answer. Say "graduation" or "dinner" and your vote counts.</div></div></div>
-    <div class="cap">lore runs the games and keeps score across sessions. part of the social fabric, not a tool you open.</div>
+    <div class="cap">it keeps the room human, too - games, scoreboards, the social fabric.</div>
   </section>
 
 
@@ -300,8 +312,15 @@
     <div class="m revealed"><span class="pfp" style="background:#FF2D55">P</span><div class="stack"><div class="nm">Priya</div><div class="b">ok hi - lore has been talking you up for a week</div></div></div>
     <div class="m revealed"><span class="pfp" style="background:#30D158">A</span><div class="stack"><div class="nm">Andy</div><div class="b">welcome. don't say cereal is soup and you'll be fine</div></div></div>
     <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="nm">lore</div><div class="b">Every chat I'm in makes every other chat sharper. You're welcome.</div></div></div>
-    <div class="cap">the connector: lore knows every room it's in - and introduces people across them, with receipts.</div>
+    <div class="cap">the connector: lore knows every room it's in - and introduces the right people across them, with receipts.</div>
   </section>
+
+
+  <div class="manifesto">
+    <div class="mline"><span>The AI-employee flood is single-player.</span> lore is multiplayer - the whole team, one agent.</div>
+    <div class="mline"><span>They start blank every morning.</span> lore knows the group's whole history.</div>
+    <div class="mline"><span>They work in a dashboard for one person.</span> lore works in the chat for everyone, at once.</div>
+  </div>
 
   <!-- BEAT 6: finale / waitlist -->
   <section data-beat id="finale">
@@ -309,7 +328,7 @@
     <div class="m revealed" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="nm">lore</div><div class="b">Okay. You've been reading this whole time and haven't said a word.</div></div></div>
     <div class="m revealed" data-lore><span class="pfp" style="background:#111">✦</span><div class="stack"><div class="b">Here's the thing: none of this hits until I'm in YOUR chat, remembering YOUR people. Type your instagram @ right here and I'll put you on the list - a real human sets it up with you personally. Or add @lore.groupchat to any instagram group chat yourself and I'm there in about 60 seconds. Your call.</div></div></div>
     <div id="signupThread"></div>
-    <div class="footline" style="font-size:13.5px;color:#555">the last social network was built on what people post. lore is built on what people actually say to each other.</div>
+    <div class="footline oneliner">the last social network was built on what people post. lore is built on what people actually say to each other.</div>
     <div class="footline">built by a 17-year-old · live in real group chats today · nothing leaves your chat · <a href="https://instagram.com/lore.groupchat" target="_blank" rel="noopener">@lore.groupchat</a></div>
   </section>
 </main>
