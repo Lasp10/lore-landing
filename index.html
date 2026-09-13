@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>lore</title>
+<meta name="description" content="lore is an ai that lives in your instagram group chat. you don't read about it - you get added to the chat.">
+<meta name="theme-color" content="#13100C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Space+Grotesk:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#13100C; --panel:#0C0C0E; --cream:#FFF6EA; --coral:#FF4A1F; --coral-soft:#FF7A4D;
+    --dim:#8A8578; --bubble:#26262B; --line:#26262b; --line2:#38322A;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--cream);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--coral);color:#fff}
+  .hand{font-family:'Caveat',cursive}
+
+  /* ---------- CHAT BAR ---------- */
+  .chatbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:12px;
+    padding:13px 20px;background:rgba(12,12,14,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
+  }
+  .chatbar .back{color:#6b655c;font-size:22px;line-height:1}
+  .avatar-stack{display:flex}
+  .avatar-stack .av{width:32px;height:32px;border-radius:50%;border:2px solid var(--panel);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff}
+  .av1{background:#FF4A1F}.av2{background:#7C5CFF;margin-left:-10px}.av3{background:#1FA87A;margin-left:-10px}
+  .chat-title{font-weight:700;font-size:15.5px;line-height:1.2}
+  .chat-sub{font-size:11.5px;color:var(--dim)}
+  .bar-right{margin-left:auto;display:flex;align-items:center;gap:12px}
+  .wordmark{font-family:'Bricolage Grotesque';font-weight:800;font-size:20px;letter-spacing:-.5px}
+  .wordmark span{color:var(--coral)}
+  .demo-pill{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);border:1px solid #33322f;border-radius:100px;padding:4px 10px;white-space:nowrap}
+  .getlore{
+    font-family:'Space Grotesk';font-weight:700;font-size:13.5px;text-decoration:none;cursor:pointer;
+    background:var(--coral);color:#fff;border:2px solid var(--cream);border-radius:100px;padding:7px 16px;
+    box-shadow:2px 2px 0 rgba(255,246,234,.5);transition:transform .15s ease;white-space:nowrap;
+  }
+  .getlore:hover{transform:translateY(-2px) rotate(-1deg)}
+
+  /* ---------- CHAT COLUMN ---------- */
+  main{max-width:780px;margin:0 auto;padding:120px 20px 160px}
+  .sys{text-align:center;font-size:12px;color:var(--dim);margin:34px 0 22px;letter-spacing:.02em}
+  .msg{margin-bottom:16px;max-width:78%;opacity:0;transform:translateY(14px);transition:opacity .35s ease,transform .35s ease}
+  .msg.show{opacity:1;transform:none}
+  .msg .who{font-size:11.5px;font-weight:600;color:var(--dim);margin:0 0 4px 14px}
+  .msg .who .ln{color:var(--coral);font-weight:700}
+  .msg .bub{background:var(--bubble);border-radius:20px;border-bottom-left-radius:6px;padding:11px 16px;font-size:16px;line-height:1.5;width:fit-content}
+  .msg.me{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end}
+  .msg.me .bub{background:linear-gradient(135deg,#8338EC,#3A86FF);color:#fff;border-bottom-left-radius:20px;border-bottom-right-radius:6px}
+  .msg.lore .bub{background:var(--cream);color:#16120E}
+  .msg.lore .bub b{color:#E13A12}
+  .hand-note{display:block;text-align:center;color:var(--coral-soft);font-size:23px;transform:rotate(-2deg);margin:6px 0 30px}
+  .caption{text-align:center;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#6b655c;margin:2px 0 34px}
+  .caption em{font-style:normal;color:var(--coral-soft)}
+  .typing{display:inline-flex;gap:5px;padding:14px 16px;background:var(--bubble);border-radius:20px;border-bottom-left-radius:6px;width:fit-content;margin-bottom:16px}
+  .typing i{width:7px;height:7px;border-radius:50%;background:#6b655c;animation:tp 1s infinite}
+  .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+  @keyframes tp{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+
+  /* ---------- DOC CARD ---------- */
+  .doc-card{display:flex;gap:13px;align-items:center;background:#17140F;border:1.5px solid var(--line2);border-radius:16px;padding:13px 15px;margin-top:11px;max-width:430px;text-decoration:none}
+  .doc-card .docicon{width:40px;height:50px;background:var(--cream);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:2px 3px 0 rgba(255,246,234,.25)}
+  .doc-card .dt{font-weight:700;font-size:14.5px;color:var(--cream)}
+  .doc-card .ds{font-size:12px;color:var(--dim);margin-top:2px}
+  .doc-card .open{margin-left:auto;font-size:12px;font-weight:700;color:var(--coral);border:1.5px solid var(--coral);border-radius:100px;padding:6px 12px;white-space:nowrap}
+
+  /* ---------- RELATIONSHIP BOARD ---------- */
+  .relmap{background:#17140F;border:1.5px dashed var(--line2);border-radius:16px;padding:13px 15px;margin-top:11px;font-size:14px;line-height:2;max-width:470px}
+  .relmap .r{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+  .relmap .who2{font-weight:700;color:var(--cream);white-space:nowrap}
+  .relmap .rel{color:var(--coral);font-weight:600;white-space:nowrap}
+  .relmap .since{color:var(--dim);font-size:12.5px}
+
+  /* ---------- FAST-FORWARD ---------- */
+  .ff{opacity:.16;filter:blur(1.5px);pointer-events:none;user-select:none}
+  .ff .skel{height:16px;border-radius:8px;background:var(--bubble);margin-bottom:14px}
+  .ff .skel.s{width:38%}.ff .skel.m{width:62%}.ff .skel.l{width:74%}
+  .ff .skel.right{margin-left:auto;background:linear-gradient(135deg,#8338EC,#3A86FF);opacity:.5}
+
+  /* ---------- WYR VOTE ---------- */
+  .vote{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+  .vote button{
+    font-family:'Space Grotesk';font-weight:700;font-size:14px;cursor:pointer;
+    background:#17140F;color:var(--cream);border:1.5px solid var(--line2);border-radius:100px;padding:10px 16px;
+    transition:all .15s ease;text-align:left;flex:1;min-width:200px;
+  }
+  .vote button:hover{border-color:var(--coral);transform:translateY(-2px)}
+  .vote button.picked{background:var(--coral);border-color:var(--cream);color:#fff}
+  .vote button:disabled{cursor:default;opacity:.85}
+  .vote button:not(.picked):disabled{opacity:.45}
+
+  /* ---------- COMPOSER / FINALE ---------- */
+  .composer{
+    position:fixed;bottom:0;left:0;right:0;z-index:50;padding:13px 20px 16px;
+    background:rgba(12,12,14,.88);backdrop-filter:blur(14px);border-top:1px solid var(--line);
+    display:flex;flex-direction:column;align-items:center;gap:6px;
+  }
+  .composer .row{width:min(780px,100%);display:flex;gap:9px}
+  .composer input{
+    flex:1;border:1.5px solid #33322f;background:#17171A;color:var(--dim);
+    border-radius:100px;padding:13px 22px;font-size:15px;font-family:'Space Grotesk';outline:none;
+    transition:border-color .2s ease;
+  }
+  .composer.live input{border-color:var(--coral);color:var(--cream);box-shadow:0 0 0 4px rgba(255,74,31,.15)}
+  .composer button.send{
+    background:var(--coral);color:#fff;border:2px solid var(--cream);border-radius:100px;width:48px;height:48px;
+    font-size:18px;cursor:pointer;flex-shrink:0;box-shadow:2px 2px 0 rgba(255,246,234,.4);opacity:.35;transition:opacity .2s;
+  }
+  .composer.live button.send{opacity:1}
+  .composer .fineprint{font-size:11px;color:#57524a;opacity:0;transition:opacity .3s}
+  .composer.live .fineprint{opacity:1}
+  .composer .fineprint a{color:var(--coral-soft);text-decoration:none}
+
+  footer{max-width:780px;margin:60px auto 0;padding:0 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:13px;color:#57524a}
+  footer a{color:#8A8578;text-decoration:none;border-bottom:1px solid var(--coral)}
+  footer .fmark{font-family:'Bricolage Grotesque';font-weight:800;font-size:17px;color:var(--cream)}
+  footer .fmark span{color:var(--coral)}
+
+  /* ---------- KEEP-TALKING WIDGET ---------- */
+  .lore-fab{
+    position:fixed;bottom:96px;right:20px;z-index:60;
+    background:var(--coral);color:#fff;border:2px solid var(--cream);border-radius:100px;
+    padding:11px 18px;font-family:'Space Grotesk';font-weight:700;font-size:14px;cursor:pointer;
+    box-shadow:3px 4px 0 rgba(255,246,234,.35);display:none;align-items:center;gap:8px;transition:transform .16s ease;
+  }
+  .lore-fab.show{display:flex}
+  .lore-fab:hover{transform:translateY(-3px) rotate(-1.5deg)}
+  .lore-panel{
+    position:fixed;bottom:146px;right:20px;z-index:60;
+    width:min(370px,calc(100vw - 32px));height:min(500px,66vh);
+    background:#17140F;border:2px solid var(--cream);border-radius:22px;box-shadow:8px 10px 0 rgba(255,246,234,.7);
+    display:none;flex-direction:column;overflow:hidden;
+  }
+  .lore-panel.open{display:flex;animation:pop .25s cubic-bezier(.2,1.4,.4,1)}
+  @keyframes pop{from{transform:translateY(16px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+  .lp-head{background:#0C0C0E;color:var(--cream);padding:13px 16px;display:flex;align-items:center;gap:10px}
+  .lp-head .lp-av{width:32px;height:32px;border-radius:50%;background:var(--coral);display:flex;align-items:center;justify-content:center;font-weight:800;font-family:'Bricolage Grotesque';color:#fff;font-size:16px;border:2px solid rgba(255,246,234,.4)}
+  .lp-head .lp-name{font-weight:700;font-size:15px}
+  .lp-head .lp-sub{font-size:11px;color:#9a938a}
+  .lp-head .lp-x{margin-left:auto;background:none;border:none;color:var(--cream);font-size:20px;cursor:pointer;line-height:1}
+  .lp-body{flex:1;overflow-y:auto;padding:14px 13px;display:flex;flex-direction:column;gap:10px;background:#100E0A}
+  .lp-msg{max-width:82%;padding:10px 13px;font-size:13.5px;line-height:1.45;border-radius:16px;animation:pop .22s ease}
+  .lp-msg.lore{background:#24201B;border:1.5px solid var(--line2);border-bottom-left-radius:5px;align-self:flex-start;color:#F2EDE4}
+  .lp-msg.you{background:linear-gradient(135deg,#8338EC,#3A86FF);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+  .lp-msg .who{display:block;font-size:10.5px;font-weight:700;color:var(--coral);margin-bottom:3px;letter-spacing:.03em}
+  .lp-typing{align-self:flex-start}
+  .lp-honest{text-align:center;font-size:10px;color:#7d766a;padding:6px 0 7px;background:#100E0A;border-top:1px dashed var(--line2)}
+  .lp-foot{padding:11px;border-top:1px solid var(--line2);display:flex;gap:8px;background:#17140F}
+  .lp-foot input{flex:1;border:1.5px solid #3A3A40;border-radius:100px;padding:9px 15px;font-size:13.5px;font-family:'Space Grotesk';outline:none;background:#100E0A;color:var(--cream)}
+  .lp-foot input:focus{border-color:var(--coral)}
+  .lp-foot button{background:var(--coral);color:#fff;border:2px solid var(--cream);border-radius:100px;width:40px;height:40px;font-size:15px;cursor:pointer;flex-shrink:0;box-shadow:2px 2px 0 rgba(255,246,234,.5)}
+
+  /* shot mode: everything visible, no animation */
+  body.shot .msg{opacity:1 !important;transform:none !important}
+  body.shot .ff{display:none}
+
+  @media (max-width:640px){
+    .demo-pill{display:none}
+    .msg{max-width:88%}
+    .msg .bub{font-size:15px}
+    .chatbar{padding:12px 14px}
+    main{padding:100px 14px 170px}
+    .lore-fab{bottom:86px;right:14px}
+    .lore-panel{bottom:138px;right:14px}
+  }
+</style>
+</head>
+<body>
+
+<div class="chatbar">
+  <span class="back">‹</span>
+  <div class="avatar-stack"><div class="av av1">J</div><div class="av av2">M</div><div class="av av3">✦</div></div>
+  <div>
+    <div class="chat-title">the hoard</div>
+    <div class="chat-sub" id="chatSub">joshua, maya, lore + 4 others · active now</div>
+  </div>
+  <div class="bar-right">
+    <div class="wordmark">lore<span>.</span></div>
+    <span class="demo-pill">demo chat</span>
+    <a class="getlore" href="#finale">get lore</a>
+  </div>
+</div>
+
+<main id="chat">
+
+  <!-- BEAT 1: you're in / catch-up is the pitch -->
+  <section class="beat" data-beat>
+    <div class="sys">you were added to the group</div>
+    <div class="msg"><div class="who">joshua</div><div class="bub">wait who just joined</div></div>
+    <div class="msg"><div class="who">maya</div><div class="bub">idk but they've been reading for like 2 minutes 👀</div></div>
+    <div class="msg"><div class="who">joshua</div><div class="bub">lore catch them up</div></div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub"><b>while you were lurking:</b> the sandwich war got settled (hot dog is NOT a sandwich, receipts from aug 19), suitcase andy earned his name on july 12, friday moved to bowling 7pm, and maya is still undefeated at trivia.</div></div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">i'm lore. i live in this chat. i remember everything the group decides is worth keeping - and i can prove where i learned it.</div></div>
+    <span class="hand hand-note">^ the catch-up is the pitch. keep scrolling, the chat keeps going ↓</span>
+  </section>
+
+  <!-- BEAT 2: agentic - docs -->
+  <section class="beat" data-beat>
+    <div class="sys">3:47 PM</div>
+    <div class="msg"><div class="who">maya</div><div class="bub">lore make us a doc of every inside joke so the new person stops asking</div></div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub"><b>done.</b> 47 entries, each one cited to the message that started it. suitcase andy is entry #1, obviously.
+      <a class="doc-card" href="#" onclick="return false">
+        <div class="docicon">📄</div>
+        <div><div class="dt">the hoard - official lore archive</div><div class="ds">google doc · anyone with the link can edit</div></div>
+        <span class="open">open ↗</span>
+      </a>
+    </div></div>
+    <div class="msg"><div class="who">joshua</div><div class="bub">it just DID that??</div></div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">ask me to make things. docs, lists, the plan. i'll put it where everyone can reach it.</div></div>
+    <div class="caption">doc-making is a <em>real feature, live today</em> - not a mockup</div>
+  </section>
+
+  <!-- BEAT 3: relationship memory -->
+  <section class="beat" data-beat>
+    <div class="sys">4:15 PM</div>
+    <div class="msg"><div class="who">joshua</div><div class="bub">ok real question. is maya still mad at me. asking for a friend. the friend is me</div></div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">checking the board.
+      <div class="relmap">
+        <div class="r"><span class="who2">maya → joshua</span><span class="rel">beefing</span><span class="since">since the fantasy trade, sept 2</span></div>
+        <div class="r"><span class="who2">andy → chloe</span><span class="rel">dated</span><span class="since">do NOT bring it up</span></div>
+        <div class="r"><span class="who2">maya → trivia</span><span class="rel">undefeated</span><span class="since">11 straight, demands respect</span></div>
+      </div>
+      verdict: moderately mad. apologize before friday or bowling is off.</div></div>
+    <div class="msg"><div class="who">joshua</div><div class="bub">the fact that it KNOWS that</div></div>
+    <div class="caption">lore builds this from your chat - <em>who knows who, who beefs with who</em>, all with receipts</div>
+  </section>
+
+  <!-- BEAT 4: settle with receipts -->
+  <section class="beat" data-beat>
+    <div class="sys">4:31 PM</div>
+    <div class="msg"><div class="who">maya</div><div class="bub">lore settle this RIGHT NOW: is cereal soup</div></div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">no. and joshua, you argued the opposite on aug 3. the chat remembers. i remember.</div></div>
+    <div class="msg"><div class="who">joshua</div><div class="bub">💀💀💀</div></div>
+    <div class="msg me"><div class="bub">ok that's actually crazy</div></div>
+  </section>
+
+  <!-- BEAT 5: fast-forward 200 messages -->
+  <section class="beat" data-beat>
+    <div class="ff" aria-hidden="true">
+      <div class="skel m"></div><div class="skel s right"></div><div class="skel l"></div><div class="skel s"></div>
+      <div class="skel m right"></div><div class="skel l"></div><div class="skel s"></div><div class="skel m"></div>
+      <div class="skel l right"></div><div class="skel s"></div><div class="skel m"></div><div class="skel s right"></div>
+      <div class="skel m"></div><div class="skel l"></div><div class="skel s"></div><div class="skel m right"></div>
+      <div class="skel l"></div><div class="skel s right"></div><div class="skel m"></div><div class="skel l"></div>
+      <div class="skel s"></div><div class="skel m"></div><div class="skel l right"></div><div class="skel s"></div>
+    </div>
+    <div class="sys">6:02 PM · you scrolled past 200 messages</div>
+    <div class="msg me"><div class="bub">lore catch me up i can't read all that</div></div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub"><b>you missed 4 things:</b> plans are locked for friday, andy's dog is fine, someone owes maya $14, and the 196 other messages were about cereal again.</div></div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">that's the whole job. 200 messages → the 4 that mattered.</div></div>
+    <div class="caption">you just used it. <em>that was the feature.</em></div>
+  </section>
+
+  <!-- BEAT 6: would-you-rather vote -->
+  <section class="beat" data-beat>
+    <div class="sys">6:20 PM</div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">chat's quiet. game time. would you rather:
+      <div class="vote" id="wyr">
+        <button data-v="a">your chat history read out loud at graduation</button>
+        <button data-v="b">your search history read out loud at dinner</button>
+      </div>
+    </div></div>
+    <div class="msg lore" data-wyr-reply style="display:none"><div class="who"><span class="ln">lore ✦</span></div><div class="bub" id="wyrReplyText"></div></div>
+    <div class="caption">vote for real. lore runs games in the chat and remembers who choked</div>
+  </section>
+
+  <!-- BEAT 7: finale / waitlist -->
+  <section class="beat" data-beat id="finale">
+    <div class="sys">now</div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">okay. you've been reading this whole time and haven't said a word.</div></div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">here's the thing: none of this hits until i'm in YOUR chat, remembering YOUR people. so - drop your ig @ below and you're on the list. we set it up with you personally, takes about 2 minutes.</div></div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">the composer at the bottom is live. it's waiting for your @.</div></div>
+    <div id="signupThread"></div>
+  </section>
+
+  <footer>
+    <div class="fmark">lore<span>.</span></div>
+    <div>made for group chats · nothing leaves your chat</div>
+    <a href="https://instagram.com/lore.groupchat" target="_blank" rel="noopener">@lore.groupchat</a>
+  </footer>
+</main>
+
+<!-- COMPOSER -->
+<div class="composer" id="composer">
+  <div class="row">
+    <input id="composerInput" type="text" placeholder="say something..." autocomplete="off" maxlength="60">
+    <button class="send" id="composerSend" aria-label="send">↑</button>
+  </div>
+  <div class="fineprint">your @ only gets used to set lore up. nothing else. or skip the form: <a href="https://instagram.com/lore.groupchat" target="_blank" rel="noopener">DM @lore.groupchat</a></div>
+</div>
+
+<!-- KEEP TALKING WIDGET -->
+<button class="lore-fab" id="loreFab">keep talking to lore</button>
+<div class="lore-panel" id="lorePanel">
+  <div class="lp-head">
+    <div class="lp-av">✦</div>
+    <div><div class="lp-name">lore</div><div class="lp-sub">usually in a group chat. today, here.</div></div>
+    <button class="lp-x" id="loreClose" aria-label="close">×</button>
+  </div>
+  <div class="lp-body" id="lpBody"></div>
+  <div class="lp-honest">demo lore - the real one lives in your group chat</div>
+  <div class="lp-foot">
+    <input id="lpInput" type="text" placeholder="say something..." autocomplete="off" maxlength="200">
+    <button id="lpSend" aria-label="send">↑</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG - waitlist endpoint (Apps Script web app -> Sheet)
+   ============================================================ */
+const WAITLIST_ENDPOINT = "https://lore-host.onrender.com/waitlist";
+const IG_URL = "https://instagram.com/lore.groupchat";
+const SHOT = location.search.includes('shot');
+if (SHOT) document.body.classList.add('shot');
+
+/* ============================================================
+   SCROLL-DRIVEN BEAT PLAYBACK
+   ============================================================ */
+const played = new WeakSet();
+function playBeat(section){
+  if (played.has(section)) return;
+  played.add(section);
+  const msgs = [...section.querySelectorAll('.msg')].filter(m=>!m.hasAttribute('data-wyr-reply'));
+  if (SHOT) { msgs.forEach(m=>m.classList.add('show')); return; }
+  let t = 250;
+  msgs.forEach(m=>{
+    const isLore = m.hasAttribute('data-lore');
+    if (isLore){
+      setTimeout(()=>{
+        const tp=document.createElement('div'); tp.className='typing'; tp.innerHTML='<i></i><i></i><i></i>';
+        m.parentNode.insertBefore(tp, m);
+        setTimeout(()=>{ tp.remove(); m.classList.add('show'); }, 900);
+      }, t);
+      t += 900 + 500 + Math.min(m.textContent.length*8, 900);
+    } else {
+      setTimeout(()=>m.classList.add('show'), t);
+      t += 550;
+    }
+  });
+}
+const beatIO = new IntersectionObserver((es)=>{
+  es.forEach(e=>{ if(e.isIntersecting){ playBeat(e.target); beatIO.unobserve(e.target); } });
+},{threshold:0.25});
+document.querySelectorAll('[data-beat]').forEach(b=>beatIO.observe(b));
+
+/* ============================================================
+   WYR VOTE
+   ============================================================ */
+const wyrReplies = {
+  a: "chat history at graduation. bold. the group respects it - and for the record, i'd be the one reading it.",
+  b: "search history at dinner. understandable. some things stay between you and google. vote counted - the real scoreboard lives in the chat."
+};
+document.querySelectorAll('#wyr button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#wyr button').forEach(b=>{ b.disabled=true; });
+    btn.classList.add('picked');
+    const r = document.querySelector('[data-wyr-reply]');
+    document.getElementById('wyrReplyText').textContent = wyrReplies[btn.dataset.v];
+    r.style.display='';
+    setTimeout(()=>r.classList.add('show'), SHOT?0:400);
+  });
+});
+if (SHOT){ /* leave unvoted in static shot */ }
+
+/* ============================================================
+   FINALE: composer -> waitlist
+   ============================================================ */
+const composer = document.getElementById('composer');
+const cInput = document.getElementById('composerInput');
+const cSend = document.getElementById('composerSend');
+const signupThread = document.getElementById('signupThread');
+let signedUp = false;
+
+/* light up composer when finale is on screen */
+new IntersectionObserver((es)=>{
+  es.forEach(e=>composer.classList.toggle('live', e.isIntersecting && !signedUp));
+},{threshold:0.2}).observe(document.getElementById('finale'));
+
+function normalizeHandle(raw){
+  let h = raw.trim().replace(/^@/,'').toLowerCase();
+  return /^[a-z0-9._]{1,30}$/.test(h) ? h : null;
+}
+function addMsg(container, who, text, opts={}){
+  const d=document.createElement('div');
+  d.className='msg'+(opts.me?' me':'')+(opts.lore?' lore':'');
+  d.innerHTML = (opts.me?'':`<div class="who">${opts.lore?'<span class="ln">lore ✦</span>':who}</div>`)+`<div class="bub"></div>`;
+  d.querySelector('.bub').textContent=text;
+  container.appendChild(d);
+  requestAnimationFrame(()=>d.classList.add('show'));
+  return d;
+}
+function loreThink(container, cb){
+  const tp=document.createElement('div'); tp.className='typing'; tp.innerHTML='<i></i><i></i><i></i>';
+  container.appendChild(tp); container.scrollIntoView({block:'nearest'});
+  setTimeout(()=>{ tp.remove(); cb(); }, 1100);
+}
+async function submitSignup(){
+  if (signedUp) return;
+  const raw = cInput.value;
+  if (!raw.trim()) return;
+  const handle = normalizeHandle(raw);
+  if (!handle){
+    addMsg(signupThread,'you',raw,{me:true});
+    loreThink(signupThread, ()=>addMsg(signupThread,'lore',"that doesn't look like an ig handle - just the @ name, like @yourname. try again.",{lore:true}));
+    cInput.value='';
+    return;
+  }
+  signedUp = true;
+  composer.classList.remove('live');
+  addMsg(signupThread,'you','@'+handle,{me:true});
+  cInput.value=''; cInput.placeholder='you\'re on the list ✓'; cInput.disabled=true; cSend.disabled=true;
+
+  loreThink(signupThread, async ()=>{
+    let stored = false;
+    if (WAITLIST_ENDPOINT){
+      try{
+        await fetch(WAITLIST_ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body: JSON.stringify({ig_handle:handle, source:'landing-page'})});
+        stored = true; // no-cors: opaque response; treat network success as stored
+      }catch(e){ stored = false; }
+    }
+    if (stored){
+      addMsg(signupThread,'lore',`got it, @${handle}. you're on the list - watch your DMs, a real human sets lore up with you. welcome to the lore.`,{lore:true});
+    } else {
+      addMsg(signupThread,'lore',`hmm - the list hiccuped on my end. fastest way in right now: DM @lore.groupchat on instagram and say you want lore in your chat. same result.`,{lore:true});
+      const a=document.createElement('div'); a.className='msg lore show';
+      a.innerHTML=`<div class="who"><span class="ln">lore ✦</span></div><div class="bub"><a href="${IG_URL}" target="_blank" rel="noopener" style="color:#E13A12;font-weight:700">open instagram DM ↗</a></div>`;
+      signupThread.appendChild(a);
+    }
+    document.getElementById('loreFab').classList.add('show');
+    signupThread.scrollIntoView({block:'end', behavior:'smooth'});
+  });
+}
+cSend.addEventListener('click', submitSignup);
+cInput.addEventListener('keydown', e=>{ if(e.key==='Enter') submitSignup(); });
+
+/* ============================================================
+   KEEP-TALKING WIDGET (demo lore)
+   ============================================================ */
+const fab=document.getElementById('loreFab'), panel=document.getElementById('lorePanel'),
+      body=document.getElementById('lpBody'), lpInput=document.getElementById('lpInput'),
+      lpSend=document.getElementById('lpSend');
+let booted=false;
+function togglePanel(open){
+  panel.classList.toggle('open', open);
+  if(open && !booted){ booted=true; loreSay("still here. ask me anything, or say 'catch me up'."); }
+  if(open) lpInput.focus();
+}
+fab.addEventListener('click', ()=>togglePanel(!panel.classList.contains('open')));
+document.getElementById('loreClose').addEventListener('click', ()=>togglePanel(false));
+function loreSay(text){
+  const tp=document.createElement('div'); tp.className='lp-typing'; tp.innerHTML='<div class="typing"><i></i><i></i><i></i></div>';
+  body.appendChild(tp); body.scrollTop=body.scrollHeight;
+  setTimeout(()=>{
+    tp.remove();
+    const d=document.createElement('div'); d.className='lp-msg lore';
+    d.innerHTML='<span class="who">lore ✦</span>'+text;
+    body.appendChild(d); body.scrollTop=body.scrollHeight;
+  }, 700 + Math.min(text.length*10, 1200));
+}
+function youSay(text){
+  const d=document.createElement('div'); d.className='lp-msg you'; d.textContent=text;
+  body.appendChild(d); body.scrollTop=body.scrollHeight;
+}
+const replies = [
+  {k:['catch me up','catch up','tldr','tl;dr','missed'], r:"demo mode so i don't have your chat - but real me turns 200 messages into the 4 things that actually happened. you literally just watched that happen on this page."},
+  {k:['hot dog','sandwich','cereal','settle'], r:"not soup, not a sandwich, and i'd pull receipts from your own chat to prove it. that's the fun part."},
+  {k:['doc','file','make','create'], r:"yep - 'lore make a doc of X' and you get a real google doc in the chat, anyone with the link can edit. live today."},
+  {k:['remember','memory','relationship','forget'], r:"i keep the group's history and who's who - inside jokes, beefs, lore - and i can show where i learned every piece. no mystery memory."},
+  {k:['game','trivia','would you rather','wyr','bored'], r:"would you rather: i join your chat, or your friend's chat first and know all their lore? think about it."},
+  {k:['how do i get','get lore','join','waitlist','add','invite','sign up','signup'], r:"scroll down to the end of this chat and drop your ig @ in the composer - or DM @lore.groupchat on instagram. real humans set it up in about 2 minutes."},
+  {k:['who are you','what are you','what is this'], r:"i'm lore - an ai that lives in group chats. i read everything, speak up when it matters, remember the group's history, make docs when asked, and settle arguments with receipts."},
+  {k:['safe','privacy','private','read','spy'], r:"fair question. i read the chat because that's how i know anything - nothing leaves the chat, and i stay quiet unless you call me or we're mid-convo."},
+  {k:['roast'], r:"you're talking to a demo bot on a website instead of your actual friends. i'd fix that first."},
+  {k:['hi','hello','hey','yo','sup'], r:"hey. in a real chat i'd greet you with something embarrassing you said 3 weeks ago. demo mode. what's up?"},
+];
+const fallbacks = [
+  "demo lore only knows so much - the real me would have your chat's context. try 'catch me up' or 'make a doc'.",
+  "i could fake an answer but that's not my style. scroll down, drop your @, and ask the real me.",
+];
+let fb=0;
+function respond(t){
+  t=t.toLowerCase();
+  for(const item of replies){ if(item.k.some(k=>t.includes(k))){ loreSay(item.r); return; } }
+  loreSay(fallbacks[fb++ % fallbacks.length]);
+}
+function lpSubmit(){
+  const v=lpInput.value.trim(); if(!v) return;
+  youSay(v); lpInput.value='';
+  setTimeout(()=>respond(v), 350);
+}
+lpSend.addEventListener('click', lpSubmit);
+lpInput.addEventListener('keydown', e=>{ if(e.key==='Enter') lpSubmit(); });
+</script>
+</body>
+      </html>
