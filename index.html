@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>lore - the ai teammate in your group chat</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
 <meta name="description" content="lore is a full ai agent that lives in your team's group chat. it books, researches, remembers, watches, and runs tasks - for everyone in the room, at once.">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
@@ -23,27 +24,28 @@
   }
   .brand{position:absolute;left:16px;display:flex;align-items:center;gap:8px}
   .brand .mark{width:24px;height:24px;border-radius:7px;background:#F2F0EB;color:#0B0B0D;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;letter-spacing:-.5px;font-family:inherit}
-  .brand .wm{font-weight:700;font-size:15.5px;letter-spacing:-.2px;color:#F2F0EB}
+  .brand .wm{font-family:"Playfair Display",serif;font-style:italic;font-weight:700;font-size:19px;color:#F2F0EB}
   .tabs button{
     font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;
     padding:5px 14px;border-radius:100px;border:none;background:transparent;color:#6E6E73;
   }
   .tabs button.on{background:#F2F0EB;color:#000}
 
-  .chatbar{position:fixed;top:48px;left:0;right:0;z-index:50;max-width:720px;margin:0 auto}
+  .chatbar{position:fixed;top:48px;left:0;right:0;z-index:50;max-width:720px;margin:0 auto;background:#000}
+  body.tab-sl .chatbar{background:#1A1D21}
   .bar-sl{display:none}
   body.tab-sl .bar-im{display:none}
   body.tab-sl .bar-sl{display:block}
 
   /* iMessage header */
-  .bar-im .statusbar{display:flex;align-items:center;padding:8px 26px 2px;font-size:14px;font-weight:600;background:rgba(20,20,22,.96);color:#fff}
+  .bar-im .statusbar{display:flex;align-items:center;padding:8px 26px 2px;font-size:14px;font-weight:600;background:#141416;color:#fff}
   .sb-icons{margin-left:auto;display:flex;align-items:center;gap:6px}
   .sb-bars{display:inline-flex;align-items:flex-end;gap:1.5px;height:11px}
   .sb-bars i{width:3px;background:#fff;border-radius:1px}
   .sb-bars i:nth-child(1){height:4px}.sb-bars i:nth-child(2){height:6px}.sb-bars i:nth-child(3){height:8px}.sb-bars i:nth-child(4){height:10px}
   .sb-batt{display:inline-block;width:22px;height:11px;border:1.5px solid rgba(255,255,255,.45);border-radius:3px;position:relative}
   .sb-batt::after{content:"";position:absolute;left:1.5px;top:1.5px;bottom:1.5px;width:70%;background:#fff;border-radius:1px}
-  .bar-im .navbar{display:flex;align-items:center;gap:4px;padding:6px 14px 9px;border-bottom:.5px solid #2C2C2E;background:rgba(20,20,22,.96)}
+  .bar-im .navbar{display:flex;align-items:center;gap:4px;padding:6px 14px 9px;border-bottom:.5px solid #2C2C2E;background:#141416}
   .nb-back{color:#0A84FF;font-size:25px;line-height:1}
   .nb-count{color:#0A84FF;font-size:15px;margin-left:-4px;margin-right:6px}
   .nb-group{display:flex;flex-direction:column;align-items:center;margin:0 auto}
@@ -96,9 +98,11 @@
   body.tab-sl .m{align-items:flex-start;gap:10px;margin-bottom:2px;padding:3px 6px}
   body.tab-sl .m.cluster-gap{margin-top:13px}
   body.tab-sl .m .pfp{display:flex;width:34px;height:34px;border-radius:9px;font-size:13px;font-weight:700;margin-bottom:0}
+  .m .pfp.lorepfp{background:none !important;border-radius:50%}
+  body.tab-im .m .pfp.lorepfp{display:none}
   body.tab-sl .m .stack{max-width:85%}
   body.tab-sl .m .nm{font-size:14.5px;font-weight:800;color:#fff;margin:1px 0 1px 0}
-  body.tab-sl .m .nm .app{font-size:10px;font-weight:700;color:#8a8b8e;background:#2A2B2E;border-radius:3px;padding:1px 4px;margin-left:5px;vertical-align:2px}
+  .m .nm .app{font-size:9px;font-weight:700;color:#8a8b8e;background:#2A2B2E;border-radius:3px;padding:1px 4px;margin-left:5px;vertical-align:1px;letter-spacing:.04em}
   body.tab-sl .m .b{background:none;color:#D1D2D3;border-radius:0;padding:1px 0;font-size:15px;line-height:1.42}
   body.tab-sl .m.me{justify-content:flex-start}
   body.tab-sl .m.me::before{content:"Y";width:34px;height:34px;border-radius:9px;background:#E8912D;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -159,14 +163,14 @@
 <body class="tab-im">
 
 <div class="tabs">
-  <div class="brand"><span class="wm">lore</span></div>
+  <div class="brand"><svg width="20" height="20" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg><span class="wm">lore</span></div>
   <button id="tabIm" class="on" onclick="setTab('im')">iMessage</button>
   <button id="tabSl" onclick="setTab('sl')">Slack</button>
 </div>
 
 <div class="chatbar">
   <div class="bar-im">
-    <div class="statusbar"><span>9:41</span><span class="sb-icons"><span class="sb-bars"><i></i><i></i><i></i><i></i></span><svg width="17" height="11" viewBox="0 0 17 11" fill="none"><path d="M8.5 9.6 5.4 6.5a4.4 4.4 0 0 1 6.2 0L8.5 9.6Z" fill="#fff"/><path d="M3.2 4.3a7.6 7.6 0 0 1 10.6 0" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M1 2a10.8 10.8 0 0 1 15 0" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg><span class="sb-batt"></span></span></div>
+    <div class="statusbar"><span>6:41</span><span class="sb-icons"><span class="sb-bars"><i></i><i></i><i></i><i></i></span><svg width="17" height="11" viewBox="0 0 17 11" fill="none"><path d="M8.5 9.6 5.4 6.5a4.4 4.4 0 0 1 6.2 0L8.5 9.6Z" fill="#fff"/><path d="M3.2 4.3a7.6 7.6 0 0 1 10.6 0" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M1 2a10.8 10.8 0 0 1 15 0" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg><span class="sb-batt"></span></span></div>
     <div class="navbar">
       <span class="nb-back">‹</span><span class="nb-count">4</span>
       <div class="nb-group">
@@ -206,8 +210,8 @@
     <div class="m revealed"><span class="pfp" style="background:#FF9500">A</span><div class="stack"><div class="nm">Ana</div><div class="b">wait who's lore</div></div></div>
     <div class="m revealed cluster-gap"><span class="pfp" style="background:#5E5CE6">R</span><div class="stack"><div class="nm">Ravi</div><div class="b">new teammate lol. ask it to catch you up, watch</div></div></div>
     <div class="m revealed cluster-gap"><span class="pfp" style="background:#FF9500">A</span><div class="stack"><div class="nm">Ana</div><div class="b">lore catch me up</div></div></div>
-    <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">While you were getting onboarded: the pricing copy got locked (Ravi's v3, approved Tuesday), launch moved to Oct 2, Meera owns the waitlist email, and Jonas still owes everyone the demo video.</div></div></div>
-    <div class="m revealed" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="b">I'm lore. I work in this chat. I remember everything the team decides - and I can prove where I learned it.</div></div></div>
+    <div class="m revealed cluster-gap" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">While you were getting onboarded: the pricing copy got locked (Ravi's v3, approved Tuesday), launch moved to Oct 2, Meera owns the waitlist email, and Jonas still owes everyone the demo video.</div></div></div>
+    <div class="m revealed" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="b">I'm lore. I work in this chat. I remember everything the team decides - and I can prove where I learned it.</div></div></div>
     <div class="cap">omniscient about the conversation - hears everything, forgets nothing, cites every claim.</div>
   </section>
 
@@ -215,14 +219,14 @@
   <section data-beat>
     <div class="ts"><b>Today</b> 3:47 PM</div>
     <div class="m revealed"><span class="pfp" style="background:#FF9500">A</span><div class="stack"><div class="nm">Ana</div><div class="b">lore turn this week's pricing decisions into a one-pager for the board</div></div></div>
-    <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Done. 6 decisions, each one cited to the message that made it.
+    <div class="m revealed cluster-gap" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Done. 6 decisions, each one cited to the message that made it.
       <div class="linkprev">
         <div class="lp-img"><svg width="26" height="32" viewBox="0 0 26 32" fill="none"><rect x="1" y="1" width="24" height="30" rx="3" fill="#222529" stroke="#3A3A3C"/><path d="M6 8h14M6 12h14M6 16h14M6 20h9" stroke="#8E8E93" stroke-width="1.6" stroke-linecap="round"/></svg></div>
         <div class="lp-meta"><div class="lp-t">pricing decisions - one-pager</div><div class="lp-d">LOREGROUPCHAT.COM</div></div>
       </div>
     </div></div></div>
     <div class="m revealed cluster-gap"><span class="pfp" style="background:#5E5CE6">R</span><div class="stack"><div class="nm">Ravi</div><div class="b">it just DID that??</div></div></div>
-    <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Ask me to make things. Docs, briefs, the plan. I'll put it where everyone can reach it.</div></div></div>
+    <div class="m revealed cluster-gap" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Ask me to make things. Docs, briefs, the plan. I'll put it where everyone can reach it.</div></div></div>
     <div class="cap">asks in plain language, ships real artifacts. docs are live in production today.</div>
   </section>
 
@@ -230,9 +234,9 @@
   <section data-beat>
     <div class="ts"><b>Today</b> 4:44 PM</div>
     <div class="m revealed"><span class="pfp" style="background:#30D158">M</span><div class="stack"><div class="nm">Meera</div><div class="b">lore book the team dinner for launch night. 6 people, near the office, not pizza again</div></div></div>
-    <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Done. Friday 7:30, table for 6, confirmation in the doc. Not pizza.</div></div></div>
+    <div class="m revealed cluster-gap" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Done. Friday 7:30, table for 6, confirmation in the doc. Not pizza.</div></div></div>
     <div class="m revealed cluster-gap"><span class="pfp" style="background:#64D2FF">J</span><div class="stack"><div class="nm">Jonas</div><div class="b">it's an executive assistant now??</div></div></div>
-    <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">For the whole team. You ask, it's handled - research, bookings, follow-ups.</div></div></div>
+    <div class="m revealed cluster-gap" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">For the whole team. You ask, it's handled - research, bookings, follow-ups.</div></div></div>
     <div class="cap">agentic tasks: the team asks, lore handles it.</div>
   </section>
 
@@ -240,11 +244,11 @@
   <section data-beat>
     <div class="ts"><b>Today</b> 4:15 PM</div>
     <div class="m revealed"><span class="pfp" style="background:#64D2FF">J</span><div class="stack"><div class="nm">Jonas</div><div class="b">ok real question. is anyone blocked on me right now. asking for a friend. the friend is me</div></div></div>
-    <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Checking. Ravi: waiting on your API keys since Thursday. Meera: needs the demo video before Wednesday. Verdict: yes, two people. Unblock them before standup or launch slips.</div></div></div>
+    <div class="m revealed cluster-gap" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Checking. Ravi: waiting on your API keys since Thursday. Meera: needs the demo video before Wednesday. Verdict: yes, two people. Unblock them before standup or launch slips.</div></div></div>
     <div class="m revealed cluster-gap"><span class="pfp" style="background:#64D2FF">J</span><div class="stack"><div class="nm">Jonas</div><div class="b">the fact that it KNOWS that</div></div></div>
     <div class="ts"><b>Today</b> 4:31 PM</div>
     <div class="m revealed"><span class="pfp" style="background:#FF9500">A</span><div class="stack"><div class="nm">Ana</div><div class="b">lore settle this: did we decide postgres or sqlite for the prototype</div></div></div>
-    <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Postgres. And Jonas, you argued the opposite on Sept 3. The chat remembers. I remember.</div></div></div>
+    <div class="m revealed cluster-gap" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Postgres. And Jonas, you argued the opposite on Sept 3. The chat remembers. I remember.</div></div></div>
     <div class="m revealed cluster-gap"><span class="pfp" style="background:#64D2FF">J</span><div class="stack"><div class="nm">Jonas</div><div class="b">💀💀💀</div></div></div>
     <div class="m me revealed"><div class="stack"><div class="b">ok that's actually crazy</div></div></div>
     <div class="cap">accountability with receipts - who committed to what, cited to the exact message.</div>
@@ -266,33 +270,33 @@
     <div class="m revealed"><span class="pfp" style="background:#64D2FF">J</span><div class="stack"><div class="nm">Jonas</div><div class="b">pr is still unreviewed btw</div></div></div>
     <div class="ts"><b>Today</b> 6:02 PM</div>
     <div class="m me revealed"><div class="stack"><div class="b">lore catch me up i can't read all that</div></div></div>
-    <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">You missed 4 things: launch is locked for Oct 2, Jonas's demo video is rendering (40 min), Ana owns the investor update by EOD with a 5pm reminder set, and the other 96 messages were relitigating Stripe vs Paddle. Which was settled. Twice.</div></div></div>
-    <div class="m revealed" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="b">That's the whole job. 100 messages → the 4 that mattered.</div></div></div>
+    <div class="m revealed cluster-gap" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">You missed 4 things: launch is locked for Oct 2, Jonas's demo video is rendering (40 min), Ana owns the investor update by EOD with a 5pm reminder set, and the other 96 messages were relitigating Stripe vs Paddle. Which was settled. Twice.</div></div></div>
+    <div class="m revealed" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="b">That's the whole job. 100 messages → the 4 that mattered.</div></div></div>
     <div class="cap">nobody on the team ever reads the backlog again.</div>
   </section>
 
   <!-- BEAT 5: games / social fabric -->
   <section data-beat>
     <div class="ts"><b>Today</b> 6:20 PM</div>
-    <div class="m revealed" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Standup's quiet. Friday tradition: two truths and a lie. Jonas first.</div></div></div>
+    <div class="m revealed" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Standup's quiet. Friday tradition: two truths and a lie. Jonas first.</div></div></div>
     <div class="m revealed cluster-gap"><span class="pfp" style="background:#64D2FF">J</span><div class="stack"><div class="nm">Jonas</div><div class="b">fine. i've never broken prod, i deployed at 11pm on a friday once, and i still don't know what a kubernetes is</div></div></div>
     <div class="m revealed"><span class="pfp" style="background:#FF9500">A</span><div class="stack"><div class="nm">Ana</div><div class="b">the lie is never broken prod</div></div></div>
     <div class="m revealed"><span class="pfp" style="background:#30D158">M</span><div class="stack"><div class="nm">Meera</div><div class="b">the second one is a cry for help</div></div></div>
-    <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">The lie was "never broken prod" - the chat shows March 14. Scoreboard: Ana 4, Jonas 2. And Jonas, deploying at 11pm on a Friday counts as a truth AND a warning.</div></div></div>
-    <div class="m revealed" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="b">You can play too. This composer is live - type anything and I'll answer.</div></div></div>
+    <div class="m revealed cluster-gap" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">The lie was "never broken prod" - the chat shows March 14. Scoreboard: Ana 4, Jonas 2. And Jonas, deploying at 11pm on a Friday counts as a truth AND a warning.</div></div></div>
+    <div class="m revealed" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="b">You can play too. This composer is live - type anything and I'll answer.</div></div></div>
     <div class="cap">it keeps the room human, too - games, scoreboards, the social fabric.</div>
   </section>
 
   <!-- BEAT 5.5: the connector -->
   <section data-beat>
     <div class="ts"><b>Today</b> 6:33 PM</div>
-    <div class="m revealed" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">New business. You've been saying you need a growth person since August. @priya.k in the Beacon founders chat has shipped three launches this year - I watched the work, not the resume. She told her chat Tuesday she's open to the right team. Want an intro?</div></div></div>
+    <div class="m revealed" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">New business. You've been saying you need a growth person since August. @priya.k in the Beacon founders chat has shipped three launches this year - I watched the work, not the resume. She told her chat Tuesday she's open to the right team. Want an intro?</div></div></div>
     <div class="m revealed cluster-gap"><span class="pfp" style="background:#FF9500">A</span><div class="stack"><div class="nm">Ana</div><div class="b">wait lore can just DO that</div></div></div>
-    <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">I'm in both rooms. That's the whole trick. Intro sent.</div></div></div>
+    <div class="m revealed cluster-gap" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">I'm in both rooms. That's the whole trick. Intro sent.</div></div></div>
     <div class="sysm">priya.k joined the group</div>
     <div class="m revealed"><span class="pfp" style="background:#FF2D55">P</span><div class="stack"><div class="nm">Priya</div><div class="b">ok hi - lore has been talking you up for a week</div></div></div>
     <div class="m revealed"><span class="pfp" style="background:#64D2FF">J</span><div class="stack"><div class="nm">Jonas</div><div class="b">welcome. fair warning, we relitigate settled decisions here</div></div></div>
-    <div class="m revealed cluster-gap" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Every team I'm in makes every other team sharper. You're welcome.</div></div></div>
+    <div class="m revealed cluster-gap" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Every team I'm in makes every other team sharper. You're welcome.</div></div></div>
     <div class="cap">the connector: lore knows every room it's in - and introduces the right people across them, with receipts.</div>
   </section>
 
@@ -300,13 +304,16 @@
     <div class="mline"><span>The AI-employee flood is single-player.</span> lore is multiplayer - the whole team, one agent.</div>
     <div class="mline"><span>They start blank every morning.</span> lore knows the group's whole history.</div>
     <div class="mline"><span>They work in a dashboard for one person.</span> lore works in the chat for everyone, at once.</div>
+    <div class="mline"><span>The endgame is a superintelligence for your team.</span> It heard every decision, watched every launch, and remembers who actually shipped.</div>
+    <div class="mline"><span>And lore doesn't live in one team.</span> It connects the right people across all of them - intros, hires, proof of work. The graph of what people actually do.</div>
   </div>
 
   <!-- BEAT 6: finale / waitlist -->
   <section data-beat id="finale">
     <div class="ts"><b>Today</b> 6:41 PM</div>
-    <div class="m revealed" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Okay. You've been reading this whole time and haven't said a word.</div></div></div>
-    <div class="m revealed" data-lore><span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="b">Here's the thing: none of this lands until I'm in YOUR team's chat, remembering YOUR decisions. Type your work email right here and I'll put you on the waitlist - a real human sets it up with you personally.</div></div></div>
+    <div class="m revealed" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Okay. You've been reading this whole time and haven't said a word.</div></div></div>
+    <div class="m revealed" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="b">One more thing. I'm not a bot per team - I'm one lore across all of them. What I learn in their rooms makes me sharper in yours.</div></div></div>
+    <div class="m revealed" data-lore><span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="b">Here's the thing: none of this lands until I'm in YOUR team's chat, remembering YOUR decisions. Type your work email right here and I'll put you on the waitlist - a real human sets it up with you personally.</div></div></div>
     <div id="signupThread"></div>
     <div class="footline oneliner">the last social network was built on what people post. lore is built on what people actually say to each other.</div>
     <div class="footline">live in real group chats today · nothing leaves your chat</div>
@@ -381,7 +388,7 @@ function addMsg(text, opts={}){
   if (opts.me){
     d.innerHTML = `<div class="stack"><div class="b"></div></div>`;
   } else {
-    d.innerHTML = `<span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b"></div></div>`;
+    d.innerHTML = `<span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b"></div></div>`;
   }
   d.querySelector('.b').textContent=text;
   signupThread.appendChild(d);
@@ -390,7 +397,7 @@ function addMsg(text, opts={}){
 }
 function loreThink(cb){
   const tp=document.createElement('div'); tp.className='m';
-  tp.innerHTML='<span class="pfp" style="background:#3A3A3C">l</span><div class="stack"><div class="tdots"><i></i><i></i><i></i></div></div>';
+  tp.innerHTML='<span class="pfp lorepfp"><svg width="34" height="34" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#F2F0EB" stroke-width="4"/><ellipse cx="50" cy="50" rx="22" ry="44" fill="none" stroke="#F2F0EB" stroke-width="3"/><ellipse cx="50" cy="50" rx="40" ry="14" fill="none" stroke="#F2F0EB" stroke-width="3"/><text x="50" y="66" text-anchor="middle" font-family="Playfair Display,serif" font-style="italic" font-weight="700" font-size="46" fill="#F2F0EB">l</text></svg></span><div class="stack"><div class="tdots"><i></i><i></i><i></i></div></div>';
   signupThread.appendChild(tp); scrollBottom();
   setTimeout(()=>{ tp.remove(); cb(); }, 900);
 }
