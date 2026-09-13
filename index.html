@@ -307,7 +307,7 @@
   <section data-beat id="finale">
     <div class="ts"><b>Today</b> 6:41 PM</div>
     <div class="m revealed" data-lore><span class="pfp" style="background:#3A3A3C">✦</span><div class="stack"><div class="nm">lore<span class="app">APP</span></div><div class="b">Okay. You've been reading this whole time and haven't said a word.</div></div></div>
-    <div class="m revealed" data-lore><span class="pfp" style="background:#3A3A3C">✦</span><div class="stack"><div class="b">Here's the thing: none of this lands until I'm in YOUR team's chat, remembering YOUR decisions. Type your @ right here and I'll put you on the waitlist - a real human sets it up with you personally.</div></div></div>
+    <div class="m revealed" data-lore><span class="pfp" style="background:#3A3A3C">✦</span><div class="stack"><div class="b">Here's the thing: none of this lands until I'm in YOUR team's chat, remembering YOUR decisions. Type your work email right here and I'll put you on the waitlist - a real human sets it up with you personally.</div></div></div>
     <div id="signupThread"></div>
     <div class="footline oneliner">the last social network was built on what people post. lore is built on what people actually say to each other.</div>
     <div class="footline">live in real group chats today · nothing leaves your chat</div>
@@ -320,7 +320,7 @@
     <input id="composerInput" type="text" placeholder="iMessage" autocomplete="off" maxlength="60">
     <button class="snd" id="composerSend" aria-label="send"><svg width="14" height="16" viewBox="0 0 14 16" fill="none"><path d="M7 15V2M7 2 2 7M7 2l5 5" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </div>
-  <div class="cmp-fine">demo chat - type anything, lore answers. your @ only gets used to set lore up. nothing else.</div>
+  <div class="cmp-fine">demo chat - type anything, lore answers. your email only gets used to set lore up. nothing else.</div>
 </div>
 
 <script>
@@ -369,11 +369,11 @@ const cInput = document.getElementById('composerInput');
 const cSend = document.getElementById('composerSend');
 const signupThread = document.getElementById('signupThread');
 let signedUp = false;
-let pendingHandle = null;
+let pendingEmail = null;
 
-function normalizeHandle(raw){
-  let h = raw.trim().replace(/^@/,'').toLowerCase();
-  return /^[a-z0-9._]{2,30}$/.test(h) ? h : null;
+function normalizeEmail(raw){
+  let e = raw.trim().toLowerCase();
+  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e) ? e : null;
 }
 function scrollBottom(){ window.scrollTo({top:document.body.scrollHeight, behavior:'smooth'}); }
 function addMsg(text, opts={}){
@@ -395,9 +395,9 @@ function loreThink(cb){
   signupThread.appendChild(tp); scrollBottom();
   setTimeout(()=>{ tp.remove(); cb(); }, 900);
 }
-async function storeSignup(handle){
+async function storeSignup(email){
   try{
-    await fetch(WAITLIST_ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body: JSON.stringify({ig_handle:handle, source:'landing-page'})});
+    await fetch(WAITLIST_ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body: JSON.stringify({email:email, source:'landing-page'})});
     return true;
   }catch(e){ return false; }
 }
@@ -411,7 +411,7 @@ const replies = [
   {k:['truth','lie','game','trivia','play'], r:"scoreboard's per-team and i keep it across sessions. your move."},
   {k:['intro','connect','hire','hiring','new people','meet','priya','growth'], r:"i'm in a lot of rooms. when someone from one chat would click with your team, i make the intro - with receipts from their actual work, not their resume."},
   {k:['flywheel','network','graph','investor','moat'], r:"every team i'm in makes me smarter for every other team. the graph of who actually ships, cited to the work - that's the moat. not what people post. what they say."},
-  {k:['how do i get','get lore','join','waitlist','invite','sign up','signup'], r:"type your @ right here and i'll put you on the waitlist. a real human sets lore up with your team personally."},
+  {k:['how do i get','get lore','join','waitlist','invite','sign up','signup'], r:"type your work email right here and i'll put you on the waitlist. a real human sets lore up with your team personally."},
   {k:['who are you','what are you','what is this'], r:"i'm lore - a full agent that lives in your team's group chat. i read everything, remember what matters, do work when asked, and keep everyone honest about what was decided."},
   {k:['safe','privacy','private','spy'], r:"fair question. i read the chat because that's how i know anything - nothing leaves the chat, and i stay quiet unless you call me or we're mid-convo."},
   {k:['roast'], r:"you're talking to a demo bot on a website instead of your actual team. i'd fix that first."},
@@ -419,7 +419,7 @@ const replies = [
 ];
 const fallbacks = [
   "demo lore only knows so much - the real me would have your team's context. try 'catch me up' or 'make a doc'.",
-  "i could fake an answer but that's not my style. drop your @ and ask the real me.",
+  "i could fake an answer but that's not my style. drop your work email and ask the real me.",
 ];
 let fb=0;
 
@@ -434,23 +434,23 @@ async function submit(){
   if (!raw.trim()) return;
   cInput.value='';
 
-  if (pendingHandle){
+  if (pendingEmail){
     const ans = raw.trim().toLowerCase();
     if (/^(y|yes|yeah|yep|yup|sure|ok|do it|bet)/.test(ans)){
-      const handle = pendingHandle; pendingHandle = null;
+      const email = pendingEmail; pendingEmail = null;
       addMsg(raw, {me:true});
       loreThink(async ()=>{
-        const ok = await storeSignup(handle);
+        const ok = await storeSignup(email);
         if (ok){
           signedUp = true;
-          addMsg(`done - @${handle} is on the waitlist. a real human sets lore up with your team personally. welcome to the lore.`);
+          addMsg(`done - ${email} is on the waitlist. a real human sets lore up with your team personally. talk soon.`);
         } else {
           addMsg(`hmm - the list hiccuped on my end. try again in a minute?`);
         }
       });
       return;
     }
-    pendingHandle = null;
+    pendingEmail = null;
     addMsg(raw, {me:true});
     loreThink(()=>addMsg("no worries. keep playing - i'm here."));
     return;
@@ -459,11 +459,11 @@ async function submit(){
   addMsg(raw, {me:true});
 
   if (!signedUp){
-    const handle = normalizeHandle(raw);
-    if (handle && raw.trim().replace(/^@/,'').toLowerCase()===handle && !/[?]/.test(raw)){
+    const email = normalizeEmail(raw);
+    if (email && raw.trim().toLowerCase()===email && !/[?]/.test(raw)){
       loreThink(()=>{
-        pendingHandle = handle;
-        addMsg(`@${handle} - want me to put you on the waitlist? say yes and you're in.`);
+        pendingEmail = email;
+        addMsg(`${email} - want me to put you on the waitlist? say yes and you're in.`);
       });
       return;
     }
