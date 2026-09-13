@@ -168,6 +168,37 @@
     .lore-fab{bottom:86px;right:14px}
     .lore-panel{bottom:138px;right:14px}
   }
+
+  /* ---------- PRECISION PASS (investor-grade, lab-not-saas) ---------- */
+  body{background:#0B0B0D;color:#F2F0EB}
+  .chatbar{background:rgba(0,0,0,.88);border-bottom:1px solid #1C1C1E}
+  .getlore{border:none;box-shadow:none;border-radius:10px;padding:8px 16px}
+  .getlore:hover{transform:none;background:#E13A12}
+  .demo-pill{border-color:#2C2C2E;color:#6E6E73}
+  .msg .bub{background:#1C1C1E;border-radius:18px;border-bottom-left-radius:5px}
+  .msg.me .bub{border-bottom-left-radius:18px;border-bottom-right-radius:5px}
+  .msg.lore .bub{background:#151517;border:1px solid rgba(255,74,31,.35);color:#F2F0EB}
+  .msg.lore .bub b{color:var(--coral-soft)}
+  .hand-note{display:none}
+  .caption{color:#6E6E73;letter-spacing:.14em}
+  .caption em{color:#9a958c}
+  .caption em.real{color:var(--coral-soft)}
+  .doc-card{background:#101012;border-color:#2C2C2E;box-shadow:none}
+  .doc-card .docicon{box-shadow:none}
+  .relmap{border:1px solid #2C2C2E;background:#101012}
+  .vote button{border-radius:12px;background:#101012;border-color:#2C2C2E}
+  .vote button:hover{transform:none;border-color:var(--coral)}
+  .vote button.picked{background:var(--coral);border-color:var(--coral)}
+  .composer{background:rgba(0,0,0,.88);border-top-color:#1C1C1E}
+  .composer input{background:#101012;border-color:#2C2C2E}
+  .composer.live input{border-color:var(--coral);box-shadow:none}
+  .composer button.send{border:none;box-shadow:none;border-radius:12px;width:46px;height:46px}
+  .lore-fab{border:none;box-shadow:none;border-radius:10px}
+  .lore-fab:hover{transform:none;background:#E13A12}
+  .lore-panel{border:1px solid #2C2C2E;box-shadow:none;border-radius:16px}
+  .lp-msg.lore{border-color:#2C2C2E;background:#1C1C1E}
+  .lp-foot button{border:none;box-shadow:none;border-radius:10px}
+  .ff .skel{background:#17171A}
 </style>
 </head>
 <body>
@@ -196,7 +227,7 @@
     <div class="msg"><div class="who">joshua</div><div class="bub">lore catch them up</div></div>
     <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub"><b>while you were lurking:</b> the sandwich war got settled (hot dog is NOT a sandwich, receipts from aug 19), suitcase andy earned his name on july 12, friday moved to bowling 7pm, and maya is still undefeated at trivia.</div></div>
     <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">i'm lore. i live in this chat. i remember everything the group decides is worth keeping - and i can prove where i learned it.</div></div>
-    <span class="hand hand-note">^ the catch-up is the pitch. keep scrolling, the chat keeps going ↓</span>
+    <div class="caption">the catch-up you just read is the product. <em>keep scrolling - the chat keeps going.</em></div>
   </section>
 
   <!-- BEAT 2: agentic - docs -->
@@ -204,15 +235,14 @@
     <div class="sys">3:47 PM</div>
     <div class="msg"><div class="who">maya</div><div class="bub">lore make us a doc of every inside joke so the new person stops asking</div></div>
     <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub"><b>done.</b> 47 entries, each one cited to the message that started it. suitcase andy is entry #1, obviously.
-      <a class="doc-card" href="#" onclick="return false">
+      <div class="doc-card">
         <div class="docicon">📄</div>
-        <div><div class="dt">the hoard - official lore archive</div><div class="ds">google doc · anyone with the link can edit</div></div>
-        <span class="open">open ↗</span>
-      </a>
+        <div><div class="dt">the hoard - official lore archive</div><div class="ds">doc · made by lore from this chat · anyone with the link can view</div></div>
+      </div>
     </div></div>
     <div class="msg"><div class="who">joshua</div><div class="bub">it just DID that??</div></div>
     <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">ask me to make things. docs, lists, the plan. i'll put it where everyone can reach it.</div></div>
-    <div class="caption">doc-making is a <em>real feature, live today</em> - not a mockup</div>
+    <div class="caption">natural language in, shareable doc out. <em class="real">in production today.</em></div>
   </section>
 
   <!-- BEAT 3: relationship memory -->
@@ -227,7 +257,7 @@
       </div>
       verdict: moderately mad. apologize before friday or bowling is off.</div></div>
     <div class="msg"><div class="who">joshua</div><div class="bub">the fact that it KNOWS that</div></div>
-    <div class="caption">lore builds this from your chat - <em>who knows who, who beefs with who</em>, all with receipts</div>
+    <div class="caption">per-person and relationship memory, <em class="real">every claim cited to its source message</em></div>
   </section>
 
   <!-- BEAT 4: settle with receipts -->
@@ -253,7 +283,7 @@
     <div class="msg me"><div class="bub">lore catch me up i can't read all that</div></div>
     <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub"><b>you missed 4 things:</b> plans are locked for friday, andy's dog is fine, someone owes maya $14, and the 196 other messages were about cereal again.</div></div>
     <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">that's the whole job. 200 messages → the 4 that mattered.</div></div>
-    <div class="caption">you just used it. <em>that was the feature.</em></div>
+    <div class="caption">you just used it. <em class="real">that was the feature.</em></div>
   </section>
 
   <!-- BEAT 6: would-you-rather vote -->
@@ -266,21 +296,29 @@
       </div>
     </div></div>
     <div class="msg lore" data-wyr-reply style="display:none"><div class="who"><span class="ln">lore ✦</span></div><div class="bub" id="wyrReplyText"></div></div>
-    <div class="caption">vote for real. lore runs games in the chat and remembers who choked</div>
+    <div class="caption">vote for real - lore runs games in-chat and keeps score across sessions</div>
+  </section>
+
+
+  <!-- BEAT 6.5: self-serve onboarding -->
+  <section class="beat" data-beat>
+    <div class="sys">6:41 PM</div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">in case you're the type who doesn't wait for lists: add <b>@lore.groupchat</b> to any instagram group chat, like adding a person. i'm live in about 60 seconds. no app, no signup, no settings.</div></div>
+    <div class="caption">zero-config onboarding - <em class="real">add to any group chat, live in ~60 seconds, today</em></div>
   </section>
 
   <!-- BEAT 7: finale / waitlist -->
   <section class="beat" data-beat id="finale">
     <div class="sys">now</div>
     <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">okay. you've been reading this whole time and haven't said a word.</div></div>
-    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">here's the thing: none of this hits until i'm in YOUR chat, remembering YOUR people. so - drop your ig @ below and you're on the list. we set it up with you personally, takes about 2 minutes.</div></div>
+    <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">here's the thing: none of this hits until i'm in YOUR chat, remembering YOUR people. drop your ig @ below and we set it up with you personally - or add me yourself and i'm there in 60 seconds. your call.</div></div>
     <div class="msg lore" data-lore><div class="who"><span class="ln">lore ✦</span></div><div class="bub">the composer at the bottom is live. it's waiting for your @.</div></div>
     <div id="signupThread"></div>
   </section>
 
   <footer>
     <div class="fmark">lore<span>.</span></div>
-    <div>made for group chats · nothing leaves your chat</div>
+    <div>built by a 17-year-old · live in real group chats today · nothing leaves your chat</div>
     <a href="https://instagram.com/lore.groupchat" target="_blank" rel="noopener">@lore.groupchat</a>
   </footer>
 </main>
@@ -314,7 +352,7 @@
 /* ============================================================
    CONFIG - waitlist endpoint (Apps Script web app -> Sheet)
    ============================================================ */
-const WAITLIST_ENDPOINT = "https://lore-host.onrender.com/waitlist";
+const WAITLIST_ENDPOINT = ""; // set to the deployed /exec URL
 const IG_URL = "https://instagram.com/lore.groupchat";
 const SHOT = location.search.includes('shot');
 if (SHOT) document.body.classList.add('shot');
@@ -470,7 +508,7 @@ function youSay(text){
 const replies = [
   {k:['catch me up','catch up','tldr','tl;dr','missed'], r:"demo mode so i don't have your chat - but real me turns 200 messages into the 4 things that actually happened. you literally just watched that happen on this page."},
   {k:['hot dog','sandwich','cereal','settle'], r:"not soup, not a sandwich, and i'd pull receipts from your own chat to prove it. that's the fun part."},
-  {k:['doc','file','make','create'], r:"yep - 'lore make a doc of X' and you get a real google doc in the chat, anyone with the link can edit. live today."},
+  {k:['doc','file','make','create'], r:"yep - 'lore make a doc of X' and you get a real doc link in the chat, anyone with it can view. live today."},
   {k:['remember','memory','relationship','forget'], r:"i keep the group's history and who's who - inside jokes, beefs, lore - and i can show where i learned every piece. no mystery memory."},
   {k:['game','trivia','would you rather','wyr','bored'], r:"would you rather: i join your chat, or your friend's chat first and know all their lore? think about it."},
   {k:['how do i get','get lore','join','waitlist','add','invite','sign up','signup'], r:"scroll down to the end of this chat and drop your ig @ in the composer - or DM @lore.groupchat on instagram. real humans set it up in about 2 minutes."},
@@ -498,4 +536,4 @@ lpSend.addEventListener('click', lpSubmit);
 lpInput.addEventListener('keydown', e=>{ if(e.key==='Enter') lpSubmit(); });
 </script>
 </body>
-      </html>
+</html>
