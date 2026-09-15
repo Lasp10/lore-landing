@@ -1,6 +1,6 @@
 (()=>{
   // Relative by default. Override before loading with window.LORE_CHAT_ENDPOINT.
-  const endpoint=window.LORE_CHAT_ENDPOINT||'/api/v1/chat';
+  const endpoint=window.LORE_CHAT_ENDPOINT||'https://lore-host.onrender.com/api/v1/chat';
   const waitlistEndpoint=window.LORE_WAITLIST_ENDPOINT||'https://lore-host.onrender.com/waitlist';
   const $=id=>document.getElementById(id),launch=$('lore-launch'),widget=$('lore-widget'),close=$('lore-widget-close'),capture=$('lore-capture'),compose=$('lore-compose'),email=$('lore-email'),input=$('lore-message'),thread=$('lore-thread'),capNote=$('lore-capture-note'),chatNote=$('lore-chat-note'),state=$('lore-widget-state');
   let sessionId='',busy=false;
