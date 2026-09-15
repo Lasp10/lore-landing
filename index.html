@@ -155,6 +155,7 @@
     .graph h2{font-size:25px}
   }
 </style>
+<link rel="stylesheet" href="/lore-widget.css">
 </head>
 <body>
 
@@ -580,5 +581,7 @@ if (cv){
   })(0);
 }
 </script>
+<button class="lore-launch" id="lore-launch" type="button" aria-controls="lore-widget" aria-expanded="false">talk to lore</button><aside class="lore-widget" id="lore-widget" aria-label="Talk to Lore" aria-hidden="true"><header class="lore-widget-head"><div class="lore-widget-mark">l</div><div><div class="lore-widget-title">lore</div><div class="lore-widget-state" id="lore-widget-state">online</div></div><button class="lore-widget-close" id="lore-widget-close" type="button" aria-label="Close">×</button></header><div class="lore-thread" id="lore-thread" role="log" aria-live="polite"><div class="lore-msg"><div class="lore-avatar">l</div><div><div class="lore-who">lore</div><div class="lore-copy">hey. i'm lore - the agent that lives in the group chat. what's on your mind?</div></div></div></div><div><form class="lore-capture" id="lore-capture"><p>Enter your email to start. We'll add you to the Lore waitlist.</p><div class="lore-row"><input class="lore-input" id="lore-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required><button class="lore-send" type="submit">continue</button></div><div class="lore-note" id="lore-capture-note" role="status"></div></form><form class="lore-compose" id="lore-compose"><div class="lore-row"><textarea class="lore-input" id="lore-message" name="message" rows="1" maxlength="800" placeholder="Message lore" required></textarea><button class="lore-send" type="submit" aria-label="Send">↑</button></div><div class="lore-fine">Demo only. No private memory or account access. Don't share sensitive information.</div><div class="lore-note" id="lore-chat-note" role="status"></div></form></div></aside><script src="/lore-widget.js"></script>
+
 </body>
 </html>
