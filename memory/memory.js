@@ -1,6 +1,6 @@
 (()=>{
   // Same-origin by default. Override with a base such as https://lore-host.onrender.com.
-  const base=(window.LORE_API_BASE||'').replace(/\/$/,'');
+  const base=(window.LORE_API_BASE||'https://lore-host.onrender.com').replace(/\/$/,'');
   const $=id=>document.getElementById(id),auth=$('auth'),form=$('auth-form'),guidInput=$('guid'),app=$('app'),nav=$('nav'),content=$('content');
   let guid=new URLSearchParams(location.search).get('chat')||localStorage.getItem('lore_memory_chat_guid')||'',model=[];
   function item(text,kind,meta=''){return {text:String(text||''),kind,meta}}
