@@ -1,5 +1,5 @@
 # Lore
-> Lore is an AI teammate that lives in a team Slack conversation. It uses permitted team context, remembers decisions, performs bounded work, and reports results back in the conversation.
+> Lore is an AI teammate that lives in a team group chat conversation. It uses permitted team context, remembers decisions, performs bounded work, and reports results back in the conversation.
 
 ## Core pages
 - https://www.loregroupchat.com/
