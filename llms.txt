@@ -1,0 +1,20 @@
+# Lore
+> Lore is an AI teammate that lives in a team Slack conversation. It uses permitted team context, remembers decisions, performs bounded work, and reports results back in the conversation.
+
+## Core pages
+- https://www.loregroupchat.com/
+- https://www.loregroupchat.com/ai-agent-for-slack/
+- https://www.loregroupchat.com/ai-teammate-for-slack/
+- https://www.loregroupchat.com/slack-memory/
+- https://www.loregroupchat.com/for-startup-teams/
+- https://www.loregroupchat.com/docs/how-lore-works/
+
+## Product facts
+- Lore works from the context of a team group chat.
+- Lore can perform bounded research, browser work, documents, checklists, and follow-ups when the required tools are connected and permitted.
+- Lore uses approval gates for external sends, posts, bookings, purchases, and other actions that represent a team or spend money.
+- Lore handles one mission at a time. Integrations and availability can change.
+
+## Legal
+- https://www.loregroupchat.com/privacy/
+- https://www.loregroupchat.com/terms/
