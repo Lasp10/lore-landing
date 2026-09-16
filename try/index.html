@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Try Lore's browser</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{background:#090909;color:#f1f1ef;font:17px/1.5 Arial,sans-serif;max-width:760px;margin:6vh auto;padding:22px}h1{font-size:22px;font-weight:500;margin:0 0 64px}h2{font-size:34px;line-height:1.15;font-weight:500}p,.hint{color:#aaa}label{display:block;margin:18px 0 6px}textarea,input,button{width:100%;font:inherit;color:#f1f1ef;background:#090909;border:1px solid #555;border-radius:0;padding:11px}textarea{min-height:92px;resize:vertical}button{margin-top:18px;cursor:pointer}button:disabled{color:#777}.event{border-left:1px solid #555;padding:5px 12px;margin:8px 0}.event small{color:#888}.result{border-top:1px solid #333;margin-top:28px;padding-top:20px;white-space:pre-wrap}.pages{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:20px}.page{border:1px solid #333;padding:12px}.page img{display:block;width:100%;height:auto;margin-top:10px;border:1px solid #333}a{color:#f1f1ef}footer{border-top:1px solid #333;margin-top:64px;padding-top:18px}@media(max-width:600px){body{margin:3vh auto}h1{margin-bottom:42px}}
+</style>
+</head>
+<body>
+<h1>lore</h1>
+<h2>Give Lore a browser task.</h2>
+<p>Lore opens one or two public web pages in a real, logged-out browser. It reads them, takes screenshots, and returns the work with the pages it actually opened.</p>
+<form id="run">
+<label for="task">Task</label>
+<textarea id="task" maxlength="500" required placeholder="Compare the pricing on these two pages. Tell me the important difference."></textarea>
+<label for="url1">First public page</label>
+<input id="url1" type="url" required pattern="https://.*" placeholder="https://example.com/">
+<label for="url2">Second public page, optional</label>
+<input id="url2" type="url" pattern="https://.*" placeholder="https://example.org/">
+<button type="submit">Run Lore</button>
+</form>
+<p class="hint">Read-only beta. Public HTTPS pages only. No logins, forms, sends, bookings, or purchases.</p>
+<div id="events" aria-live="polite"></div>
+<div id="result" class="result" hidden></div>
+<footer><a href="/">Home</a> · <a href="/waitlist/">Private beta</a> · <a href="/privacy/">Privacy</a></footer>
+<script>
+var api='https://lore-host.onrender.com';
+var form=document.getElementById('run'),button=form.querySelector('button');
+var eventsBox=document.getElementById('events'),resultBox=document.getElementById('result');
+var shown={};
+function addEvent(event){
+  if(shown[event.id])return;shown[event.id]=true;
+  var row=document.createElement('div');row.className='event';
+  var title=document.createElement('div');title.textContent=event.label;
+  var detail=document.createElement('small');detail.textContent=event.detail+(event.url?' · '+event.url:'');
+  row.append(title,detail);eventsBox.append(row);
+}
+function absolute(path){return path.indexOf('http')===0?path:api+path}
+function showResult(run){
+  var result=run.result;resultBox.hidden=false;resultBox.textContent='';
+  var heading=document.createElement('h2');heading.textContent='Result';
+  var answer=document.createElement('p');answer.textContent=result.answer;
+  var artifact=document.createElement('p'),link=document.createElement('a');
+  link.href=absolute(result.artifact.url);link.target='_blank';link.rel='noopener';link.textContent='Open the saved artifact';artifact.append(link);
+  var pages=document.createElement('div');pages.className='pages';
+  (result.pages||[]).forEach(function(page){
+    var card=document.createElement('div');card.className='page';
+    var pageLink=document.createElement('a');pageLink.href=page.url;pageLink.target='_blank';pageLink.rel='noopener';pageLink.textContent=page.title||page.url;
+    var meta=document.createElement('div');meta.className='hint';meta.textContent=page.url;
+    var image=document.createElement('img');image.src=api+'/api/v1/browser/runs/'+run.run_id+'/screenshot/'+page.screenshot_id;image.alt='Screenshot of '+(page.title||page.url);
+    card.append(pageLink,meta,image);pages.append(card);
+  });
+  resultBox.append(heading,answer,artifact,pages);
+}
+async function poll(statusUrl){
+  for(var i=0;i<90;i++){
+    var response=await fetch(absolute(statusUrl));var run=await response.json();
+    if(!response.ok)throw new Error(run.error||'Could not read the run');
+    (run.events||[]).forEach(addEvent);
+    if(run.status==='completed'){showResult(run);return}
+    if(run.status==='failed')throw new Error(run.error||'The browser run failed');
+    await new Promise(function(resolve){setTimeout(resolve,1500)});
+  }
+  throw new Error('The run is still working. Try the status link again shortly.');
+}
+form.onsubmit=async function(event){
+  event.preventDefault();button.disabled=true;eventsBox.textContent='';resultBox.hidden=true;shown={};
+  var urls=[document.getElementById('url1').value.trim(),document.getElementById('url2').value.trim()].filter(Boolean);
+  try{
+    var response=await fetch(api+'/api/v1/browser/runs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({task:document.getElementById('task').value.trim(),urls:urls})});
+    var run=await response.json();if(!response.ok)throw new Error(run.detail||run.error||'Could not start the browser');
+    (run.events||[]).forEach(addEvent);await poll(run.status_url);
+  }catch(error){var row=document.createElement('p');row.textContent=error.message;eventsBox.append(row)}finally{button.disabled=false}
+};
+</script>
+</body>
+</html>
