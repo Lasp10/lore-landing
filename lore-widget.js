@@ -1,6 +1,6 @@
 (()=>{
-  const runs=window.LORE_RESEARCH_ENDPOINT||'https://lore-host.onrender.com/api/v1/research/runs';
-  const waitlistEndpoint=window.LORE_WAITLIST_ENDPOINT||'https://lore-host.onrender.com/waitlist';
+  const runs=window.LORE_RESEARCH_ENDPOINT||'https://lore-host.d.onjrnm.link/api/v1/research/runs';
+  const waitlistEndpoint=window.LORE_WAITLIST_ENDPOINT||'https://lore-host.d.onjrnm.link/waitlist';
   const $=id=>document.getElementById(id),launch=$('lore-launch'),widget=$('lore-widget'),close=$('lore-widget-close'),capture=$('lore-capture'),compose=$('lore-compose'),email=$('lore-email'),input=$('lore-message'),thread=$('lore-thread'),capNote=$('lore-capture-note'),chatNote=$('lore-chat-note'),state=$('lore-widget-state');
   if(!launch||!widget)return;
   let busy=false;
@@ -11,7 +11,7 @@
   ];
   function installPromptShelf(){const first=thread.querySelector('.lore-msg');if(!first)return;const copy=first.querySelector('.lore-copy');copy.textContent='I’m Lore, an AI that does real work from inside the group chat. Give me a research or writing task and watch the searches, sources, and artifact appear here.';const shelf=document.createElement('div');shelf.className='lore-suggestions';suggestions.forEach((text,i)=>{const b=document.createElement('button');b.type='button';b.textContent=['research me','pull a market number','compare recent launches'][i];b.onclick=()=>{if(!compose.classList.contains('active')){email.focus();capNote.textContent='Enter your email once, then this prompt will be ready.';input.value=text;return}input.value=text;input.focus()};shelf.append(b)});copy.append(shelf)}
   installPromptShelf();
-  const absolute=url=>new URL(url,'https://lore-host.onrender.com').href;
+  const absolute=url=>new URL(url,'https://lore-host.d.onjrnm.link').href;
   function toggle(open){widget.classList.toggle('open',open);widget.setAttribute('aria-hidden',String(!open));launch.setAttribute('aria-expanded',String(open));if(open)(compose.classList.contains('active')?input:email).focus()}
   function row(who='lore'){const el=document.createElement('div');el.className='lore-msg'+(who==='you'?' user':'');el.innerHTML=who==='you'?'<div><div class="lore-who">you</div><div class="lore-copy"></div></div>':'<div class="lore-avatar">l</div><div><div class="lore-who">lore</div><div class="lore-copy"></div></div>';thread.append(el);return el}
   function add(text,who='lore'){const el=row(who);el.querySelector('.lore-copy').textContent=text;scroll();return el}
