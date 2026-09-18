@@ -6,9 +6,13 @@
   <title>lore</title>
   <style>
     body { max-width: 850px; margin: 30px; font-size: 20px; line-height: 1.5; }
-    footer { position: fixed; bottom: 48px; }
+    footer { margin-top: 18rem; padding-bottom: 48px; }
     .brand { display: flex; align-items: center; gap: 10px; }
     .brand img { width: 24px; height: 24px; }
+    @media (max-width: 480px) {
+      body { margin: 22px; font-size: 18px; line-height: 1.55; }
+      footer { margin-top: 4rem; padding-bottom: 20px; }
+    }
   </style>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png">
