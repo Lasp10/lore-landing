@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/deck", "destination": "https://lore-host-c1d6.onbelmo.uk/deck" },
+    { "source": "/deck/opens", "destination": "https://lore-host-c1d6.onbelmo.uk/deck/opens" }
+  ]
+}
