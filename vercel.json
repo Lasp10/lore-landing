@@ -1,6 +1,9 @@
 {
   "rewrites": [
     { "source": "/deck", "destination": "https://lore-host-c1d6.onbelmo.uk/deck" },
-    { "source": "/deck/opens", "destination": "https://lore-host-c1d6.onbelmo.uk/deck/opens" }
+    { "source": "/deck/opens", "destination": "https://lore-host-c1d6.onbelmo.uk/deck/opens" },
+    { "source": "/vault/:path*", "destination": "https://lore-host.d.onjrnm.link/vault/:path*" },
+    { "source": "/agent/receipt/:path*", "destination": "https://lore-host.d.onjrnm.link/agent/receipt/:path*" },
+    { "source": "/browser/receipt/:path*", "destination": "https://lore-host.d.onjrnm.link/browser/receipt/:path*" }
   ]
 }
