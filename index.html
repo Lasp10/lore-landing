@@ -4,20 +4,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>lore</title>
+  <meta name="description" content="lore is an AI that lives in your group chat. Add it to Slack or an iMessage group, say its name, and it does the work.">
   <style>
-    :root { --paper:#f3f2eb; --ink:#242820; --link:#285847; --muted:#62675e; }
+    :root { --paper:#f3f2eb; --ink:#242820; --link:#285847; --muted:#62675e; --rule:#d3d6ce; --chip:#e8e7de; }
     * { box-sizing:border-box; }
     html { background:var(--paper); }
     body { max-width:760px; margin:0 auto; padding:64px 28px 48px; color:var(--ink); font-family:Georgia,Charter,"Times New Roman",serif; font-size:19px; line-height:1.7; text-rendering:optimizeLegibility; }
-    h1,h2 { line-height:1.15; letter-spacing:-.025em; }
+    h1,h2,h3 { line-height:1.15; letter-spacing:-.025em; }
     h1 { display:flex; align-items:center; gap:10px; margin:0 0 40px; font-size:36px; }
     h1 img { width:26px; height:26px; }
-    h2 { margin:48px 0 10px; font-size:24px; }
+    h2 { margin:56px 0 12px; font-size:24px; }
+    h3 { margin:30px 0 6px; font-size:19px; letter-spacing:-.01em; }
     p { margin:0 0 22px; }
     a { color:var(--link); text-decoration-thickness:1px; text-underline-offset:3px; }
     a:hover { color:#34705b; }
-    footer { margin-top:96px; padding-top:20px; border-top:1px solid #d3d6ce; color:var(--muted); font-size:14px; }
-    @media(max-width:600px) { body { padding:38px 22px 32px; font-size:18px; line-height:1.65; } h1 { margin-bottom:32px; font-size:32px; } h2 { margin-top:38px; } footer { margin-top:64px; } }
+    ol, ul { margin:0 0 22px; padding-left:1.3em; }
+    li { margin:0 0 8px; }
+    .tag { display:inline-block; margin:0 0 18px; padding:3px 10px; border:1px solid var(--rule); border-radius:999px; font-size:13px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .big { font-size:40px; line-height:1.12; letter-spacing:-.03em; margin:0 0 24px; }
+    @media(max-width:600px){ .big { font-size:31px; } }
+    code { font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:.8em; background:var(--chip); padding:2px 6px; border-radius:4px; white-space:nowrap; }
+    .lead { font-size:21px; }
+    .cta { display:flex; flex-wrap:wrap; gap:12px; margin:8px 0 26px; }
+    .btn { display:inline-block; padding:11px 20px; border-radius:6px; font-size:16px; text-decoration:none; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; font-weight:500; }
+    .btn.dark { background:var(--ink); color:var(--paper); }
+    .btn.dark:hover { background:#000; color:var(--paper); }
+    .btn.line { border:1px solid var(--ink); color:var(--ink); }
+    .btn.line:hover { background:var(--ink); color:var(--paper); }
+    .video { position:relative; aspect-ratio:16/9; margin:34px 0 8px; background:#e9e8df; border:1px solid var(--rule); border-radius:8px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .video iframe, .video video { position:absolute; inset:0; width:100%; height:100%; border:0; }
+    .video span, .note { color:var(--muted); font-size:15px; }
+    .asks { list-style:none; padding:0; }
+    .asks li { padding:10px 0; border-top:1px solid var(--rule); margin:0; }
+    .asks li:last-child { border-bottom:1px solid var(--rule); }
+    .asks span { color:var(--muted); font-size:16px; display:block; }
+    footer { margin-top:96px; padding-top:20px; border-top:1px solid var(--rule); color:var(--muted); font-size:14px; }
+    @media(max-width:600px) { body { padding:38px 22px 32px; font-size:18px; line-height:1.65; } h1 { margin-bottom:32px; font-size:32px; } h2 { margin-top:44px; } .lead { font-size:19px; } footer { margin-top:64px; } code { white-space:normal; } }
   </style>
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png">
@@ -25,12 +47,59 @@
 </head>
 <body>
   <h1><img src="/lore-logo-512.png" alt="">lore</h1>
-  <p>lore gives your group chat a teammate that can remember the room and finish real work.</p>
+  <div class="tag">Private beta</div>
+  <p class="big">Every group chat will have one.<br>Yours can have it first.</p>
+  <p class="lead">lore is an AI that lives in your group chat. It learns the room, remembers what your group has decided, and does the work you ask for, right in the conversation.</p>
+  <div class="cta">
+    <!-- LAUNCH CTAs (ship with the onboarding wave). Slack: straight to OAuth. iMessage: jumps to the section below with lore's number. -->
+    <a class="btn dark" href="https://lore-host.d.onjrnm.link/slack/install?continue=1">Add to Slack</a>
+    <a class="btn line" href="#imessage">Add to iMessage</a>
+  </div>
+
+  <div class="video">
+    <!-- DEMO VIDEO SLOT: replace the span with the embed, e.g.
+         <iframe src="https://player.vimeo.com/video/ID" allow="autoplay; fullscreen" title="lore demo"></iframe>
+         or <video src="/lore-demo.mp4" controls playsinline></video> -->
+    <span>Demo video coming soon</span>
+  </div>
+
   <h2>Work where you talk</h2>
-  <p>Add lore to Slack, then ask for research, writing, or an artifact without leaving the conversation. lore carries forward the decisions your group has already made, so each request starts with the right context.</p>
-  <p>Each person stays in control of their own accounts and private information. lore knows who asked, what they shared, and where the result belongs.</p>
-  <h2>Try lore</h2>
-  <p>We are opening the private beta gradually. <a href="/waitlist/">Join the waitlist</a>.</p>
+  <p>Ask lore for research, writing, plans, reminders, or bookings without leaving the conversation. lore carries forward the decisions your group has already made, so each request starts with the right context.</p>
+  <p>Each person stays in control of their own accounts and private information. lore knows who asked, what they shared, and where the result belongs. It asks before anything that spends money or acts on someone's behalf.</p>
+
+  <h2>Add lore to Slack</h2>
+  <ol>
+    <li>Click <a href="https://lore-host.d.onjrnm.link/slack/install?continue=1">Add to Slack</a> and pick your workspace.</li>
+    <li>Click Allow. Keep the tab open until you see "Lore is installed."</li>
+    <li>lore joins a channel and says hi there.</li>
+    <li>Mention <code>@Lore</code> in a thread and ask for something.</li>
+  </ol>
+
+  <h2 id="imessage">Add lore to an iMessage group</h2>
+  <ol>
+    <li>Save lore's number: <a href="sms:+18083199759">(808) 319-9759</a>.</li>
+    <li>Add that number to your group chat, the same way you'd add a friend.</li>
+    <li>lore sends one short hello, then stays quiet until someone says its name.</li>
+  </ol>
+  <p class="note">In iMessage groups, lore works from the conversation and the web. Connecting accounts like Google is Slack-only for now.</p>
+
+  <h2>What to say once it's in</h2>
+  <p>In iMessage, start with <code>lore</code>. In Slack, mention <code>@Lore</code>. Ask like you'd ask a teammate. It stays quiet otherwise.</p>
+  <ul class="asks">
+    <li><code>lore research the best escape room and report back</code><span>Looks it up live and comes back with a pick and why.</span></li>
+    <li><code>lore remind us friday at 5</code><span>Sets the reminder and posts it to the group.</span></li>
+    <li><code>lore find a good spot for dinner saturday</code><span>Picks a real place for the group instead of handing the question back.</span></li>
+    <li><code>lore catch me up</code><span>A short summary of what you missed: decisions, plans, open questions.</span></li>
+    <li><code>lore stop</code><span>lore goes quiet until you call it again.</span></li>
+  </ul>
+
+  <h2>Where your company actually runs</h2>
+  <p>The decisions, the plans, the 1 AM ideas all happen in the group chat. lore lives there, remembers all of it, and does the work while you keep talking.</p>
+  <p>Private beta. Early access is live today.</p>
+  <div class="cta">
+    <a class="btn dark" href="https://lore-host.d.onjrnm.link/slack/install?continue=1">Add to Slack</a>
+    <a class="btn line" href="#imessage">Add to iMessage</a>
+  </div>
   <p>Sacramento, CA</p>
   <footer><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms of Service</a></footer>
 </body>
