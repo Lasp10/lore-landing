@@ -14,11 +14,11 @@
     },
     {
       "source": "/deck",
-      "destination": "https://lore-host-c1d6.onbelmo.uk/deck"
+      "destination": "https://lore-host.d.onjrnm.link/deck"
     },
     {
       "source": "/deck/opens",
-      "destination": "https://lore-host-c1d6.onbelmo.uk/deck/opens"
+      "destination": "https://lore-host.d.onjrnm.link/deck/opens"
     },
     {
       "source": "/vault/:path*",
