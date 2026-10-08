@@ -1,37 +1,109 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>lore</title>
-  <style>
-    :root { --paper:#f3f2eb; --ink:#242820; --link:#285847; --muted:#62675e; }
-    * { box-sizing:border-box; }
-    html { background:var(--paper); }
-    body { max-width:760px; margin:0 auto; padding:64px 28px 48px; color:var(--ink); font-family:Georgia,Charter,"Times New Roman",serif; font-size:19px; line-height:1.7; text-rendering:optimizeLegibility; }
-    h1,h2 { line-height:1.15; letter-spacing:-.025em; }
-    h1 { display:flex; align-items:center; gap:10px; margin:0 0 40px; font-size:36px; }
-    h1 img { width:26px; height:26px; }
-    h2 { margin:48px 0 10px; font-size:24px; }
-    p { margin:0 0 22px; }
-    a { color:var(--link); text-decoration-thickness:1px; text-underline-offset:3px; }
-    a:hover { color:#34705b; }
-    footer { margin-top:96px; padding-top:20px; border-top:1px solid #d3d6ce; color:var(--muted); font-size:14px; }
-    @media(max-width:600px) { body { padding:38px 22px 32px; font-size:18px; line-height:1.65; } h1 { margin-bottom:32px; font-size:32px; } h2 { margin-top:38px; } footer { margin-top:64px; } }
-  </style>
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png">
-  <link rel="apple-touch-icon" href="/lore-icon-180.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>lore</title>
+<meta name="description" content="Lore is an agent that lives in your group chat. It remembers what the room decided, does bounded work like research and drafts, and asks before it acts for anyone.">
+<link rel="canonical" href="https://www.loregroupchat.com/">
+<meta property="og:title" content="lore">
+<meta property="og:description" content="An agent that lives in your group chat. It remembers the room and finishes real work.">
+<meta property="og:url" content="https://www.loregroupchat.com/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png">
+<link rel="apple-touch-icon" href="/lore-icon-180.png">
+<link rel="stylesheet" href="/site.css">
 </head>
 <body>
-  <h1><img src="/lore-logo-512.png" alt="">lore</h1>
-  <p>lore gives your group chat a teammate that can remember the room and finish real work.</p>
-  <h2>Work where you talk</h2>
-  <p>Add lore to Slack, then ask for research, writing, or an artifact without leaving the conversation. lore carries forward the decisions your group has already made, so each request starts with the right context.</p>
-  <p>Each person stays in control of their own accounts and private information. lore knows who asked, what they shared, and where the result belongs.</p>
-  <h2>Try lore</h2>
-  <p>We are opening the private beta gradually. <a href="/waitlist/">Join the waitlist</a>.</p>
-  <p>Sacramento, CA</p>
-  <footer><a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms of Service</a></footer>
+<div class="wrap">
+  <nav class="nav" aria-label="Primary">
+    <a class="brand" href="/"><img src="/lore-logo-512.png" alt="">lore</a>
+    <span class="sp"></span>
+    <a class="l hide-s" href="#demo">Demo</a>
+    <a class="l hide-s" href="#method">Method</a>
+    <a class="l" href="#access">Access</a>
+    <a class="l" href="/waitlist/">Join the waitlist</a>
+  </nav>
+
+  <header class="hero">
+    <div class="kicker">Private beta · Sacramento, CA</div>
+    <h1>An agent that lives in the group chat.</h1>
+    <p class="abstract">lore sits in the conversation your team already has. It remembers what the room decided, does the work that comes up, and reports back in the same thread. Nothing leaves on anyone's behalf until they say so.</p>
+    <div class="cta">
+      <a class="btn" href="/waitlist/">Join the waitlist <span aria-hidden="true">→</span></a>
+      <a class="btn ghost" href="#demo">Watch it work</a>
+    </div>
+    <p class="meta">Works in iMessage and Slack. WhatsApp is next.</p>
+  </header>
+
+  <section id="demo">
+    <div class="num">FIGURE 1 · INTERACTIVE</div>
+    <h2>Four things lore does in a thread.</h2>
+    <div class="demo">
+      <div>
+        <ol class="scenes" aria-label="Examples" style="list-style:none">
+          <li><button type="button" aria-pressed="true"><span class="sn">01</span><span><b>Research</b><small>Reads public pages in a real browser and returns the answer with the pages it opened.</small></span></button></li>
+          <li><button type="button" aria-pressed="false"><span class="sn">02</span><span><b>Remember</b><small>Carries decisions forward so nobody has to scroll back to find what was agreed.</small></span></button></li>
+          <li><button type="button" aria-pressed="false"><span class="sn">03</span><span><b>Draft</b><small>Writes documents from what the room actually said, and leaves gaps blank instead of guessing.</small></span></button></li>
+          <li><button type="button" aria-pressed="false"><span class="sn">04</span><span><b>Ask first</b><small>Prepares sends, bookings and purchases, then waits for the person they belong to.</small></span></button></li>
+        </ol>
+        <p class="fig">Scripted preview with invented names. Tap the suggestion in the phone, or type your own: try “what did we decide on pricing”.</p>
+      </div>
+      <div class="phone" role="group" aria-label="iMessage group chat preview">
+        <div class="sb"><span>9:41</span><span>5G</span></div>
+        <div class="ph">
+          <div class="av"><i style="background:#5e8f7a">M</i><i style="background:#c08a5b">D</i><i style="background:#7b83b5">S</i><i style="background:#242820">L</i></div>
+          <b>Founders</b><small>Maya, Dev, Sam, lore</small>
+        </div>
+        <div class="thread" id="thread" aria-live="polite"></div>
+        <div class="chips" id="chips"></div>
+        <form class="imf" id="imform" autocomplete="off"><input id="imtext" type="text" placeholder="iMessage" aria-label="Message the group"><button type="submit" aria-label="Send">↑</button></form>
+      </div>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="cols">
+      <div><div class="num">01 · METHOD</div><h2>Context first, then work.</h2></div>
+      <div>
+        <p>Most assistants start every request cold. lore starts from the room: who is in it, what was decided, what is still open. A request like “send the update” already knows which update, and to whom.</p>
+        <p>Work is bounded and one mission runs at a time. A run counts as done only when it has evidence behind it, such as the pages it opened, the screenshots it took, or a document you can open.</p>
+      </div>
+    </div>
+    <div class="rows" style="margin-top:56px">
+      <div class="row"><span class="n">A</span><h3>Memory by thread</h3><p>Decisions, owners and open questions are kept per conversation. One room's context never shows up in another.</p></div>
+      <div class="row"><span class="n">B</span><h3>Research and browsing</h3><p>Opens public pages in a logged-out browser, reads them, and cites what it saw.</p></div>
+      <div class="row"><span class="n">C</span><h3>Documents and checklists</h3><p>Turns the thread into drafts, briefs and task lists, and follows up on what stalls.</p></div>
+      <div class="row"><span class="n">D</span><h3>Approval gates</h3><p>Anything that speaks for a person or spends money waits for that person to approve it.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="num">02 · PRINCIPLES</div>
+    <div class="principles">
+      <div><h3>Everyone owns their own accounts</h3><p>lore knows who asked, what they shared, and where the result belongs. Your private information stays yours.</p></div>
+      <div><h3>Claims stay literal</h3><p>If lore did not finish, it says so. If it did, it shows the receipt.</p></div>
+      <div><h3>The room stays the room</h3><p>lore talks when it is useful and is quiet when it is not. It does not sit in the middle of every message.</p></div>
+    </div>
+  </section>
+
+  <section id="access">
+    <div class="cols">
+      <div><div class="num">03 · ACCESS</div><h2>From waitlist to your first task.</h2><p class="muted" style="margin-top:18px">We open the private beta in small batches. There is no setup call.</p></div>
+      <div>
+        <ol class="steps">
+          <li><div><b>Join the waitlist</b><p>Your work email and where your group lives.</p></div><span class="st"><a href="/waitlist/">Join</a></span></li>
+          <li><div><b>Get your link</b><p>When a spot opens you get a private onboarding link.</p></div><span class="st">By email</span></li>
+          <li><div><b>Add lore where you talk</b><p>Save lore as an iMessage contact, or add it to Slack.</p></div><span class="st"><a href="/start/">See how</a></span></li>
+          <li><div><b>Give it one task</b><p>lore introduces itself first, then you ask for something small.</p></div><span class="st">Minutes</span></li>
+        </ol>
+        <div class="cta"><a class="btn" href="/waitlist/">Join the waitlist <span aria-hidden="true">→</span></a><a class="btn ghost" href="/start/">Already have a link</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer><span>© lore · Sacramento, CA</span><span class="sp"></span><a href="/docs/how-lore-works/">How lore works</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></footer>
+</div>
+<script src="/demo.js"></script>
 </body>
 </html>
