@@ -24,7 +24,7 @@ a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}
 .btn:hover{background:#3b403a;color:#f7f5ef}
 .small{font-size:15px;color:var(--muted)}
 button.copy{all:unset;cursor:pointer;color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
-ul{padding-left:20px;margin:0 0 22px}li{margin:6px 0}
+ul{padding-left:0;margin:0 0 22px;list-style:none}li{margin:10px 0;position:relative;padding-left:1.5em}li:before{content:"\2192";color:var(--muted);position:absolute;left:0}button.copy{text-align:left}
 footer{margin-top:96px;padding-top:20px;border-top:1px solid #d3d6ce;color:var(--muted);font-size:14px}
 @media(max-width:600px){body{padding:38px 22px 32px;font-size:18px}h1{font-size:32px}}
 </style>
@@ -43,13 +43,16 @@ footer{margin-top:96px;padding-top:20px;border-top:1px solid #d3d6ce;color:var(-
 <p class="small">Slack will say lore is not approved by the Marketplace. That is expected during the private beta.</p>
 
 <h2>Then ask for something</h2>
+<p>Talk to it the way you would text a friend. No special words.</p>
 <ul>
-<li><button class="copy" type="button" data-copy="what is on my plate this week?">what is on my plate this week?</button></li>
-<li><button class="copy" type="button" data-copy="compare the pricing on these two pages: ">compare the pricing on these two pages</button></li>
-<li><button class="copy" type="button" data-copy="remember: we decided ">remember: we decided …</button></li>
-<li><button class="copy" type="button" data-copy="put this on one page I can download">put this on one page I can download</button></li>
+<li><button class="copy" type="button" data-copy="lore what's the top story on hacker news right now">what's the top story on hacker news right now</button></li>
+<li><button class="copy" type="button" data-copy="lore order me a usb-c cable on amazon">order me a usb-c cable on amazon</button> <span class="small">(stops at checkout and shows you the total)</span></li>
+<li><button class="copy" type="button" data-copy="lore every morning check the weather for us and post it here">every morning check the weather for us and post it here</button></li>
+<li><button class="copy" type="button" data-copy="lore summarize this">summarize this</button> <span class="small">(send a PDF or photo first)</span></li>
+<li><button class="copy" type="button" data-copy="lore should we do tahoe or yosemite this weekend">should we do tahoe or yosemite this weekend</button></li>
+<li><button class="copy" type="button" data-copy="lore remember: we decided ">remember: we decided …</button></li>
 </ul>
-<p class="small">Tap to copy. lore asks before it sends, posts, books or buys anything. <a href="/privacy/">Privacy</a></p>
+<p class="small">Tap to copy. lore asks before it sends, posts, books or buys anything. When a site needs your login, it sends you a private link, and anything from your own account comes to you privately, not to the group. <a href="/privacy/">Privacy</a></p>
 
 <p class="small">Not in yet? <a href="/waitlist/">Join the waitlist</a>.</p>
 <footer><a href="/">Home</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms of Service</a></footer>

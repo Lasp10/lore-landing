@@ -43,7 +43,14 @@ var SCENES=[
   {m:'I will not take your password in this chat. This link goes to a private page, the login is used for this booking only, then it is wiped.'},
   {c:['Private login link','Opens a secure page · nothing passes through chat','SECURE LINK']},
   {m:'Before I book anything, confirm the details.'},
-  {a:{yes:'Yes, book it',no:'Not yet',youYes:'Yes, book it',youNo:'Not yet',ok:'Booked. Saturday 8:00pm, party of 4. Confirmation saved.',card:['Cantinho do Sol','Sat 8:00pm · party of 4','CONFIRMATION SAVED'],nok:'Okay. Nothing was booked.'}}]}
+  {a:{yes:'Yes, book it',no:'Not yet',youYes:'Yes, book it',youNo:'Not yet',ok:'Booked. Saturday 8:00pm, party of 4. Confirmation saved.',card:['Cantinho do Sol','Sat 8:00pm · party of 4','CONFIRMATION SAVED'],nok:'Okay. Nothing was booked.'}}]},
+{g:FOUNDERS,ctx:[['Dev','the office is out of usb-c cables again'],['Lore','Want me to order a few? I will stop at checkout and show you the total first.']],
+ ask:'@lore yes, order 3 on amazon',
+ out:[{m:'Setting it up on Amazon now. I will take it right up to the order screen.'},
+  {w:['signed in with your saved login','searched usb-c cable 6ft, 4.5 stars and up','added 3 to the cart','opened checkout and stopped']},
+  {m:'Sent you the total privately, since it shows your card and address.'},
+  {c:['Ready for your ok · sent to Dev only','3 cables · $23.97 + tax · Visa ending 4242','NOT ORDERED YET']},
+  {a:{yes:'Approve order',no:'Not yet',youYes:'Approve',youNo:'Not yet',ok:'Ordered. Arrives Thursday. Receipt saved.',card:['Amazon order','3 × USB-C cable · $25.83','RECEIPT SAVED'],nok:'Okay. Nothing was ordered.'}}]}
 ];
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 function add(e){thread.appendChild(e);thread.scrollTop=thread.scrollHeight;return e}
@@ -97,6 +104,7 @@ async function ask(text,i){
   await wait(500);if(id!==run)return;await play(SCENES[i].out,id)}
 function route(t){
   t=t.toLowerCase();
+  if(/order|buy|amazon|cart|checkout|purchase/.test(t))return 6;
   if(/book|reserve|table|dinner|restaurant/.test(t))return 5;
   if(/flight|trip|hotel|stay|travel|lisbon/.test(t))return 4;
   if(/send|email/.test(t))return 3;
