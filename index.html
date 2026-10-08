@@ -11,25 +11,31 @@
 <link rel="apple-touch-icon" href="/lore-icon-180.png">
 <link rel="stylesheet" href="/demo.css">
 <style>
-body{max-width:760px;margin:0;padding:48px 28px 64px 28px;font:20px/1.55 Georgia,"Times New Roman",serif;color:#000;background:#fff}
+:root{--paper:#f3f2eb;--ink:#242820;--link:#285847;--muted:#62675e}
+html{background:var(--paper)}
+body{max-width:760px;margin:0;padding:64px 28px 48px;font:19px/1.7 Georgia,Charter,"Times New Roman",serif;color:var(--ink);background:var(--paper);text-rendering:optimizeLegibility}
 @media(min-width:900px){body{margin-left:max(28px,calc((100vw - 1280px)/2 + 100px))}}
-h1{font-size:40px;margin:0 0 36px;line-height:1.2}
-h2{font-size:28px;margin:48px 0 18px;line-height:1.25}
+h1,h2{line-height:1.15;letter-spacing:-.025em}
+h1{display:flex;align-items:center;gap:10px;margin:0 0 40px;font-size:36px}
+h1 img{width:26px;height:26px}
+h2{font-size:24px;margin:48px 0 10px}
 p{margin:0 0 22px}
-a{color:#00e}a:visited{color:#551a8b}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}a:visited{color:var(--link)}a:hover{color:#34705b}
 .scenes{margin:0 0 18px;padding:0;list-style:none}
 .scenes li{display:inline}
-.scenes li+li:before{content:" · "}
-.scenes button{all:unset;cursor:pointer;color:#00e;text-decoration:underline;font:inherit}
-.scenes button[aria-pressed=true]{color:#000;text-decoration:none;font-weight:700}
-.scenes button:focus-visible{outline:2px solid #000}
-.note{font-size:16px;color:#555;margin:14px 0 0}
+.scenes li+li:before{content:" · ";color:var(--muted)}
+.scenes button{all:unset;cursor:pointer;color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;font:inherit}
+.scenes button[aria-pressed=true]{color:var(--ink);text-decoration:none;font-weight:700}
+.scenes button:focus-visible{outline:2px solid var(--ink)}
+.note{font-size:15px;color:var(--muted);margin:14px 0 0}
 .phone{margin:0}
-footer{margin-top:64px;font-size:16px;color:#555}
+footer{margin-top:96px;padding-top:20px;border-top:1px solid #d3d6ce;color:var(--muted);font-size:14px}
+footer a{color:var(--link)}
+@media(max-width:600px){body{padding:38px 22px 32px;font-size:18px;line-height:1.65}h1{margin-bottom:32px;font-size:32px}h2{margin-top:38px}footer{margin-top:64px}}
 </style>
 </head>
 <body>
-<h1>lore</h1>
+<h1><img src="/lore-logo-512.png" alt="">lore</h1>
 <p>lore is an agent that lives in your group chat. It remembers what the room decided, does the work that comes up, such as research, drafts and checklists, and reports back in the same thread.</p>
 <p>lore asks before it sends, posts, books or buys anything on someone's behalf. Each person stays in control of their own accounts. It works in iMessage and Slack.</p>
 
