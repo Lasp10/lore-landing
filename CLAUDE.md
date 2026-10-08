@@ -17,7 +17,7 @@ Static multi-page Lore marketing site: plain HTML entry pages plus shared `lore-
 ## Conventions
 - Keep pages static and dependency-free unless explicitly assigned otherwise.
 - Use relative shared-asset paths that work from nested directories.
-- Production API host is `https://lore-host.d.onjrnm.link`; do not reintroduce stale Render URLs.
+- Production API host is `https://host.loregroupchat.com`; do not reintroduce stale Render URLs.
 - Slack install CTA should point to the production `/slack/install` route when assigned; do not invent OAuth URLs.
 - Forms must preserve every field, show success only after a confirmed stored response, and avoid duplicate submission.
 - Do not expose secrets, admin tokens, private memory, or test data in client code.
@@ -34,6 +34,6 @@ python3 -m http.server 8000
 ```
 Open `http://localhost:8000/` and each changed nested route. Check links/assets, form request payload/outcome, browser console, and mobile/desktop screenshots. Useful static checks:
 ```bash
-rg -n 'onrender.com|lore-host.d.onjrnm.link|/slack/install' .
+rg -n 'onrender.com|host.loregroupchat.com|/slack/install' .
 find . -name '*.html' -print
 ```

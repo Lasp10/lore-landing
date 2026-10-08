@@ -22,8 +22,8 @@
 .stage{display:none;margin-top:44px}
 .stage.on{display:block}
 .how{counter-reset:h;list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--line)}
-.how li{counter-increment:h;display:grid;grid-template-columns:44px 1fr;padding:16px 0;border-bottom:1px solid var(--line);font-size:17px;line-height:1.55}
-.how li:before{content:counter(h);font:12px/2.3 -apple-system,Arial,sans-serif;color:var(--faint)}
+.how li{display:block;padding:16px 0;border-bottom:1px solid var(--line);font-size:17px;line-height:1.55}
+
 .try{display:grid;gap:10px;margin-top:20px}
 .try button{all:unset;box-sizing:border-box;cursor:pointer;border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--field);font-size:17px;display:flex;justify-content:space-between;gap:16px}
 .try button:hover{border-color:var(--muted)}
@@ -42,11 +42,11 @@
     <div class="kicker">Private beta · Onboarding</div>
     <h1>Meet lore where you talk.</h1>
     <p class="abstract">Pick one place. It takes a couple of minutes and lore introduces itself first.</p>
-    <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+    
   </header>
 
   <section style="padding-top:44px">
-    <div class="num">STEP 1 · CHOOSE WHERE LORE LIVES</div>
+    <div class="num">Where should lore live?</div>
     <div class="pick" role="radiogroup" aria-label="Where should lore live">
       <div class="opt"><div class="tag">Recommended</div><h3>iMessage</h3><p>Save lore as a contact, make a group with your team, and say hi.</p><div class="acts2"><button class="btn" data-pick="imessage" type="button">Use iMessage <span aria-hidden="true">→</span></button></div></div>
       <div class="opt"><div class="tag">Workspace</div><h3>Slack</h3><p>Add lore to a workspace. It joins #general when allowed, or you invite it to any channel.</p><div class="acts2"><button class="btn" data-pick="slack" type="button">Use Slack <span aria-hidden="true">→</span></button></div></div>
@@ -55,7 +55,7 @@
   </section>
 
   <section class="stage" id="imessage" style="padding-top:44px">
-    <div class="num">STEP 2 · ADD LORE TO IMESSAGE</div>
+    <div class="num">iMessage</div>
     <h2>Save the contact, then text.</h2>
     <ol class="how">
       <li><span>Download lore's contact card and open it. It saves as <b>Lore</b>.<br><br><a class="btn" id="vcf" href="/lore.vcf" download="Lore.vcf">Download contact card</a></span></li>
@@ -65,7 +65,7 @@
   </section>
 
   <section class="stage" id="slack" style="padding-top:44px">
-    <div class="num">STEP 2 · ADD LORE TO SLACK</div>
+    <div class="num">Slack</div>
     <h2>Install, then mention it.</h2>
     <ol class="how">
       <li><span>Choose your workspace. Slack will say lore is not approved by the Marketplace. That is expected during the private beta.<br><br><a class="btn" id="slackbtn" href="https://host.loregroupchat.com/slack/install?continue=1">Continue to Slack <span aria-hidden="true">→</span></a></span></li>
@@ -75,7 +75,7 @@
   </section>
 
   <section class="stage" id="first" style="padding-top:44px">
-    <div class="num">STEP 3 · GIVE IT ONE TASK</div>
+    <div class="num">First task</div>
     <h2>Start small. Tap to copy.</h2>
     <div class="try">
       <button type="button" data-copy="what is on my plate this week?"><span>what is on my plate this week?</span><small>COPY</small></button>
@@ -90,10 +90,9 @@
 </div>
 <script>
 (function(){
-var bar=document.getElementById('bar'),q=new URLSearchParams(location.search),acc=q.get('access');
+var q=new URLSearchParams(location.search),acc=q.get('access');
 if(acc){var s=document.getElementById('slackbtn');s.href+='&access='+encodeURIComponent(acc)}
-function prog(n){bar.style.width=n+'%'}
-prog(33);
+function prog(){}
 [].forEach.call(document.querySelectorAll('[data-pick]'),function(b){b.onclick=function(){
   ['imessage','slack'].forEach(function(id){document.getElementById(id).classList.toggle('on',id===b.dataset.pick)});
   document.getElementById('first').classList.add('on');prog(66);
