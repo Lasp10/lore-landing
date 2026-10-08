@@ -43,3 +43,10 @@
 .imf button:disabled{background:#c7c7cc}
 @media(prefers-reduced-motion:reduce){*{animation:none!important}}
 @media(max-width:600px){.phone{width:min(340px,100%)}}
+.screen{align-self:flex-start;width:90%;margin:4px 0;border:1px solid #d1d1d6;border-radius:10px;overflow:hidden;background:#fff;animation:pop .22s ease-out}
+.screen .tb{display:flex;align-items:center;gap:5px;padding:6px 8px;background:#f2f2f4;border-bottom:1px solid #e0e0e4;font:10px/1 ui-monospace,Menlo,monospace;color:#6c6c70}
+.screen .tb i{width:7px;height:7px;border-radius:50%;background:#d1d1d6}
+.screen .tb span{margin-left:6px}
+.screen pre{margin:0;padding:9px 10px;font:10px/1.5 ui-monospace,Menlo,monospace;color:#3a3a3c;white-space:pre-wrap}
+.screen .live{padding:4px 10px 7px;font:9px/1 ui-monospace,Menlo,monospace;color:#34c759;letter-spacing:.08em}
+.thread>*{flex-shrink:0}

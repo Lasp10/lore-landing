@@ -36,30 +36,32 @@ footer a{color:var(--link)}
 </head>
 <body>
 <h1><img src="/lore-logo-512.png" alt="">lore</h1>
-<p>lore is an agent that lives in your group chat. It remembers what the room decided, does the work that comes up, such as research, drafts and checklists, and reports back in the same thread.</p>
-<p>lore asks before it sends, posts, books or buys anything on someone's behalf. Each person stays in control of their own accounts. It works in iMessage and Slack.</p>
+<p>lore is an agent that lives in your group chat, at work or with friends. It remembers what the room decided and does the work that comes up.</p>
+<p>It opens real web pages in a browser, reads them and takes screenshots. It works in its own sandboxed computer to build files. It prepares sends and bookings and waits for a yes before anything goes out. Each person stays in control of their own accounts.</p>
 
 <h2>Try it</h2>
 <ul class="scenes" aria-label="Examples">
 <li><button type="button" aria-pressed="true">Research</button></li>
 <li><button type="button" aria-pressed="false">Remember</button></li>
-<li><button type="button" aria-pressed="false">Draft</button></li>
-<li><button type="button" aria-pressed="false">Ask first</button></li>
+<li><button type="button" aria-pressed="false">Computer</button></li>
+<li><button type="button" aria-pressed="false">Approvals</button></li>
+<li><button type="button" aria-pressed="false">Trip planning</button></li>
+<li><button type="button" aria-pressed="false">Booking</button></li>
 </ul>
 <div class="phone" role="group" aria-label="iMessage group chat preview">
   <div class="sb"><span>9:41</span><span>5G</span></div>
   <div class="ph">
-    <div class="av"><i style="background:#5e8f7a">M</i><i style="background:#c08a5b">D</i><i style="background:#7b83b5">S</i><i style="background:#242820">L</i></div>
-    <b>Founders</b><small>Maya, Dev, Sam, lore</small>
+    <div class="av" id="gav"></div>
+    <b id="gname">Founders</b><small id="gmem">Maya, Dev, Sam, lore</small>
   </div>
   <div class="thread" id="thread" aria-live="polite"></div>
   <div class="chips" id="chips"></div>
   <form class="imf" id="imform" autocomplete="off"><input id="imtext" type="text" placeholder="iMessage" aria-label="Message the group"><button type="submit" aria-label="Send">↑</button></form>
 </div>
-<p class="note">Scripted preview with invented names. Tap the suggestion, or type something like "what did we decide on pricing".</p>
+<p class="note">Scripted preview with invented names. Tap the suggestion, or type something like "book dinner" or "what did we decide on pricing".</p>
 
-<h2>Access</h2>
-<p>We are opening the private beta gradually. <a href="/waitlist/">Join the waitlist</a>.</p>
+<h2>Private beta</h2>
+<p>Seats open in batches, in the order people sign up. <a href="/waitlist/">Join the waitlist</a>, tell us where your group talks, and we reach out when your seat opens. You get one link. Then you text lore or add it to Slack. It takes about two minutes and there is no setup call.</p>
 <p>Already have a link? <a href="/start/">Get started</a>.</p>
 <p>Sacramento, CA</p>
 

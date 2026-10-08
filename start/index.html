@@ -4,105 +4,61 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Get started with lore</title>
-<meta name="description" content="Add lore to iMessage or Slack and give it your first task.">
+<meta name="description" content="Text lore or add it to Slack, then give it a first task.">
 <link rel="canonical" href="https://www.loregroupchat.com/start/">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png">
 <link rel="apple-touch-icon" href="/lore-icon-180.png">
-<link rel="stylesheet" href="/site.css">
 <style>
-.pick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:36px}
-.opt{border:1px solid var(--line);border-radius:12px;padding:24px;background:var(--field);display:flex;flex-direction:column}
-.opt h3{margin-bottom:8px}
-.opt p{font-size:16px;line-height:1.55;color:var(--muted);margin:0 0 20px}
-.opt .acts2{margin-top:auto;display:grid;gap:8px}
-.opt .btn{justify-content:center}
-.opt.soon{background:transparent;border-style:dashed}
-.tag{font:11px/1 -apple-system,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
-.stage{display:none;margin-top:44px}
-.stage.on{display:block}
-.how{counter-reset:h;list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--line)}
-.how li{display:block;padding:16px 0;border-bottom:1px solid var(--line);font-size:17px;line-height:1.55}
-
-.try{display:grid;gap:10px;margin-top:20px}
-.try button{all:unset;box-sizing:border-box;cursor:pointer;border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--field);font-size:17px;display:flex;justify-content:space-between;gap:16px}
-.try button:hover{border-color:var(--muted)}
-.try button:focus-visible{outline:2px solid var(--muted);outline-offset:2px}
-.try small{font:12px/1.6 -apple-system,Arial,sans-serif;color:var(--faint);white-space:nowrap}
-.bar{height:2px;background:var(--line);margin:40px 0 0;position:relative}
-.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--ink);width:0;transition:width .4s}
-.note{margin-top:28px;font-size:15px;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}
-@media(max-width:800px){.pick{grid-template-columns:1fr}.try small{display:none}}
+:root{--paper:#f3f2eb;--ink:#242820;--link:#285847;--muted:#62675e}
+html{background:var(--paper)}
+body{max-width:760px;margin:0 auto;padding:64px 28px 48px;font:19px/1.7 Georgia,Charter,"Times New Roman",serif;color:var(--ink)}
+h1,h2{line-height:1.15;letter-spacing:-.025em}
+h1{display:flex;align-items:center;gap:10px;margin:0 0 40px;font-size:36px}
+h1 img{width:26px;height:26px}
+h1 a{color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px}
+h2{font-size:24px;margin:48px 0 10px}
+p{margin:0 0 22px}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}
+.btn{display:inline-block;padding:14px 22px;background:var(--ink);color:#f7f5ef;text-decoration:none;border-radius:10px;font:600 15px/1 -apple-system,"Segoe UI",Arial,sans-serif}
+.btn:hover{background:#3b403a;color:#f7f5ef}
+.small{font-size:15px;color:var(--muted)}
+button.copy{all:unset;cursor:pointer;color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+ul{padding-left:20px;margin:0 0 22px}li{margin:6px 0}
+footer{margin-top:96px;padding-top:20px;border-top:1px solid #d3d6ce;color:var(--muted);font-size:14px}
+@media(max-width:600px){body{padding:38px 22px 32px;font-size:18px}h1{font-size:32px}}
 </style>
 </head>
 <body>
-<div class="wrap" style="max-width:860px">
-  <nav class="nav"><a class="brand" href="/"><img src="/lore-logo-512.png" alt="">lore</a><span class="sp"></span><a class="l" href="/waitlist/">Waitlist</a></nav>
-  <header class="hero" style="padding-bottom:40px">
-    <div class="kicker">Private beta · Onboarding</div>
-    <h1>Meet lore where you talk.</h1>
-    <p class="abstract">Pick one place. It takes a couple of minutes and lore introduces itself first.</p>
-    
-  </header>
+<h1><a href="/"><img src="/lore-logo-512.png" alt="">lore</a></h1>
+<p>You are in. Choose where your group talks.</p>
 
-  <section style="padding-top:44px">
-    <div class="num">Where should lore live?</div>
-    <div class="pick" role="radiogroup" aria-label="Where should lore live">
-      <div class="opt"><div class="tag">Recommended</div><h3>iMessage</h3><p>Save lore as a contact, make a group with your team, and say hi.</p><div class="acts2"><button class="btn" data-pick="imessage" type="button">Use iMessage <span aria-hidden="true">→</span></button></div></div>
-      <div class="opt"><div class="tag">Workspace</div><h3>Slack</h3><p>Add lore to a workspace. It joins #general when allowed, or you invite it to any channel.</p><div class="acts2"><button class="btn" data-pick="slack" type="button">Use Slack <span aria-hidden="true">→</span></button></div></div>
-      <div class="opt soon"><div class="tag">Next</div><h3>WhatsApp</h3><p>Choose it on the waitlist and we will tell you the moment it opens.</p><div class="acts2"><a class="btn ghost" href="/waitlist/">Pick WhatsApp on the waitlist</a></div></div>
-    </div>
-  </section>
+<h2>iMessage</h2>
+<p>Text lore from your phone. It replies and walks you through adding it to your group.</p>
+<p><a class="btn" href="sms:+18083199759?&amp;body=hi%20lore">Text lore</a></p>
 
-  <section class="stage" id="imessage" style="padding-top:44px">
-    <div class="num">iMessage</div>
-    <h2>Save the contact, then text.</h2>
-    <ol class="how">
-      <li><span>Download lore's contact card and open it. It saves as <b>Lore</b>.<br><br><a class="btn" id="vcf" href="/lore.vcf" download="Lore.vcf">Download contact card</a></span></li>
-      <li><span>Start a group message with your team and add Lore. Or text Lore first and add your team after.<br><br><a class="btn ghost" href="sms:+18083199759?&amp;body=hi%20lore">Text lore from this phone</a></span></li>
-      <li><span>Say hi. lore introduces itself and asks what the group is working on.</span></li>
-    </ol>
-  </section>
+<h2>Slack</h2>
+<p>Add lore to your workspace, then mention <b>@Lore</b> in any channel.</p>
+<p><a class="btn" id="slack" href="https://host.loregroupchat.com/slack/install?continue=1">Add to Slack</a></p>
+<p class="small">Slack will say lore is not approved by the Marketplace. That is expected during the private beta.</p>
 
-  <section class="stage" id="slack" style="padding-top:44px">
-    <div class="num">Slack</div>
-    <h2>Install, then mention it.</h2>
-    <ol class="how">
-      <li><span>Choose your workspace. Slack will say lore is not approved by the Marketplace. That is expected during the private beta.<br><br><a class="btn" id="slackbtn" href="https://host.loregroupchat.com/slack/install?continue=1">Continue to Slack <span aria-hidden="true">→</span></a></span></li>
-      <li><span>lore joins <b>#general</b> when your workspace allows it. If not, invite it to any one channel.</span></li>
-      <li><span>Mention <b>@Lore</b> and ask for something small.</span></li>
-    </ol>
-  </section>
+<h2>Then ask for something</h2>
+<ul>
+<li><button class="copy" type="button" data-copy="what is on my plate this week?">what is on my plate this week?</button></li>
+<li><button class="copy" type="button" data-copy="compare the pricing on these two pages: ">compare the pricing on these two pages</button></li>
+<li><button class="copy" type="button" data-copy="remember: we decided ">remember: we decided …</button></li>
+<li><button class="copy" type="button" data-copy="put this on one page I can download">put this on one page I can download</button></li>
+</ul>
+<p class="small">Tap to copy. lore asks before it sends, posts, books or buys anything. <a href="/privacy/">Privacy</a></p>
 
-  <section class="stage" id="first" style="padding-top:44px">
-    <div class="num">First task</div>
-    <h2>Start small. Tap to copy.</h2>
-    <div class="try">
-      <button type="button" data-copy="what is on my plate this week?"><span>what is on my plate this week?</span><small>COPY</small></button>
-      <button type="button" data-copy="compare the pricing on these two pages: "><span>compare the pricing on these two pages</span><small>COPY</small></button>
-      <button type="button" data-copy="remember: we decided "><span>remember: we decided …</span><small>COPY</small></button>
-      <button type="button" data-copy="draft a recap of this thread"><span>draft a recap of this thread</span><small>COPY</small></button>
-    </div>
-    <p class="note">lore asks before it sends, posts, books or buys anything. Each person connects their own accounts and can disconnect them any time. <a href="/privacy/">Privacy</a></p>
-  </section>
-
-  <footer style="margin-top:40px"><span>© lore</span><span class="sp"></span><a href="/">Home</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></footer>
-</div>
+<p class="small">Not in yet? <a href="/waitlist/">Join the waitlist</a>.</p>
+<footer><a href="/">Home</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms of Service</a></footer>
 <script>
 (function(){
-var q=new URLSearchParams(location.search),acc=q.get('access');
-if(acc){var s=document.getElementById('slackbtn');s.href+='&access='+encodeURIComponent(acc)}
-function prog(){}
-[].forEach.call(document.querySelectorAll('[data-pick]'),function(b){b.onclick=function(){
-  ['imessage','slack'].forEach(function(id){document.getElementById(id).classList.toggle('on',id===b.dataset.pick)});
-  document.getElementById('first').classList.add('on');prog(66);
-  document.getElementById(b.dataset.pick).scrollIntoView({behavior:'smooth',block:'start'});
-  try{localStorage.setItem('lore-start',b.dataset.pick)}catch(e){}}});
-[].forEach.call(document.querySelectorAll('[data-copy]'),function(b){b.onclick=function(){
-  var t=b.dataset.copy,sm=b.querySelector('small');
-  function ok(){sm.textContent='COPIED';prog(100);setTimeout(function(){sm.textContent='COPY'},1600)}
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){})}}});
-var h=location.hash.replace('#','');if(h==='imessage'||h==='slack'){document.querySelector('[data-pick='+h+']').click()}
+var a=new URLSearchParams(location.search).get('access');
+if(a)document.getElementById('slack').href+='&access='+encodeURIComponent(a);
+[].forEach.call(document.querySelectorAll('[data-copy]'),function(b){var t=b.textContent;b.onclick=function(){
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(b.dataset.copy).then(function(){b.textContent='copied';setTimeout(function(){b.textContent=t},1400)},function(){})}});
 })();
 </script>
 </body>
