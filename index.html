@@ -4,70 +4,53 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>lore</title>
-<meta name="description" content="lore is an agent that lives in your group chat. It remembers what the room decided, does the work that comes up, and asks before it acts for anyone.">
+<meta name="description" content="Agents for the people. A group agent for every room and a personal agent for every person, in iMessage and Slack.">
 <link rel="canonical" href="https://www.loregroupchat.com/">
+<meta property="og:title" content="lore">
+<meta property="og:description" content="Agents for the people.">
+<meta property="og:url" content="https://www.loregroupchat.com/">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png">
 <link rel="apple-touch-icon" href="/lore-icon-180.png">
 <link rel="stylesheet" href="/demo.css">
-<style>
-:root{--paper:#f3f2eb;--ink:#242820;--link:#285847;--muted:#62675e}
-html{background:var(--paper)}
-body{max-width:760px;margin:0;padding:64px 28px 48px;font:19px/1.7 Georgia,Charter,"Times New Roman",serif;color:var(--ink);background:var(--paper);text-rendering:optimizeLegibility}
-@media(min-width:900px){body{margin-left:max(28px,calc((100vw - 1280px)/2 + 100px))}}
-h1,h2{line-height:1.15;letter-spacing:-.025em}
-h1{display:flex;align-items:center;gap:10px;margin:0 0 40px;font-size:36px}
-h1 img{width:26px;height:26px}
-h2{font-size:24px;margin:48px 0 10px}
-p{margin:0 0 22px}
-a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}a:visited{color:var(--link)}a:hover{color:#34705b}
-.scenes{margin:0 0 18px;padding:0;list-style:none}
-.scenes li{display:inline}
-.scenes li+li:before{content:" · ";color:var(--muted)}
-.scenes button{all:unset;cursor:pointer;color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;font:inherit}
-.scenes button[aria-pressed=true]{color:var(--ink);text-decoration:none;font-weight:700}
-.scenes button:focus-visible{outline:2px solid var(--ink)}
-.note{font-size:15px;color:var(--muted);margin:14px 0 0}
-.phone{margin:0}
-footer{margin-top:96px;padding-top:20px;border-top:1px solid #d3d6ce;color:var(--muted);font-size:14px}
-footer a{color:var(--link)}
-@media(max-width:600px){body{padding:38px 22px 32px;font-size:18px;line-height:1.65}h1{margin-bottom:32px;font-size:32px}h2{margin-top:38px}footer{margin-top:64px}}
-</style>
+<link rel="stylesheet" href="/home.css">
 </head>
 <body>
-<h1><img src="/lore-logo-512.png" alt="">lore</h1>
-<p>lore is an agent that lives in your group chat, at work or with friends. It remembers what the room decided and does the work that comes up.</p>
-<p>It has its own computer. It opens real websites and works them like a person: research, forms, carts, bookings, downloads. It reads the photos, PDFs and docs you drop in the chat, builds files and hands them back. It runs routines on a schedule and works through long lists. Anything that buys, sends, posts or submits stops right before the final click and waits for a yes from the person who asked.</p>
-<p>In a group, each person's accounts stay theirs. When a task needs your login, lore sends you a private link and never sees the password. Anything from your own account, like your inbox or an order total with your card, goes only to you.</p>
+<div class="wrap">
+  <header class="top"><a class="brand" href="/"><img src="/lore-logo-512.png" alt="">lore</a><span class="sp"></span><a class="l" href="/waitlist/">Join the waitlist</a></header>
 
-<h2>Try it</h2>
-<ul class="scenes" aria-label="Examples">
-<li><button type="button" aria-pressed="true">Research</button></li>
-<li><button type="button" aria-pressed="false">Remember</button></li>
-<li><button type="button" aria-pressed="false">Computer</button></li>
-<li><button type="button" aria-pressed="false">Approvals</button></li>
-<li><button type="button" aria-pressed="false">Trip planning</button></li>
-<li><button type="button" aria-pressed="false">Booking</button></li>
-<li><button type="button" aria-pressed="false">Shopping</button></li>
-</ul>
-<div class="phone" role="group" aria-label="iMessage group chat preview">
-  <div class="sb"><span>9:41</span><span>5G</span></div>
-  <div class="ph">
-    <div class="av" id="gav"></div>
-    <b id="gname">Founders</b><small id="gmem">Maya, Dev, Sam, lore</small>
+  <h1>Agents for the people.</h1>
+  <p class="sub">A group agent for every room. A personal agent for every person.</p>
+
+  <div class="tabs" role="tablist" aria-label="Demo">
+    <button type="button" role="tab" aria-selected="true">In the group chat</button>
+    <button type="button" role="tab" aria-selected="false">In your DMs</button>
+    <button type="button" role="tab" aria-selected="false">In Slack</button>
   </div>
-  <div class="thread" id="thread" aria-live="polite"></div>
-  <div class="chips" id="chips"></div>
-  <form class="imf" id="imform" autocomplete="off"><input id="imtext" type="text" placeholder="iMessage" aria-label="Message the group"><button type="submit" aria-label="Send">↑</button></form>
+
+  <div class="stage" id="stage">
+    <div class="cap" id="cap"><span></span><small></small>
+      <p class="cta"><a class="btn" href="/waitlist/">Join the waitlist</a></p>
+    </div>
+    <div class="devices">
+      <div class="phone" id="phone" role="group" aria-label="iMessage preview">
+        <div class="sb"><span>9:41</span><span>5G</span></div>
+        <div class="ph"><div class="av" id="gav"></div><b id="gname"></b><small id="gmem"></small></div>
+        <button class="back" id="back" type="button">‹ Messages</button>
+        <div class="ban" id="ban"><b>lore</b>Quick one, just for you.</div>
+        <div class="thread" id="thread" aria-live="polite"></div>
+        <div class="chips" id="chips"></div>
+        <form class="imf" id="imform" autocomplete="off"><input id="imtext" type="text" placeholder="iMessage" aria-label="Message"><button type="submit" aria-label="Send">↑</button></form>
+      </div>
+      <div class="slack" id="slack" role="group" aria-label="Slack preview">
+        <div class="sb2"><b>Acme Labs</b><div># general</div><div class="a"># launch-week</div><div># design</div></div>
+        <div class="sm2"><div class="sh"># launch-week</div><div class="sthread" id="sthread" aria-live="polite"></div><div class="sc" id="schips"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer><span>lore · Sacramento, CA</span><span class="sp"></span><a href="/docs/how-lore-works/">How lore works</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></footer>
 </div>
-<p class="note">Scripted preview with invented names. Tap the suggestion, or type something like "book dinner", "order cables" or "what did we decide on pricing".</p>
-
-<h2>Private beta</h2>
-<p>The private beta is limited to the first 50 people. Seats go in the order people sign up. <a href="/waitlist/">Join the waitlist</a> and tell us where your group talks. If a seat is open you get in right away. If not, you hold your place in line. Then you text lore or add it to Slack. It takes about two minutes and there is no setup call.</p>
-<p>Already have a link? <a href="/start/">Get started</a>.</p>
-<p>Sacramento, CA</p>
-
-<footer><a href="/docs/how-lore-works/">How lore works</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms of Service</a></footer>
-<script src="/demo.js"></script>
+<script src="/home.js"></script>
 </body>
 </html>
