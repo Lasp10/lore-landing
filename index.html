@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>lore</title>
 <meta name="description" content="Agents for the people. A group agent for every room and a personal agent for every person, in iMessage and Slack.">
+<meta name="theme-color" content="#0a130e">
 <link rel="canonical" href="https://www.loregroupchat.com/">
 <meta property="og:title" content="lore">
 <meta property="og:description" content="Agents for the people.">
@@ -12,22 +13,35 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png">
 <link rel="apple-touch-icon" href="/lore-icon-180.png">
-<link rel="stylesheet" href="/demo.css">
 <link rel="stylesheet" href="/home.css">
 </head>
 <body>
+<canvas id="money" aria-hidden="true"></canvas>
+<div class="glow" aria-hidden="true"></div>
 <div class="mb" role="navigation" aria-label="Site"><img src="/lore-logo-512.png" alt=""><b>lore</b><span class="m" aria-hidden="true">File</span><span class="m" aria-hidden="true">Edit</span><span class="m" aria-hidden="true">View</span><span class="m" aria-hidden="true">Window</span><span class="sp"></span><a href="/waitlist/">Join the waitlist</a></div>
 <main>
   <h1 class="sr">Agents for the people. A group agent for every room. A personal agent for every person.</h1>
-  <div class="phone" id="phone" role="group" aria-label="Interactive iMessage preview">
-    <div class="sb"><span>9:41</span><span>5G</span></div>
-    <div class="ph"><button class="back" id="back" type="button" aria-label="Back" hidden>‹</button><div class="av" id="gav"></div><b id="gname"></b><small id="gmem"></small></div>
-    <div class="thread" id="thread" aria-live="polite"></div>
-    <form class="imf" id="imform" autocomplete="off"><input id="imtext" type="text" placeholder="iMessage" aria-label="Message lore"><button type="submit" aria-label="Send">↑</button></form>
-  </div>
-  <div class="below"><a class="btn" href="/waitlist/">Join the waitlist</a><p>Private beta. The first 50 people get in.</p></div>
+  <div class="rig" id="rig"><div class="tilt" id="tilt">
+    <div class="phone" id="phone" role="group" aria-label="Interactive iPhone demo">
+      <i class="k a"></i><i class="k v1"></i><i class="k v2"></i><i class="k p"></i>
+      <div class="bezel"><div class="scr" id="scr">
+        <div class="island"></div>
+        <div class="sbar"><span>9:41</span><span><svg viewBox="0 0 19 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 17 12"><path d="M8.5 2.3c2.3 0 4.4.9 6 2.4l1-1.1A10.6 10.6 0 0 0 8.5.8C5.8.8 3.3 1.8 1.5 3.6l1 1.1a8.6 8.6 0 0 1 6-2.4zm0 3.4c1.4 0 2.6.5 3.6 1.4l1-1.1a7.2 7.2 0 0 0-9.2 0l1 1.1c1-.9 2.2-1.4 3.6-1.4zm0 3.3c.6 0 1.1.2 1.5.6l-1.5 1.7L7 9.6c.4-.4.9-.6 1.5-.6z"/></svg><svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.5" fill="none" stroke="#000" opacity=".4"/><rect x="2" y="2" width="20" height="8" rx="2.2"/><rect x="25" y="4" width="1.6" height="4" rx=".8" opacity=".5"/></svg></span></div>
+        <div class="hdr" id="hdr">
+          <button class="bk" id="back" type="button" aria-label="Back" hidden><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="vd" id="vid" type="button" aria-label="FaceTime" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linejoin="round"><rect x="3" y="6.5" width="12.5" height="11" rx="2.5"/><path d="M15.5 10.5l5-3v9l-5-3z"/></svg></button>
+          <div class="av" id="gav"></div><div class="nm" id="gname"></div><small id="gmem"></small>
+        </div>
+        <div class="thread" id="thread" aria-live="polite"></div>
+        <form class="imf" id="imform" autocomplete="off"><span class="pl"><svg viewBox="0 0 16 16" stroke="#8e8e93" stroke-width="2" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg></span><span class="fld"><input id="imtext" type="text" placeholder="iMessage" aria-label="Message lore" enterkeyhint="send"><button type="submit" aria-label="Send">&#8593;</button></span></form>
+        <div class="hi"></div>
+      </div><div class="glare"></div></div>
+    </div>
+  </div></div>
+  <div class="below"><a class="cta" href="/waitlist/">Join the waitlist</a><p>Private beta. The first 50 people get in.</p></div>
   <footer><a href="/docs/how-lore-works/">How lore works</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><span>Sacramento, CA</span></footer>
 </main>
+<script src="/money.js"></script>
 <script src="/home.js"></script>
 </body>
 </html>
