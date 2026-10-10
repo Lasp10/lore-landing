@@ -16,41 +16,18 @@
 <link rel="stylesheet" href="/home.css">
 </head>
 <body>
-<div class="wrap">
-  <header class="top"><a class="brand" href="/"><img src="/lore-logo-512.png" alt="">lore</a><span class="sp"></span><a class="l" href="/waitlist/">Join the waitlist</a></header>
-
-  <h1>Agents for the people.</h1>
-  <p class="sub">A group agent for every room. A personal agent for every person.</p>
-
-  <div class="tabs" role="tablist" aria-label="Demo">
-    <button type="button" role="tab" aria-selected="true">In the group chat</button>
-    <button type="button" role="tab" aria-selected="false">In your DMs</button>
-    <button type="button" role="tab" aria-selected="false">In Slack</button>
+<div class="mb" role="navigation" aria-label="Site"><img src="/lore-logo-512.png" alt=""><b>lore</b><span class="m" aria-hidden="true">File</span><span class="m" aria-hidden="true">Edit</span><span class="m" aria-hidden="true">View</span><span class="m" aria-hidden="true">Window</span><span class="sp"></span><a href="/waitlist/">Join the waitlist</a></div>
+<main>
+  <h1 class="sr">Agents for the people. A group agent for every room. A personal agent for every person.</h1>
+  <div class="phone" id="phone" role="group" aria-label="Interactive iMessage preview">
+    <div class="sb"><span>9:41</span><span>5G</span></div>
+    <div class="ph"><button class="back" id="back" type="button" aria-label="Back" hidden>‹</button><div class="av" id="gav"></div><b id="gname"></b><small id="gmem"></small></div>
+    <div class="thread" id="thread" aria-live="polite"></div>
+    <form class="imf" id="imform" autocomplete="off"><input id="imtext" type="text" placeholder="iMessage" aria-label="Message lore"><button type="submit" aria-label="Send">↑</button></form>
   </div>
-
-  <div class="stage" id="stage">
-    <div class="cap" id="cap"><span></span><small></small>
-      <p class="cta"><a class="btn" href="/waitlist/">Join the waitlist</a></p>
-    </div>
-    <div class="devices">
-      <div class="phone" id="phone" role="group" aria-label="iMessage preview">
-        <div class="sb"><span>9:41</span><span>5G</span></div>
-        <div class="ph"><div class="av" id="gav"></div><b id="gname"></b><small id="gmem"></small></div>
-        <button class="back" id="back" type="button">‹ Messages</button>
-        <div class="ban" id="ban"><b>lore</b>Quick one, just for you.</div>
-        <div class="thread" id="thread" aria-live="polite"></div>
-        <div class="chips" id="chips"></div>
-        <form class="imf" id="imform" autocomplete="off"><input id="imtext" type="text" placeholder="iMessage" aria-label="Message"><button type="submit" aria-label="Send">↑</button></form>
-      </div>
-      <div class="slack" id="slack" role="group" aria-label="Slack preview">
-        <div class="sb2"><b>Acme Labs</b><div># general</div><div class="a"># launch-week</div><div># design</div></div>
-        <div class="sm2"><div class="sh"># launch-week</div><div class="sthread" id="sthread" aria-live="polite"></div><div class="sc" id="schips"></div></div>
-      </div>
-    </div>
-  </div>
-
-  <footer><span>lore · Sacramento, CA</span><span class="sp"></span><a href="/docs/how-lore-works/">How lore works</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></footer>
-</div>
+  <div class="below"><a class="btn" href="/waitlist/">Join the waitlist</a><p>Private beta. The first 50 people get in.</p></div>
+  <footer><a href="/docs/how-lore-works/">How lore works</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><span>Sacramento, CA</span></footer>
+</main>
 <script src="/home.js"></script>
 </body>
 </html>

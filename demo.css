@@ -1,6 +1,6 @@
 .meta{margin-top:26px;font-size:14px;color:var(--muted)}
 .muted{color:var(--muted)}
-.phone{width:340px;height:640px;margin:0;border:1px solid #242820;border-radius:40px;background:#fff;box-shadow:none;display:grid;grid-template-rows:auto auto 1fr auto auto;overflow:hidden;font:15px/1.3 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;color:#000}
+.phone{width:340px;height:640px;margin:0;border:1px solid #242820;border-radius:40px;background:#fff;box-shadow:none;display:grid;grid-template-rows:auto auto 1fr auto;overflow:hidden;font:15px/1.3 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;color:#000}
 .sb{display:flex;justify-content:space-between;padding:16px 28px 0;font-weight:600;font-size:14px}
 .ph{text-align:center;padding:6px 0 10px;border-bottom:1px solid #e5e5ea;background:#f9f9fb}
 .ph .av{display:flex;justify-content:center;margin-bottom:3px}
