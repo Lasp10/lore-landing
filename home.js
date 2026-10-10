@@ -36,9 +36,9 @@ function card(c){var d=el('div','card');d.appendChild(el('div','t',c[0]));d.appe
 function approve(yes,no,id){return new Promise(function(res){var a=add(el('div','acts')),y=el('button','p',yes),n=el('button','',no);a.appendChild(y);a.appendChild(n);
  var fin=false;function done(v){if(fin)return;fin=true;y.disabled=n.disabled=true;clearTimeout(tm);res(v)}
  y.onclick=function(){done(1)};n.onclick=function(){done(0)};var tm=setTimeout(function(){if(id===run)done(1)},reduce?50:4200)})}
-function pulse(){if(window.fabricPulse)window.fabricPulse()}
+function pulse(i){if(window.fabricPulse)window.fabricPulse(i)}
 function setChap(i){chap.forEach(function(b,k){b.setAttribute('aria-current',k===i?'true':'false')});
- cap.textContent=['Everyone in the chat can ask for things. lore does the work and asks before it acts.','Your personal agent keeps what you tell it out of the group.','One agent in your group chats. One just for you.'][i];pulse()}
+ cap.textContent=['Everyone in the chat can ask for things. lore does the work and asks before it acts.','Your personal agent keeps what you tell it out of the group.','One agent in your group chats. One just for you.'][i];pulse(i)}
 function ok(id){return id===run}
 // ---- chapters
 async function ch0(id){
@@ -106,7 +106,7 @@ form.onsubmit=function(e){e.preventDefault();var t=input.value.trim();if(!t||inp
  [].forEach.call(thread.querySelectorAll('.opts'),function(o){o.remove()});msg('You',t);
  (async function(){if(await say('Lore','this is a preview. text me for real, or find me in Slack.',id)){var o=el('div','opts'),a=el('a','opt go','Try it on iMessage'),b=el('a','opt go sl','Try it on Slack');a.href='sms:+18083199759?&body=hi%20lore';b.href='/waitlist/?p=slack';o.appendChild(a);o.appendChild(b);add(o)}})()};
 // ---- fit + tilt
-function fit(){var k=Math.min(1,(innerHeight-196)/840,(innerWidth-16)/412);if(k<.5)k=.5;rig.style.height=Math.round(840*k)+'px';rig.style.width=Math.round(412*k)+'px';phone.style.transform='scale('+k+')'}
+function fit(){var k=Math.min(1,(innerHeight-250)/840,(innerWidth-16)/412);if(k<.5)k=.5;rig.style.height=Math.round(840*k)+'px';rig.style.width=Math.round(412*k)+'px';phone.style.transform='scale('+k+')'}
 fit();addEventListener('resize',fit);
 if(!reduce&&matchMedia('(hover:hover)').matches){addEventListener('mousemove',function(e){if(phone.contains(e.target))return;var cx=innerWidth/2,cy=innerHeight/2;tilt.style.transform='rotateY('+((e.clientX-cx)/cx*4).toFixed(2)+'deg) rotateX('+(-(e.clientY-cy)/cy*2.5).toFixed(2)+'deg)'});document.addEventListener('mouseleave',function(){tilt.style.transform=''})}
 setTimeout(function(){start(0)},500);
