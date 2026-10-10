@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>lore</title>
 <meta name="description" content="Agents for the people. A group agent for every room and a personal agent for every person, in iMessage and Slack.">
-<meta name="theme-color" content="#0a130e">
+<meta name="theme-color" content="#f3f2eb">
 <link rel="canonical" href="https://www.loregroupchat.com/">
 <meta property="og:title" content="lore">
 <meta property="og:description" content="Agents for the people.">
@@ -16,8 +16,7 @@
 <link rel="stylesheet" href="/home.css">
 </head>
 <body>
-<canvas id="money" aria-hidden="true"></canvas>
-<div class="glow" aria-hidden="true"></div>
+<canvas id="fabric" aria-hidden="true"></canvas>
 <div class="mb" role="navigation" aria-label="Site"><img src="/lore-logo-512.png" alt=""><b>lore</b><span class="m" aria-hidden="true">File</span><span class="m" aria-hidden="true">Edit</span><span class="m" aria-hidden="true">View</span><span class="m" aria-hidden="true">Window</span><span class="sp"></span><a href="/waitlist/">Join the waitlist</a></div>
 <main>
   <h1 class="sr">Agents for the people. A group agent for every room. A personal agent for every person.</h1>
@@ -35,13 +34,16 @@
         <div class="thread" id="thread" aria-live="polite"></div>
         <form class="imf" id="imform" autocomplete="off"><span class="pl"><svg viewBox="0 0 16 16" stroke="#8e8e93" stroke-width="2" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg></span><span class="fld"><input id="imtext" type="text" placeholder="iMessage" aria-label="Message lore" enterkeyhint="send"><button type="submit" aria-label="Send">&#8593;</button></span></form>
         <div class="hi"></div>
+        <button class="ntf" id="ntf" type="button"><img src="/lore-logo-512.png" alt=""><span><b>lore</b>Quick one, just for you.</span><em>now</em></button>
       </div><div class="glare"></div></div>
     </div>
   </div></div>
+  <nav class="chap" id="chap" aria-label="Demo chapters"><button type="button" aria-current="true">In the group chat</button><button type="button" aria-current="false">In your DMs</button><button type="button" aria-current="false">Try it</button></nav>
+  <p class="cap" id="cap"></p>
   <div class="below"><a class="cta" href="/waitlist/">Join the waitlist</a><p>Private beta. The first 50 people get in.</p></div>
   <footer><a href="/docs/how-lore-works/">How lore works</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><span>Sacramento, CA</span></footer>
 </main>
-<script src="/money.js"></script>
+<script src="/fabric.js"></script>
 <script src="/home.js"></script>
 </body>
 </html>
