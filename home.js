@@ -40,6 +40,18 @@ function pulse(i){if(window.fabricPulse)window.fabricPulse(i)}
 function setChap(i){chap.forEach(function(b,k){b.setAttribute('aria-current',k===i?'true':'false')});
  cap.textContent=['Memory with receipts, research in a browser, files from its own computer, and nothing sent without your yes.','Same agent, different room. It books with a private login link, so a password never enters the chat.','Your personal agent keeps what you tell it out of the group.','One agent in your group chats. One just for you.'][i];pulse(i)}
 function ok(id){return id===run}
+
+function peek(frames,total,id){return new Promise(function(res){
+ var d=el('div','peek'),tb=el('div','tb');['','',''].forEach(function(){tb.appendChild(el('i'))});var ti=el('span','','lore’s computer'),clk=el('em','','0:00');tb.appendChild(ti);tb.appendChild(clk);
+ var pre=el('pre',''),ft=el('div','live','TIME-LAPSE · LORE-OWNED COMPUTER');d.appendChild(tb);d.appendChild(pre);d.appendChild(ft);add(d);
+ var secs=total[0]*60+total[1],start=Date.now(),dur=reduce?200:4200;
+ var tk=setInterval(function(){var p=Math.min(1,(Date.now()-start)/dur),s=Math.round(p*secs);clk.textContent=Math.floor(s/60)+':'+String(s%60).padStart(2,'0')},60);
+ (async function(){
+  for(var f=0;f<frames.length;f++){if(!ok(id)){clearInterval(tk);return res()}
+   ti.textContent=frames[f][0];pre.textContent='';var lines=frames[f][1].split('\n');
+   for(var l=0;l<lines.length;l++){pre.textContent+=(l?'\n':'')+lines[l];thread.scrollTop=thread.scrollHeight;await wait(dur/(frames.length*lines.length)*0.85)}}
+  clearInterval(tk);clk.textContent=total[0]+':'+String(total[1]).padStart(2,'0');ft.textContent='DONE';await wait(450);
+  d.classList.add('done');pre.remove();ft.textContent='Worked '+total[0]+'m '+total[1]+'s. You did nothing.';await wait(300);res()})()})}
 // ---- chapters
 function screen(t,body){var d=el('div','screen'),tb=el('div','tb');tb.appendChild(el('i'));tb.appendChild(el('i'));tb.appendChild(el('i'));tb.appendChild(el('span','',t));d.appendChild(tb);d.appendChild(el('pre','',body));d.appendChild(el('div','live','LORE’S OWN COMPUTER'));add(d)}
 async function ch0(id){
@@ -50,14 +62,12 @@ async function ch0(id){
  if(!await say('Lore','$29 a month, no free tier. Maya proposed it and Dev agreed in this chat on Oct 3. The deck is out of date.',id))return;
  card(['Source','This thread · Oct 3 · Maya, Dev','MEMORY']);await wait(700);
  if(!await say('Sam','investor update goes out today. need competitor pricing on one page',id))return;
- if(!await typeAs('@lore get it and put it on a page I can send',id))return;
- if(!await say('Lore','On it. Reading their public pricing pages, then building the page.',id))return;
- await work(['opened northwind.example/pricing','opened parcel.example/pricing','opened fieldnote.example/pricing','saved 3 screenshots'],id);if(!ok(id))return;
- await work(['started a sandboxed computer','typed the prices with their sources','exported competitor-one-pager.md'],id);if(!ok(id))return;
- screen('lore workspace · editor','# Competitor pricing\n\nNorthwind   $24 / seat\nParcel      $19 flat, up to 10\nFieldnote   custom quote only\n\nYour price  $29 / month\nSources: 3 pages, screenshots saved');await wait(900);
- if(!await say('Lore','Done. You are above Parcel and below Northwind at your team size.',id))return;
- card(['competitor-one-pager.md','Markdown · 1 page · 3 sources','COMPUTER RUN RECEIPT']);await wait(700);
- if(!await typeAs('@lore email it to the 12 investors from me',id))return;
+ if(!await typeAs('@lore turn this thread into the board update, with competitor pricing',id))return;
+ if(!await say('Lore','On it. Watch if you like.',id))return;
+ await peek([['browser · northwind.example/pricing','$24 / seat\nsaved screenshot 1'],['browser · parcel.example/pricing','$19 flat, up to 10\nsaved screenshot 2'],['browser · fieldnote.example/pricing','custom quote only\nsaved screenshot 3'],['thread · Launch Crew','found 4 decisions\npricing $29 (Oct 3)\nlaunch Tuesday'],['editor · board-update.md','# Board update\n\n## Decisions\n- Pricing $29 / month\n- Launch Tuesday\n\n## Market\nParcel $19 · Northwind $24']],[4,12],id);if(!ok(id))return;
+ if(!await say('Lore','Done. Six pages, three sources, every figure checked against this thread.',id))return;
+ card(['board-update.md','Markdown · 6 pages · built in 4m 12s','COMPUTER RUN RECEIPT']);await wait(700);
+ if(!await typeAs('@lore send it to the 12 investors from me',id))return;
  if(!await say('Lore','Drafted from your last update. 12 recipients, from your address. Nothing sends until you approve.',id))return;
  var r=await approve('Approve and send','Edit',id);if(!ok(id))return;
  msg('You',r?'Approve and send':'Edit');await wait(450);
@@ -72,7 +82,7 @@ async function ch1(id){
  if(!await say('Priya','saturday?? who is actually free',id))return;
  if(!await say('Jonas','after 6 for me. under $400 flights if we do lisbon',id))return;
  if(!await typeAs('@lore flights from SF and a place for 4, nov 13 to 16',id))return;
- await work(['opened flights.example, SFO to LIS','filtered to under $400','opened stays.example, 4 guests','saved 6 screenshots'],id);if(!ok(id))return;
+ await peek([['browser · flights.example','SFO to LIS, Nov 13\nnonstop $412\n1 stop $368'],['browser · stays.example','4 guests, Nov 13 to 16\nAlfama apartment $540 total'],['calendar · everyone','Priya free after 6\nJonas free after 6\nno conflicts']],[2,5],id);if(!ok(id))return;
  if(!await say('Lore','Nonstop is $412, one stop is $368. Best 4 person place is $540 total in Alfama.',id))return;
  card(['Poll: nonstop $412 or one stop $368?','Reply 1 or 2 · closes tonight','POLL OPEN']);await wait(800);
  if(!await say('Priya','one stop. and dinner saturday?',id))return;

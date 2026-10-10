@@ -149,3 +149,13 @@ main{padding-top:34px}
 
 .app.msg{background:#fff!important}
 .app.msg svg{width:100%!important;height:100%!important}
+
+.peek{align-self:flex-start;width:94%;margin:6px 0;border-radius:14px;overflow:hidden;background:#1c1c1e;box-shadow:0 10px 24px -12px #000a;animation:pop .25s}
+.peek .tb{display:flex;align-items:center;gap:5px;padding:9px 11px;background:#2c2c2e;font:10.5px/1 ui-monospace,Menlo,monospace;color:#a1a1a6}
+.peek .tb i{width:8px;height:8px;border-radius:50%;background:#ff5f57}.peek .tb i:nth-child(2){background:#febc2e}.peek .tb i:nth-child(3){background:#28c840}
+.peek .tb span{margin-left:6px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.peek .tb em{font-style:normal;color:#30d158;font-variant-numeric:tabular-nums}
+.peek pre{margin:0;padding:11px 12px;height:128px;overflow:hidden;font:11px/1.55 ui-monospace,Menlo,monospace;color:#e5e5ea;white-space:pre-wrap}
+.peek .live{padding:0 12px 10px;font:9.5px/1 ui-monospace,Menlo,monospace;color:#30d158;letter-spacing:.08em}
+.peek.done{background:#f2f2f7;box-shadow:none}.peek.done .tb{background:#f2f2f7;color:#8e8e93}.peek.done .tb i{background:#d1d1d6}.peek.done .tb em{color:#248a3d}
+.peek.done .live{padding:0 12px 11px;font:600 13px/1.2 -apple-system,sans-serif;letter-spacing:0;color:#3a3a3c}
