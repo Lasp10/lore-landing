@@ -9,15 +9,18 @@ var run=0,mode='dm';
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 function add(e){thread.appendChild(e);thread.scrollTop=thread.scrollHeight;return e}
 var C={Maya:'#5e8f7a',Priya:'#b5707b',Jonas:'#6e9ab5'};
-var C2={Dev:'#c08a5b',Sam:'#7b83b5'};var GR={crew:{n:'Launch Crew',a:[['M',C.Maya],['D','#c08a5b'],['S','#7b83b5'],['L','#242820']]},weekend:{n:'Weekend',a:[['M',C.Maya],['P',C.Priya],['J',C.Jonas],['L','#242820']]}};
+var C2={Dev:'#c08a5b',Sam:'#7b83b5'};var GR={weekend:{n:'Weekend',a:[['M',C.Maya],['P',C.Priya],['J',C.Jonas],['L','#242820']]}};
 function avs(list){gav.textContent='';if(list==='lore'){var im=el('img');im.src='/lore-logo-512.png';im.alt='';gav.appendChild(im);return}list.forEach(function(a){var i=el('i','',a[0]);i.style.background=a[1];gav.appendChild(i)})}
-function head(m,g){mode=m;scr.classList.toggle('lst',m==='list');hdr.classList.toggle('g',m==='gc');hdr.hidden=(m==='list');back.hidden=(m==='dm'&&false)||m==='list';vid.hidden=false;
+function head(m,g){mode=m;scr.classList.toggle('lst',m==='list');scr.classList.toggle('sl',m==='slack');hdr.classList.toggle('g',m==='gc');hdr.hidden=(m==='list');back.hidden=(m==='dm'&&false)||m==='list';vid.hidden=false;
  if(m==='dm'){avs('lore');gname.textContent='lore';gmem.textContent=''}
- if(m==='gc'){var G=GR[g||'crew'];avs(G.a);gname.textContent=G.n;gmem.textContent=''}
- input.placeholder='iMessage'}
+ if(m==='gc'){var G=GR[g||'weekend'];avs(G.a);gname.textContent=G.n;gmem.textContent=''}
+ if(m==='slack'){avs([]);gname.textContent='# launch-week';gmem.textContent='Acme Labs'}
+ input.placeholder=m==='slack'?'Message #launch-week':'iMessage'}
 function show(m,fn,g){return new Promise(function(res){thread.classList.remove('sw');thread.textContent='';head(m,g);void thread.offsetWidth;thread.classList.add('sw');if(fn)fn();setTimeout(res,reduce?0:300)})}
 // ---- messages
+function smsg(from,text){var name=from==='You'?'Maya':from,lore=name==='Lore',col={Maya:'#5e8f7a',Dev:'#c08a5b',Sam:'#7b83b5'}[name]||'#888';var m=el('div','sm'),a=el('div','av2');if(lore){var im=el('img');im.src='/lore-logo-512.png';im.alt='';a.appendChild(im)}else{a.textContent=name[0];a.style.background=col}var b=el('div'),n=el('div','n',name);if(lore)n.appendChild(el('em','','APP'));b.appendChild(n);b.appendChild(el('div','t',text));m.appendChild(a);m.appendChild(b);return add(m)}
 function msg(from,text){
+ if(mode==='slack')return smsg(from,text);
   var out=from==='You'||from==='Maya',key=out?'You':from,m=el('div','m '+(out?'out':'in')+(from==='Lore'?' lore':''));
   var dl=thread.querySelector('.dlv');if(dl)dl.remove();
   var prev=thread.lastElementChild,same=prev&&prev.classList&&prev.classList.contains('m')&&prev.classList.contains(out?'out':'in')&&prev.dataset.f===key;
@@ -26,7 +29,7 @@ function msg(from,text){
   if(same){var pb=prev.querySelector('.b');if(pb)pb.classList.remove('tail')}
   add(m);if(out)add(el('div','dlv','Delivered'));return m}
 function dots(){var t=add(el('div','typing'));t.innerHTML='<i></i><i></i><i></i>';return t}
-async function say(from,text,id){var t=dots();await wait(430+Math.min(text.length*11,720));if(t.parentNode)t.parentNode.removeChild(t);if(id!==run)return false;msg(from,text);await wait(380);return id===run}
+async function say(from,text,id){if(mode==='slack'){await wait(500+Math.min(text.length*8,500));if(id!==run)return false;msg(from,text);await wait(300);return id===run}var t=dots();await wait(430+Math.min(text.length*11,720));if(t.parentNode)t.parentNode.removeChild(t);if(id!==run)return false;msg(from,text);await wait(380);return id===run}
 async function typeAs(text,id){ // Maya types into the composer, then sends
   input.value='';for(var i=0;i<text.length;i++){if(id!==run)return false;input.value+=text[i];await wait(reduce?0:26)}
   await wait(260);if(id!==run)return false;input.value='';msg('You',text);await wait(350);return id===run}
@@ -38,7 +41,7 @@ function approve(yes,no,id){return new Promise(function(res){var a=add(el('div',
  y.onclick=function(){done(1)};n.onclick=function(){done(0)};var tm=setTimeout(function(){if(id===run)done(1)},reduce?50:4200)})}
 function pulse(i){if(window.fabricPulse)window.fabricPulse(i)}
 function setChap(i){chap.forEach(function(b,k){b.setAttribute('aria-current',k===i?'true':'false')});
- cap.textContent=['Memory with receipts, research in a browser, files from its own computer, and nothing sent without your yes.','Same agent, different room. It books with a private login link, so a password never enters the chat.','Your personal agent keeps what you tell it out of the group.','One agent in your group chats. One just for you.'][i];pulse(i)}
+ cap.textContent=['In Slack, lore remembers the thread, researches in a browser, builds files on its own computer, and sends nothing without your yes.','Same agent in iMessage. It books with a private login link, so a password never enters the chat.','Your personal agent keeps what you tell it out of the group.','One agent in your group chats. One just for you.'][i];pulse(i)}
 function ok(id){return id===run}
 
 function peek(frames,total,id){return new Promise(function(res){
@@ -55,7 +58,7 @@ function peek(frames,total,id){return new Promise(function(res){
 // ---- chapters
 function screen(t,body){var d=el('div','screen'),tb=el('div','tb');tb.appendChild(el('i'));tb.appendChild(el('i'));tb.appendChild(el('i'));tb.appendChild(el('span','',t));d.appendChild(tb);d.appendChild(el('pre','',body));d.appendChild(el('div','live','LORE’S OWN COMPUTER'));add(d)}
 async function ch0(id){
- setChap(0);await show('gc',null,'crew');if(!ok(id))return;
+ setChap(0);await show('slack');if(!ok(id))return;
  add(el('div','ts','Today 10:04 AM'));
  if(!await say('Dev','pricing doc says $29 but the deck says $39??',id))return;
  if(!await typeAs('@lore what did we land on?',id))return;
@@ -133,7 +136,7 @@ async function ch3(id){
  input.readOnly=false;input.placeholder='Ask lore anything'}
 function inbox(){
  var d=el('div','inbox');d.appendChild(el('h4','','Messages'));
- [['L','#c08a5b','Launch Crew','Lore: Sent to 12 investors. Receipt saved.',0],['W',C.Priya,'Weekend','Priya: saturday?? who is actually free',0],['lore','#0b0b0b','lore','Quick one, just for you.',1],['M','#8d8f94','Mom','sunday still on?',0]].forEach(function(r){
+ [['J',C.Jonas,'Jonas','see you saturday',0],['W',C.Priya,'Weekend','Priya: saturday?? who is actually free',0],['lore','#0b0b0b','lore','Quick one, just for you.',1],['M','#8d8f94','Mom','sunday still on?',0]].forEach(function(r){
   var row=el('div','row'),i=el('i');if(r[0]==='lore'){var im=el('img');im.src='/lore-logo-512.png';im.alt='';i.appendChild(im)}else{i.textContent=r[0];i.style.background=r[1]}
   var t=el('div');t.appendChild(el('b','',r[2]));t.appendChild(el('small','',r[3]));row.appendChild(i);row.appendChild(t);row.appendChild(r[4]?el('u'):el('span'));d.appendChild(row)});
  thread.appendChild(d)}

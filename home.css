@@ -168,3 +168,25 @@ main{padding-top:34px}
 .scr>.hdr{grid-row:1}.scr>.thread{grid-row:2}.scr>.imf{grid-row:3}
 
 .scr.lst .imf{display:none}
+
+/* Slack view inside the phone */
+.scr.sl{background:#fff}
+.scr.sl .hdr{background:#fff;text-align:left;padding:54px 14px 10px 66px;border-bottom:1px solid #e3e3e5}
+.scr.sl .hdr .av,.scr.sl .hdr .vd{display:none}
+.scr.sl .hdr .nm{background:none;box-shadow:none;padding:0;font-size:18px;font-weight:800}
+.scr.sl .hdr .nm:after{content:""}
+.scr.sl .hdr .bk{top:56px;width:40px;height:40px}
+.scr.sl .thread{margin-top:0;padding-top:12px;gap:14px}
+.scr.sl .imf button{background:#007a5a}
+.scr.sl .acts button{border-radius:6px;border:1px solid #bbb;background:#fff;color:#1d1c1d;font-size:14px}
+.scr.sl .acts button.p{background:#007a5a;border-color:#007a5a;color:#fff}
+.scr.sl .card{border:1px solid #e3e3e5;border-left:4px solid #ddd;background:#fff;border-radius:6px;width:92%}
+.scr.sl .dlv{display:none}
+.scr.sl .ts{margin:2px 0 4px}
+.sm{display:grid;grid-template-columns:36px 1fr;gap:10px;animation:pop .25s;color:#1d1c1d;font-family:var(--sf)}
+.sm .av2{width:36px;height:36px;border-radius:7px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:15px;overflow:hidden}
+.sm .av2 img{width:100%;height:100%;background:#0b0b0b}
+.sm .n{font-weight:800;font-size:14.5px}
+.sm .n em{font:600 9.5px/1 var(--sf);font-style:normal;background:#e8e8ea;color:#616061;padding:2px 4px;border-radius:3px;margin-left:5px;vertical-align:1px}
+.sm .t{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:1.4}
+.scr.sl .imf input{border-radius:8px}.scr.sl .imf button{border-radius:6px}.scr.sl .imf .pl{background:#f2f2f2;border-radius:8px}
