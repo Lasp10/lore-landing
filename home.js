@@ -11,7 +11,7 @@ function add(e){thread.appendChild(e);thread.scrollTop=thread.scrollHeight;retur
 var C={Maya:'#5e8f7a',Priya:'#b5707b',Jonas:'#6e9ab5'};
 var C2={Dev:'#c08a5b',Sam:'#7b83b5'};var GR={crew:{n:'Launch Crew',a:[['M',C.Maya],['D','#c08a5b'],['S','#7b83b5'],['L','#242820']]},weekend:{n:'Weekend',a:[['M',C.Maya],['P',C.Priya],['J',C.Jonas],['L','#242820']]}};
 function avs(list){gav.textContent='';if(list==='lore'){var im=el('img');im.src='/lore-logo-512.png';im.alt='';gav.appendChild(im);return}list.forEach(function(a){var i=el('i','',a[0]);i.style.background=a[1];gav.appendChild(i)})}
-function head(m,g){mode=m;hdr.classList.toggle('g',m==='gc');hdr.hidden=(m==='list');back.hidden=(m==='dm'&&false)||m==='list';vid.hidden=false;
+function head(m,g){mode=m;scr.classList.toggle('lst',m==='list');hdr.classList.toggle('g',m==='gc');hdr.hidden=(m==='list');back.hidden=(m==='dm'&&false)||m==='list';vid.hidden=false;
  if(m==='dm'){avs('lore');gname.textContent='lore';gmem.textContent=''}
  if(m==='gc'){var G=GR[g||'crew'];avs(G.a);gname.textContent=G.n;gmem.textContent=''}
  input.placeholder='iMessage'}

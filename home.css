@@ -166,3 +166,5 @@ main{padding-top:34px}
 
 .inbox{padding-top:50px}
 .scr>.hdr{grid-row:1}.scr>.thread{grid-row:2}.scr>.imf{grid-row:3}
+
+.scr.lst .imf{display:none}
