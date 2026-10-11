@@ -70,11 +70,13 @@ async function ch0(id){
  await peek([['browser · northwind.example/pricing','$24 / seat\nsaved screenshot 1'],['browser · parcel.example/pricing','$19 flat, up to 10\nsaved screenshot 2'],['browser · fieldnote.example/pricing','custom quote only\nsaved screenshot 3'],['thread · Launch Crew','found 4 decisions\npricing $29 (Oct 3)\nlaunch Tuesday'],['editor · board-update.md','# Board update\n\n## Decisions\n- Pricing $29 / month\n- Launch Tuesday\n\n## Market\nParcel $19 · Northwind $24']],[4,12],id);if(!ok(id))return;
  if(!await say('Lore','Done. Six pages, three sources, every figure checked against this thread.',id))return;
  card(['board-update.md','Markdown · 6 pages · built in 4m 12s','COMPUTER RUN RECEIPT']);await wait(700);
- if(!await typeAs('@lore send it to the 12 investors from me',id))return;
- if(!await say('Lore','Drafted from your last update. 12 recipients, from your address. Nothing sends until you approve.',id))return;
+ if(!await typeAs('@lore send it to the 12 investors',id))return;
+ if(!await say('Lore','That goes from Sam’s address, so it needs Sam’s yes. Nothing sends until Sam approves.',id))return;
+ card(['Email to 12 investors','From Sam’s address · draft ready','WAITING FOR SAM']);await wait(1000);
+ if(!await say('Sam','looking now',id))return;
  var r=await approve('Approve and send','Edit',id);if(!ok(id))return;
- msg('You',r?'Approve and send':'Edit');await wait(450);
- if(!await say('Lore',r?'Sent to 12 investors. Receipt saved.':'Okay. Nothing was sent.',id))return;
+ msg('Sam',r?'Approved.':'Edit');await wait(450);
+ if(!await say('Lore',r?'Sent to 12 investors from Sam’s address. Receipt saved.':'Okay. Nothing was sent.',id))return;
  if(r)card(['Delivery receipt','12 of 12 delivered','CONFIRMED']);
  await wait(1300);if(ok(id))ch1(id)}
 async function ch1(id){
