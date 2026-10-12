@@ -30,7 +30,7 @@ a{color:inherit}
 .hdr .nm{display:inline-flex;align-items:center;gap:4px;margin-top:4px;padding:3px 12px;border-radius:14px;background:#fffc;box-shadow:0 1px 4px #0001;font:600 15px/1.3 var(--sf)}
 .hdr .nm:after{content:"\203a";color:#aaa;font-weight:400}
 .hdr small{display:block;font-size:11px;color:#8e8e93;margin-top:3px}
-.thread{overflow-y:auto;padding:4px 12px 10px;display:flex;flex-direction:column;gap:3px;scrollbar-width:none;overscroll-behavior:contain;margin-top:-22px;padding-top:26px}
+.thread{overflow-y:auto;padding:4px 12px 10px;display:flex;flex-direction:column;gap:3px;scrollbar-width:none;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;margin-top:-22px;padding-top:26px}
 .thread::-webkit-scrollbar{display:none}
 .thread>*{flex-shrink:0}
 .ts{align-self:center;font:11.5px/1.3 var(--sf);color:#8e8e93;margin:4px 0 10px;text-align:center}.ts b{font-weight:600}

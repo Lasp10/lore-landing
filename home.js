@@ -159,6 +159,12 @@ back.onclick=function(){start(2)};
 form.onsubmit=function(e){e.preventDefault();var t=input.value.trim();if(!t||input.readOnly)return;input.value='';var id=++run;
  [].forEach.call(thread.querySelectorAll('.opts'),function(o){o.remove()});msg('You',t);
  (async function(){if(await say('Lore','this is a preview. text me for real, or find me in Slack.',id)){var o=el('div','opts'),a=el('a','opt go','Try it on iMessage'),b=el('a','opt go sl','Try it on Slack');a.href='sms:+18083199759?&body=hi%20lore';b.href='/waitlist/?p=slack';o.appendChild(a);o.appendChild(b);add(o)}})()};
+// ---- keep scrolling inside the phone: once the thread can scroll, its ends never hand the scroll to the page
+(function(){function canScroll(){return thread.scrollHeight>thread.clientHeight+1}
+function blocks(dy){if(!canScroll())return false;var t=thread.scrollTop,max=thread.scrollHeight-thread.clientHeight;return (dy<0&&t<=0)||(dy>0&&t>=max-1)}
+thread.addEventListener('wheel',function(e){if(!canScroll()||blocks(e.deltaY))e.preventDefault()},{passive:false});
+var y0=0;thread.addEventListener('touchstart',function(e){y0=e.touches[0].clientY},{passive:true});
+thread.addEventListener('touchmove',function(e){var y=e.touches[0].clientY,dy=y0-y;if(blocks(dy))e.preventDefault()},{passive:false})})();
 // ---- fit + tilt
 function fit(){var k=innerWidth>900?Math.min(1,(innerHeight-180)/840):Math.min(1,(innerHeight-330)/840,(innerWidth-16)/412);if(k<.5)k=.5;rig.style.height=Math.round(840*k)+'px';rig.style.width=Math.round(412*k)+'px';phone.style.transform='scale('+k+')'}
 fit();addEventListener('resize',fit);
