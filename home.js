@@ -41,7 +41,7 @@ function approve(yes,no,id){return new Promise(function(res){var a=add(el('div',
  y.onclick=function(){done(1)};n.onclick=function(){done(0)};var tm=setTimeout(function(){if(id===run)done(1)},reduce?50:4200)})}
 function pulse(i){if(window.fabricPulse)window.fabricPulse(i)}
 function setChap(i){chap.forEach(function(b,k){b.setAttribute('aria-current',k===i?'true':'false')});
- cap.textContent=['In Slack, lore remembers the thread, researches in a browser, builds files on its own computer, and sends nothing without your yes.','Same agent in iMessage. It books with a private login link, so a password never enters the chat.','lore reaches you 1:1 when it can help. What you tell it stays out of the group.','Does anything for you. Works with everyone you know.'][i];pulse(i)}
+ cap.textContent=['In your group chat, lore plans the trip, runs the poll and books with a private login link, so a password never enters the chat.','Same lore in Slack. It remembers the thread, researches in a browser, builds files on its own computer, and sends nothing without your yes.','lore reaches you 1:1 when it can help. It runs your errands, hands out your lore card, and finds time with your friends’ lores.','Does anything for you. Works with everyone you know.'][i];pulse(i)}
 function ok(id){return id===run}
 
 function peek(frames,total,id){return new Promise(function(res){
@@ -58,7 +58,7 @@ function peek(frames,total,id){return new Promise(function(res){
 // ---- chapters
 function screen(t,body){var d=el('div','screen'),tb=el('div','tb');tb.appendChild(el('i'));tb.appendChild(el('i'));tb.appendChild(el('i'));tb.appendChild(el('span','',t));d.appendChild(tb);d.appendChild(el('pre','',body));d.appendChild(el('div','live','LORE’S OWN COMPUTER'));add(d)}
 async function ch0(id){
- setChap(0);await show('slack');if(!ok(id))return;
+ setChap(1);await show('slack');if(!ok(id))return;
  add(el('div','ts','Today 10:04 AM'));
  if(!await say('Dev','pricing doc says $29 but the deck says $39??',id))return;
  if(!await typeAs('@lore what did we land on?',id))return;
@@ -78,9 +78,9 @@ async function ch0(id){
  msg('Sam',r?'Approved.':'Edit');await wait(450);
  if(!await say('Lore',r?'Sent to 12 investors from Sam’s address. Receipt saved.':'Okay. Nothing was sent.',id))return;
  if(r)card(['Delivery receipt','12 of 12 delivered','CONFIRMED']);
- await wait(1300);if(ok(id))ch1(id)}
+ await wait(1300);if(ok(id))ch2(id)}
 async function ch1(id){
- if(!ok(id))return;setChap(1);
+ if(!ok(id))return;setChap(0);
  await show('list',inbox);await wait(900);if(!ok(id))return;
  await show('gc',null,'weekend');if(!ok(id))return;
  add(el('div','ts','Today 6:12 PM'));
@@ -99,7 +99,7 @@ async function ch1(id){
  msg('You',r?'Yes, book it':'Not yet');await wait(450);
  if(!await say('Lore',r?'Booked. Saturday 8:00pm, party of 4. Confirmation saved.':'Okay. Nothing was booked.',id))return;
  if(r)card(['Cantinho do Sol','Sat 8:00pm · party of 4','CONFIRMATION SAVED']);
- await wait(1300);if(ok(id))ch2(id)}
+ await wait(1300);if(ok(id))ch0(id)}
 async function ch2(id){
  if(!ok(id))return;setChap(2);
  ntf.classList.add('on');
@@ -123,6 +123,16 @@ async function ch2(id){
  if(!await say('Lore','Three that arrive by Wednesday. The $48 candle set is the best fit. I will not buy anything without your yes.',id))return;
  card(['Gift ideas for Mom','3 options · all under $60','NOTHING PURCHASED']);
  await wait(900);
+ if(!await say('Lore','one more thing. here’s your lore card. anyone can text it to find time with you or ask for something.',id))return;
+ card(['Your lore card','Text my lore to book time with me','LORE CARD']);await wait(900);
+ if(!await typeAs('find a time with jonas this week for coffee',id))return;
+ await work(['asked Jonas’s lore, with your ok','shared only that it’s coffee this week','matched both calendars privately'],id);if(!ok(id))return;
+ if(!await say('Lore','Jonas’s lore and I found Thursday at 4. Neither calendar was shared. Book it?',id))return;
+ var r2=await approve('Book it','Not yet',id);if(!ok(id))return;
+ msg('You',r2?'Book it':'Not yet');await wait(450);
+ if(!await say('Lore',r2?'Booked. Jonas said yes too. It’s on both calendars.':'Okay. Nothing was booked.',id))return;
+ if(r2)card(['Coffee with Jonas','Thu 4:00pm · both said yes','CONFIRMED']);
+ await wait(900);
  if(!await say('Lore','that stayed between us. nobody in the group saw it.',id))return;
  await wait(1200);if(ok(id))ch3(id)}
 async function ch3(id){
@@ -143,7 +153,7 @@ function inbox(){
   var t=el('div');t.appendChild(el('b','',r[2]));t.appendChild(el('small','',r[3]));row.appendChild(i);row.appendChild(t);row.appendChild(r[4]?el('u'):el('span'));d.appendChild(row)});
  thread.appendChild(d)}
 function start(i){var id=++run;input.readOnly=true;input.value='';input.placeholder='iMessage';ntf.classList.remove('on');
- [ch0,ch1,ch2,ch3][i](id)}
+ [ch1,ch0,ch2,ch3][i](id)}
 chap.forEach(function(b,i){b.onclick=function(){start(i)}});
 back.onclick=function(){start(2)};
 form.onsubmit=function(e){e.preventDefault();var t=input.value.trim();if(!t||input.readOnly)return;input.value='';var id=++run;
