@@ -11,7 +11,8 @@
 - https://www.loregroupchat.com/docs/how-lore-works/
 
 ## Product facts
-- Lore works from the context of a team group chat.
+- lore lives in iMessage group chats, personal DMs and Slack. Each room has its own memory.
+- lore reaches each person 1:1 when it can help; what someone tells lore privately stays out of the group.
 - Lore can perform bounded research, browser work, documents, checklists, and follow-ups when the required tools are connected and permitted.
 - Lore uses approval gates for external sends, posts, bookings, purchases, and other actions that represent a team or spend money.
 - Lore handles one mission at a time. Integrations and availability can change.
