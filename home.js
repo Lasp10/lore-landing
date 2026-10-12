@@ -41,7 +41,7 @@ function approve(yes,no,id){return new Promise(function(res){var a=add(el('div',
  y.onclick=function(){done(1)};n.onclick=function(){done(0)};var tm=setTimeout(function(){if(id===run)done(1)},reduce?50:4200)})}
 function pulse(i){if(window.fabricPulse)window.fabricPulse(i)}
 function setChap(i){chap.forEach(function(b,k){b.setAttribute('aria-current',k===i?'true':'false')});
- cap.textContent=['In Slack, lore remembers the thread, researches in a browser, builds files on its own computer, and sends nothing without your yes.','Same agent in iMessage. It books with a private login link, so a password never enters the chat.','Your personal agent keeps what you tell it out of the group.','One agent in your group chats. One just for you.'][i];pulse(i)}
+ cap.textContent=['In Slack, lore remembers the thread, researches in a browser, builds files on its own computer, and sends nothing without your yes.','Same agent in iMessage. It books with a private login link, so a password never enters the chat.','lore reaches you 1:1 when it can help. What you tell it stays out of the group.','Does anything for you. Works with everyone you know.'][i];pulse(i)}
 function ok(id){return id===run}
 
 function peek(frames,total,id){return new Promise(function(res){

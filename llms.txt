@@ -1,5 +1,5 @@
 # Lore
-> Lore is an agent that lives in a team group chat (iMessage and Slack, WhatsApp next). It uses permitted team context, remembers decisions, performs bounded work, and reports results back in the conversation.
+> lore is Artificial Social Intelligence: an agent that does anything for you and works with everyone you know. It lives in iMessage group chats, personal DMs and Slack, remembers each room, does real work with its own browser and computer, and never acts for anyone without their yes.
 
 ## Core pages
 - https://www.loregroupchat.com/

@@ -190,3 +190,6 @@ main{padding-top:34px}
 .sm .n em{font:600 9.5px/1 var(--sf);font-style:normal;background:#e8e8ea;color:#616061;padding:2px 4px;border-radius:3px;margin-left:5px;vertical-align:1px}
 .sm .t{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:1.4}
 .scr.sl .imf input{border-radius:8px}.scr.sl .imf button{border-radius:6px}.scr.sl .imf .pl{background:#f2f2f2;border-radius:8px}
+
+.ttl{align-items:center}.ttl .mk{width:26px;height:26px;border-radius:7px;display:block}.intro strong{display:block;margin-bottom:6px;font-weight:700;font-size:22px;color:var(--ink)}
+@media(max-width:600px){.ttl .mk{width:22px;height:22px;border-radius:6px}.intro strong{font-size:19px}}
