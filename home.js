@@ -142,7 +142,7 @@ async function ch3(id){
  if(!await say('Lore','try it where you already talk.',id))return;
  var o=el('div','opts');
  var a=el('a','opt go','Try it on iMessage');a.href='sms:+18083199759?&body=hi%20lore';
- var b=el('a','opt go sl','Try it on Slack');b.href='/waitlist/?p=slack';
+ var b=el('a','opt go sl','Try it on Slack');b.href='https://host.loregroupchat.com/slack/install?continue=1';
  var c=el('button','opt mute','Watch again');c.type='button';c.onclick=function(){start(0)};
  o.appendChild(a);o.appendChild(b);o.appendChild(c);add(o);
  input.readOnly=false;input.placeholder='Ask lore anything'}
@@ -158,7 +158,7 @@ chap.forEach(function(b,i){b.onclick=function(){start(i)}});
 back.onclick=function(){start(2)};
 form.onsubmit=function(e){e.preventDefault();var t=input.value.trim();if(!t||input.readOnly)return;input.value='';var id=++run;
  [].forEach.call(thread.querySelectorAll('.opts'),function(o){o.remove()});msg('You',t);
- (async function(){if(await say('Lore','this is a preview. text me for real, or find me in Slack.',id)){var o=el('div','opts'),a=el('a','opt go','Try it on iMessage'),b=el('a','opt go sl','Try it on Slack');a.href='sms:+18083199759?&body=hi%20lore';b.href='/waitlist/?p=slack';o.appendChild(a);o.appendChild(b);add(o)}})()};
+ (async function(){if(await say('Lore','this is a preview. text me for real, or find me in Slack.',id)){var o=el('div','opts'),a=el('a','opt go','Try it on iMessage'),b=el('a','opt go sl','Try it on Slack');a.href='sms:+18083199759?&body=hi%20lore';b.href='https://host.loregroupchat.com/slack/install?continue=1';o.appendChild(a);o.appendChild(b);add(o)}})()};
 // ---- keep scrolling inside the phone: once the thread can scroll, its ends never hand the scroll to the page
 (function(){function canScroll(){return thread.scrollHeight>thread.clientHeight+1}
 function blocks(dy){if(!canScroll())return false;var t=thread.scrollTop,max=thread.scrollHeight-thread.clientHeight;return (dy<0&&t<=0)||(dy>0&&t>=max-1)}
