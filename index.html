@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>lore · Artificial Social Intelligence</title>
 <meta name="description" content="Artificial Social Intelligence. lore does anything for you and works with everyone you know, in your iMessage group chats, your DMs and Slack.">
-<meta name="theme-color" content="#f3f2eb">
+<meta name="theme-color" content="#0b0b0c">
 <link rel="canonical" href="https://www.loregroupchat.com/">
 <meta property="og:title" content="lore">
 <meta property="og:description" content="Does anything for you. Works with everyone you know.">
@@ -13,38 +13,158 @@
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png">
 <link rel="apple-touch-icon" href="/lore-icon-180.png">
-<link rel="stylesheet" href="/home.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0b0b0c;-webkit-font-smoothing:antialiased}
+a{color:inherit}a:hover{opacity:.88}
+.hero{background:#0b0b0c url(/img/moonrise.jpg) center 70%/cover no-repeat}
+.pop{animation:pop .38s cubic-bezier(.2,.9,.3,1.15) both}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
+.dots i{display:inline-block;width:7px;height:7px;margin:0 2px;border-radius:50%;background:#9a9aa0;animation:blink 1.1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,60%,100%{opacity:.35;transform:none}30%{opacity:1;transform:translateY(-2px)}}
+@media (max-width:760px){
+.hide-sm{display:none}
+.hero{background-image:url(/img/moonrise-mobile.jpg);background-position:center 60%}
+.fan{transform:scale(.56);transform-origin:top center;margin-bottom:-250px!important}
+}
+@media (prefers-reduced-motion:reduce){.pop,.dots i{animation:none}}
+[hidden]{display:none!important}
+</style>
 </head>
 <body>
 <main>
-  <h1 class="ttl"><img class="mk" src="/lore-logo-512.png" alt="" width="26" height="26"><b>lore</b><span>Artificial Social Intelligence</span></h1>
-  <p class="intro"><strong>Does anything for you. Works with everyone you know.</strong>lore lives in your group chats, your DMs and Slack. It does the work, and never acts for anyone without their yes.</p>
-  
-  
-  
-  <div class="stage"><div class="left"><nav class="chap" id="chap" aria-label="Demo chapters"><button type="button" aria-current="true">Your friends</button><button type="button" aria-current="false">Your team</button><button type="button" aria-current="false">Just you</button><button type="button" aria-current="false">Try it</button></nav>
-  <p class="cap" id="cap"></p></div>
-  <div class="rig" id="rig"><div class="tilt" id="tilt">
-    <div class="phone" id="phone" role="group" aria-label="Interactive iPhone demo">
-      <i class="k a"></i><i class="k v1"></i><i class="k v2"></i><i class="k p"></i>
-      <div class="bezel"><div class="scr" id="scr">
-        <div class="island"></div>
-        <div class="sbar"><span>9:41</span><span><svg viewBox="0 0 19 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 17 12"><path d="M8.5 2.3c2.3 0 4.4.9 6 2.4l1-1.1A10.6 10.6 0 0 0 8.5.8C5.8.8 3.3 1.8 1.5 3.6l1 1.1a8.6 8.6 0 0 1 6-2.4zm0 3.4c1.4 0 2.6.5 3.6 1.4l1-1.1a7.2 7.2 0 0 0-9.2 0l1 1.1c1-.9 2.2-1.4 3.6-1.4zm0 3.3c.6 0 1.1.2 1.5.6l-1.5 1.7L7 9.6c.4-.4.9-.6 1.5-.6z"/></svg><svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.5" fill="none" stroke="#000" opacity=".4"/><rect x="2" y="2" width="20" height="8" rx="2.2"/><rect x="25" y="4" width="1.6" height="4" rx=".8" opacity=".5"/></svg></span></div>
-        <div class="hdr" id="hdr">
-          <button class="bk" id="back" type="button" aria-label="Back" hidden><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-          <button class="vd" id="vid" type="button" aria-label="FaceTime" tabindex="-1"><svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2" stroke-linejoin="round"><rect x="3" y="6.5" width="12.5" height="11" rx="2.5"/><path d="M15.5 10.5l5-3v9l-5-3z"/></svg></button>
-          <div class="av" id="gav"></div><div class="nm" id="gname"></div><small id="gmem"></small>
-        </div>
-        <div class="thread" id="thread" aria-live="polite"></div>
-        <form class="imf" id="imform" autocomplete="off"><span class="pl"><svg viewBox="0 0 16 16" stroke="#8e8e93" stroke-width="2" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg></span><span class="fld"><input id="imtext" type="text" placeholder="iMessage" aria-label="Message lore" enterkeyhint="send"><button type="submit" aria-label="Send">&#8593;</button></span></form>
-        <div class="hi"></div>
-        <button class="ntf" id="ntf" type="button"><img src="/lore-logo-512.png" alt=""><span><b>lore</b>Quick one, just for you.</span><em>now</em></button>
-      </div><div class="glare"></div></div>
+<div style="font-family: Geist, -apple-system, 'Helvetica Neue', sans-serif; color: #111111; background: #0b0b0c">
+
+  <section class="hero" style="position: relative; overflow: hidden; color: #ffffff">
+    <nav aria-label="Main" style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 22px clamp(16px, 5vw, 72px); font-size: 15px">
+      <div style="display: flex; gap: 22px; flex-wrap: wrap">
+        <a href="/docs/how-lore-works/" style="text-decoration: none">How it works</a>
+        <a class="hide-sm" href="/privacy/" style="text-decoration: none">Privacy</a>
+      </div>
+      <a href="/" aria-label="lore home" style="display: block; line-height: 0">
+        <svg aria-hidden="true" viewBox="0 0 32 32" style="width: 30px; height: 30px"><g fill="none" stroke="#ffffff" stroke-width="1.8"><circle cx="16" cy="16" r="13"></circle><ellipse cx="16" cy="16" rx="5.8" ry="13"></ellipse><ellipse cx="16" cy="16" rx="13" ry="4.6"></ellipse><path d="M17 10.6h1.7l-2.9 10.9h-1.7z" fill="#ffffff" stroke="none"></path></g></svg>
+      </a>
+      <div style="display: flex; justify-content: flex-end">
+        <a href="sms:+18083199759?&amp;body=hi%20lore" style="text-decoration: none; background: #ffffff; color: #111111; padding: 10px 16px; border-radius: 999px; font-weight: 500">Text lore</a>
+      </div>
+    </nav>
+
+    <div style="text-align: center; padding: 26px 16px 0">
+      <h1 style="margin: 0 auto; max-width: 900px; font-family: Newsreader, Georgia, serif; font-weight: 400; font-size: clamp(40px, 4.6vw, 64px); line-height: 1.02; letter-spacing: -0.025em; text-shadow: 0 2px 40px rgba(0,0,0,0.35)">Does anything for you.<br>Works with everyone you know.</h1>
+      <p style="margin: 16px 0 0; font-size: 17px; color: rgba(255,255,255,0.78)">In your group chats, your team's Slack and your DMs.</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px">
+        <a href="sms:+18083199759?&amp;body=hi%20lore" aria-label="Text lore on iMessage" style="display: block; width: 72px; height: 72px; border-radius: 17px; overflow: hidden; line-height: 0; box-shadow: 0 14px 40px rgba(0,0,0,0.5)">
+          <svg aria-hidden="true" viewBox="0 0 24 24" style="width: 72px; height: 72px"><defs><linearGradient id="imsg-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5bf675"></stop><stop offset="1" stop-color="#0cbd2a"></stop></linearGradient></defs><rect width="24" height="24" fill="url(#imsg-g)"></rect><path fill="#ffffff" d="M12 4.154a8.809 7.337 0 0 1 8.809 7.338A8.809 7.337 0 0 1 12 18.828a8.809 7.337 0 0 1-2.492-.303A8.656 7.337 0 0 1 5.93 19.93a9.929 7.337 0 0 0 1.54-2.155a8.809 7.337 0 0 1-4.279-6.283A8.809 7.337 0 0 1 12 4.154"></path></svg>
+        </a>
+        <a href="/waitlist/?p=slack" aria-label="Text lore on Slack" style="display: grid; place-items: center; width: 72px; height: 72px; border-radius: 17px; background: #ffffff; box-shadow: 0 14px 40px rgba(0,0,0,0.5); text-decoration: none">
+          <svg aria-hidden="true" viewBox="0 0 123 123" style="width: 38px; height: 38px"><path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z" fill="#e01e5a"></path><path d="M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2zm0 6.5c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z" fill="#36c5f0"></path><path d="M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2zm-6.5 0c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z" fill="#2eb67d"></path><path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9zm0-6.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z" fill="#ecb22e"></path></svg>
+        </a>
+      </div>
     </div>
-  </div></div>
-  <div class="below right"><p class="get">Add lore to get started</p><div class="apps"><a class="app msg" href="sms:+18083199759?&amp;body=hi%20lore" aria-label="Add lore on iMessage"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="gm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5bf675"/><stop offset="1" stop-color="#0cbd2a"/></linearGradient></defs><path fill="url(#gm)" d="M5.285 0A5.273 5.273 0 0 0 0 5.285v13.43A5.273 5.273 0 0 0 5.285 24h13.43A5.273 5.273 0 0 0 24 18.715V5.285A5.273 5.273 0 0 0 18.715 0ZM12 4.154a8.809 7.337 0 0 1 8.809 7.338A8.809 7.337 0 0 1 12 18.828a8.809 7.337 0 0 1-2.492-.303A8.656 7.337 0 0 1 5.93 19.93a9.929 7.337 0 0 0 1.54-2.155a8.809 7.337 0 0 1-4.279-6.283A8.809 7.337 0 0 1 12 4.154"/></svg></a><a class="app" href="/waitlist/?p=slack" aria-label="Add lore on Slack"><svg viewBox="0 0 123 123" aria-hidden="true"><path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z" fill="#e01e5a"/><path d="M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2zm0 6.5c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z" fill="#36c5f0"/><path d="M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2zm-6.5 0c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z" fill="#2eb67d"/><path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9zm0-6.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z" fill="#ecb22e"/></svg></a></div></div></div>
-  <footer><a href="/docs/how-lore-works/">How lore works</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><span>Sacramento, CA</span></footer>
+
+    <div class="fan" style="position: relative; width: 300px; height: 590px; margin: 64px auto 0">
+
+      <!-- LEFT: group chat -->
+      <div style="position: absolute; left: 0; top: 70px; transform: translateX(-262px) rotate(-9deg); transform-origin: 50% 100%; z-index: 1">
+        <span style="position: absolute; top: -46px; left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); backdrop-filter: blur(10px); font-size: 13px; font-weight: 500; color: #ffffff">Your group chat</span>
+        <div role="img" aria-label="A group chat where lore books a cabin after everyone agrees" style="width: 300px; height: 620px; border-radius: 52px; background: #1d1d1f; padding: 10px; box-sizing: border-box; box-shadow: 0 0 0 1px #3a3a3c, 0 40px 80px -20px rgba(0,0,0,0.7)">
+          <div style="position: relative; height: 100%; border-radius: 42px; background: #ffffff; overflow: hidden; display: flex; flex-direction: column; font-family: -apple-system, 'SF Pro Text', Geist, sans-serif; color: #000000">
+            <span style="position: absolute; top: 10px; left: 50%; margin-left: -45px; width: 90px; height: 26px; border-radius: 14px; background: #000000"></span>
+            <div style="padding: 48px 14px 10px; text-align: center; border-bottom: 1px solid #f0f0f0">
+              <div style="display: flex; justify-content: center"><span style="width: 32px; height: 32px; border-radius: 50%; background: #7d8e86; border: 2px solid #ffffff; color: #ffffff; font-size: 12px; font-weight: 600; display: grid; place-items: center">M</span><span style="width: 32px; height: 32px; border-radius: 50%; background: #b38a7c; border: 2px solid #ffffff; margin-left: -8px; color: #ffffff; font-size: 12px; font-weight: 600; display: grid; place-items: center">P</span><span style="width: 32px; height: 32px; border-radius: 50%; background: #7f8fae; border: 2px solid #ffffff; margin-left: -8px; color: #ffffff; font-size: 12px; font-weight: 600; display: grid; place-items: center">J</span><span style="width: 32px; height: 32px; border-radius: 50%; background: #111111; border: 2px solid #ffffff; margin-left: -8px; display: grid; place-items: center"><svg aria-hidden="true" viewBox="0 0 32 32" style="width: 18px; height: 18px"><g fill="none" stroke="#ffffff" stroke-width="2.2"><circle cx="16" cy="16" r="12"></circle><ellipse cx="16" cy="16" rx="5.4" ry="12"></ellipse><ellipse cx="16" cy="16" rx="12" ry="4.2"></ellipse><path d="M17 10.6h1.7l-2.9 10.9h-1.7z" fill="#ffffff" stroke="none"></path></g></svg></span></div>
+              <div style="font-size: 11.5px; font-weight: 600; margin-top: 4px">Weekend</div>
+            </div>
+            <div style="padding: 12px 12px; display: flex; flex-direction: column; gap: 5px; font-size: 14px; line-height: 1.3">
+              <div data-at="0" hidden class="pop" style="display: flex; flex-direction: column; gap: 3px"><div style="font-size: 10.5px; color: #8a8a8e; margin-left: 12px">Priya</div><div style="align-self: flex-start; max-width: 80%; background: #e9e9eb; padding: 8px 12px; border-radius: 18px">saturday?? who's actually free</div></div>
+              <div data-at="2" hidden class="pop" style="display: flex; flex-direction: column; gap: 3px"><div style="font-size: 10.5px; color: #8a8a8e; margin-left: 12px">Marcus</div><div style="align-self: flex-start; max-width: 80%; background: #e9e9eb; padding: 8px 12px; border-radius: 18px">me. jess too</div></div>
+              <div data-at="3" data-until="5" hidden class="pop dots" style="align-self: flex-start; background: #e9e9eb; padding: 11px 12px; border-radius: 18px; margin-top: 6px"><i></i><i></i><i></i></div>
+              <div data-at="5" hidden class="pop" style="display: flex; flex-direction: column; gap: 3px; margin-top: 4px"><div style="font-size: 10.5px; color: #8a8a8e; margin-left: 12px">lore</div><div style="align-self: flex-start; max-width: 86%; background: #e9e9eb; padding: 8px 12px; border-radius: 18px">All four of you are in. I held the Tahoe cabin you liked. Book it?</div></div>
+              <div data-at="8" hidden class="pop" style="align-self: flex-end; max-width: 70%; background: #0a84ff; color: #ffffff; padding: 8px 12px; border-radius: 18px; margin-top: 6px">yes book it</div>
+              <div data-at="9" data-until="11" hidden class="pop dots" style="align-self: flex-start; background: #e9e9eb; padding: 11px 12px; border-radius: 18px; margin-top: 6px"><i></i><i></i><i></i></div>
+              <div data-at="11" hidden class="pop" style="display: flex; flex-direction: column; gap: 3px; margin-top: 4px"><div style="font-size: 10.5px; color: #8a8a8e; margin-left: 12px">lore</div><div style="align-self: flex-start; max-width: 86%; background: #e9e9eb; padding: 8px 12px; border-radius: 18px">Booked, Sat to Sun. Confirmation is in your DMs.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: just you -->
+      <div style="position: absolute; left: 0; top: 70px; transform: translateX(262px) rotate(9deg); transform-origin: 50% 100%; z-index: 1">
+        <span style="position: absolute; top: -46px; left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); backdrop-filter: blur(10px); font-size: 13px; font-weight: 500; color: #ffffff">Just you</span>
+        <div role="img" aria-label="A private chat where lore keeps a cost out of the group and orders a gift after a yes" style="width: 300px; height: 620px; border-radius: 52px; background: #1d1d1f; padding: 10px; box-sizing: border-box; box-shadow: 0 0 0 1px #3a3a3c, 0 40px 80px -20px rgba(0,0,0,0.7)">
+          <div style="position: relative; height: 100%; border-radius: 42px; background: #ffffff; overflow: hidden; display: flex; flex-direction: column; font-family: -apple-system, 'SF Pro Text', Geist, sans-serif; color: #000000">
+            <span style="position: absolute; top: 10px; left: 50%; margin-left: -45px; width: 90px; height: 26px; border-radius: 14px; background: #000000"></span>
+            <div style="padding: 48px 14px 10px; text-align: center; border-bottom: 1px solid #f0f0f0">
+              <span style="display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #111111"><svg aria-hidden="true" viewBox="0 0 32 32" style="width: 20px; height: 20px"><g fill="none" stroke="#ffffff" stroke-width="2.2"><circle cx="16" cy="16" r="12"></circle><ellipse cx="16" cy="16" rx="5.4" ry="12"></ellipse><ellipse cx="16" cy="16" rx="12" ry="4.2"></ellipse><path d="M17 10.6h1.7l-2.9 10.9h-1.7z" fill="#ffffff" stroke="none"></path></g></svg></span>
+              <div style="font-size: 11.5px; font-weight: 600; margin-top: 4px">lore</div>
+            </div>
+            <div style="padding: 12px 12px; display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 1.3">
+              <div data-at="0" data-until="2" hidden class="pop dots" style="align-self: flex-start; background: #e9e9eb; padding: 11px 12px; border-radius: 18px"><i></i><i></i><i></i></div>
+              <div data-at="2" hidden class="pop" style="align-self: flex-start; max-width: 86%; background: #e9e9eb; padding: 8px 12px; border-radius: 18px">Just for you: Tahoe is $148 each. I kept that out of the group.</div>
+              <div data-at="5" hidden class="pop" style="align-self: flex-end; max-width: 76%; background: #0a84ff; color: #ffffff; padding: 8px 12px; border-radius: 18px; margin-top: 4px">thx. need a gift for mom by sunday</div>
+              <div data-at="6" data-until="8" hidden class="pop dots" style="align-self: flex-start; background: #e9e9eb; padding: 11px 12px; border-radius: 18px; margin-top: 4px"><i></i><i></i><i></i></div>
+              <div data-at="8" hidden class="pop" style="align-self: flex-start; max-width: 86%; background: #e9e9eb; padding: 8px 12px; border-radius: 18px; margin-top: 4px">She loved the ranunculus last year. Same shop delivers Sunday. Order them?</div>
+              <div data-at="9" data-until="12" hidden class="pop" style="align-self: flex-start; display: flex; gap: 6px"><span style="padding: 8px 14px; border-radius: 16px; background: #0a84ff; color: #ffffff; font-size: 13px; font-weight: 600">Order</span><span style="padding: 8px 14px; border-radius: 16px; background: #e9e9eb; color: #0a84ff; font-size: 13px; font-weight: 600">Not yet</span></div>
+              <div data-at="12" hidden class="pop" style="align-self: flex-end; max-width: 60%; background: #0a84ff; color: #ffffff; padding: 8px 12px; border-radius: 18px; margin-top: 4px">order</div>
+              <div data-at="12" data-until="14" hidden class="pop dots" style="align-self: flex-start; background: #e9e9eb; padding: 11px 12px; border-radius: 18px; margin-top: 4px"><i></i><i></i><i></i></div>
+              <div data-at="14" hidden class="pop" style="align-self: flex-start; max-width: 86%; background: #e9e9eb; padding: 8px 12px; border-radius: 18px; margin-top: 4px">Ordered. Arrives Sunday morning.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CENTER: Slack -->
+      <div style="position: absolute; left: 0; top: 0; z-index: 2">
+        <span style="position: absolute; top: -46px; left: 50%; transform: translateX(-50%); white-space: nowrap; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); backdrop-filter: blur(10px); font-size: 13px; font-weight: 500; color: #ffffff">Your team's Slack</span>
+        <div role="img" aria-label="A Slack thread where lore researches venues and sends inquiries after a yes" style="width: 300px; height: 620px; border-radius: 52px; background: #1d1d1f; padding: 10px; box-sizing: border-box; box-shadow: 0 0 0 1px #3a3a3c, 0 50px 100px -20px rgba(0,0,0,0.8)">
+          <div style="position: relative; height: 100%; border-radius: 42px; background: #ffffff; overflow: hidden; display: flex; flex-direction: column; font-family: -apple-system, 'SF Pro Text', Geist, sans-serif; color: #1d1c1d">
+            <span style="position: absolute; top: 10px; left: 50%; margin-left: -45px; width: 90px; height: 26px; border-radius: 14px; background: #000000"></span>
+            <div style="padding: 50px 16px 12px; border-bottom: 1px solid #ececec; display: flex; align-items: center; gap: 8px">
+              <svg aria-hidden="true" viewBox="0 0 20 20" style="width: 16px; height: 16px"><path d="M12.5 4l-6 6 6 6" fill="none" stroke="#1d1c1d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              <div><div style="font-size: 15px; font-weight: 800">Thread</div><div style="font-size: 11.5px; color: #616061"># launch-week</div></div>
+            </div>
+            <div style="padding: 14px 14px; display: flex; flex-direction: column; gap: 14px; font-size: 14px; line-height: 1.4">
+              <div data-at="1" hidden class="pop" style="display: grid; grid-template-columns: 32px 1fr; gap: 9px"><span style="width: 32px; height: 32px; border-radius: 7px; background: #8a9bb3; color: #ffffff; font-weight: 700; display: grid; place-items: center">D</span><div><b style="font-weight: 800">Dana</b><div>@lore find three venues for 40 people on the 14th, under budget</div></div></div>
+              <div data-at="4" hidden class="pop" style="display: grid; grid-template-columns: 32px 1fr; gap: 9px"><span style="width: 32px; height: 32px; border-radius: 7px; background: #111111; display: grid; place-items: center"><svg aria-hidden="true" viewBox="0 0 32 32" style="width: 20px; height: 20px"><g fill="none" stroke="#ffffff" stroke-width="2.2"><circle cx="16" cy="16" r="12"></circle><ellipse cx="16" cy="16" rx="5.4" ry="12"></ellipse><ellipse cx="16" cy="16" rx="12" ry="4.2"></ellipse><path d="M17 10.6h1.7l-2.9 10.9h-1.7z" fill="#ffffff" stroke="none"></path></g></svg></span>
+                <div>
+                  <b style="font-weight: 800">lore</b> <span style="font-size: 9.5px; font-weight: 700; background: #e8e8e8; color: #616061; padding: 2px 4px; border-radius: 3px; vertical-align: 1px">APP</span>
+                  <div style="margin: 7px 0 8px; padding: 9px 10px; border-radius: 8px; background: #f6f6f6; font: 11.5px/1.7 ui-monospace, Menlo, monospace; color: #555555">
+                    <div class="pop"><span class="mk" data-done="6">…</span> opening venue pages</div>
+                    <div data-at="6" hidden class="pop"><span class="mk" data-done="8">…</span> checking the 14th</div>
+                    <div data-at="8" hidden class="pop"><span class="mk" data-done="10">…</span> building venues.pdf</div>
+                  </div>
+                  <div data-at="10" hidden class="pop">Three fit. Inquiries are drafted. Send them?</div>
+                  <div data-at="11" data-until="14" hidden class="pop" style="display: flex; gap: 6px; margin-top: 10px"><span style="padding: 7px 13px; border-radius: 6px; background: #007a5a; color: #ffffff; font-weight: 700; font-size: 13px">Send</span><span style="padding: 7px 13px; border-radius: 6px; border: 1px solid #cfcfcf; font-weight: 700; font-size: 13px">Not yet</span></div>
+                  <div data-at="14" hidden class="pop" style="display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 6px 10px; border-radius: 6px; background: #e8f5ee; color: #1f6b46; font-weight: 600; font-size: 12.5px">Dana approved. Sent to 3 venues.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: #0b0b0c; color: #8a8a8e; padding: 28px clamp(16px, 5vw, 72px) 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 22px; font-size: 14px">
+    <a href="/docs/how-lore-works/" style="text-decoration: none">How lore works</a>
+    <a href="/privacy/" style="text-decoration: none">Privacy</a>
+    <a href="/terms/" style="text-decoration: none">Terms</a>
+    <span style="margin-left: auto">Sacramento, CA</span>
+  </footer>
+</div>
 </main>
-<script src="/home.js"></script>
+<script>
+(function(){
+  var els=[].slice.call(document.querySelectorAll('[data-at]'));
+  var marks=[].slice.call(document.querySelectorAll('.mk'));
+  function draw(t){
+    els.forEach(function(e){var a=+e.dataset.at,u=e.dataset.until;var on=t>=a&&(!u||t<+u);if(e.hidden===on)e.hidden=!on;});
+    marks.forEach(function(m){var d=t>=+m.dataset.done;m.textContent=d?'\u2713':'\u2026';m.style.color=d?'#1f7a35':'#b4480a';});
+  }
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){draw(17);return;}
+  var t=0;draw(t);setInterval(function(){t=(t+1)%20;draw(t);},1000);
+})();
+</script>
 </body>
 </html>
