@@ -27,17 +27,21 @@ a{color:inherit}a:hover{opacity:.88}
 @media (max-width:760px){
 .hide-sm{display:none}
 .hero{background-image:url(/img/moonrise-mobile.jpg);background-position:center 60%}
-.fan{transform:scale(.56);transform-origin:top center;margin-bottom:-250px!important}
+.fan{transform:scale(.56);transform-origin:top center;margin-top:36px!important}
+.hero footer{gap:14px!important;font-size:13px!important;padding-bottom:12px!important}
 }
 @media (prefers-reduced-motion:reduce){.pop,.dots i{animation:none}}
 [hidden]{display:none!important}
+html,body{height:100%;overflow:hidden}
+@media (min-width:761px) and (max-height:860px){.fan{transform:scale(.82);transform-origin:top center;margin-top:44px!important}}
+@media (min-width:761px) and (max-height:720px){.fan{transform:scale(.68)}}
 </style>
 </head>
 <body>
 <main>
 <div style="font-family: Geist, -apple-system, 'Helvetica Neue', sans-serif; color: #111111; background: #0b0b0c">
 
-  <section class="hero" style="position: relative; overflow: hidden; color: #ffffff">
+  <section class="hero" style="position: relative; overflow: hidden; color: #ffffff; height: 100vh; height: 100svh">
     <nav aria-label="Main" style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 22px clamp(16px, 5vw, 72px); font-size: 15px">
       <div style="display: flex; gap: 22px; flex-wrap: wrap">
         <a href="/docs/how-lore-works/" style="text-decoration: none">How it works</a>
@@ -144,14 +148,15 @@ a{color:inherit}a:hover{opacity:.88}
         </div>
       </div>
     </div>
-  </section>
-
-  <footer style="background: #0b0b0c; color: #8a8a8e; padding: 28px clamp(16px, 5vw, 72px) 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 22px; font-size: 14px">
+  <footer style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 5; background: linear-gradient(rgba(11,11,12,0), #0b0b0c 70%); color: #a1a1a6; padding: 44px clamp(16px, 5vw, 72px) 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 22px; font-size: 14px">
     <a href="/docs/how-lore-works/" style="text-decoration: none">How lore works</a>
     <a href="/privacy/" style="text-decoration: none">Privacy</a>
     <a href="/terms/" style="text-decoration: none">Terms</a>
     <span style="margin-left: auto">Sacramento, CA</span>
   </footer>
+  </section>
+
+
 </div>
 </main>
 <script>
