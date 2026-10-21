@@ -138,7 +138,7 @@ async function ch2(id){
 async function ch3(id){
  if(!ok(id))return;setChap(3);
  await show('dm');if(!ok(id))return;
- if(!await say('Lore','that is lore. one in every group chat, one just for you.',id))return;
+ if(!await say('Lore','that is lore. one just for you, and in your team's Slack. group chats are coming soon.',id))return;
  if(!await say('Lore','try it where you already talk.',id))return;
  var o=el('div','opts');
  var a=el('a','opt go','Try it on iMessage');a.href='sms:+16289994232?&body=hi%20lore';
