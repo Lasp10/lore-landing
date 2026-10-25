@@ -21,16 +21,26 @@
 body{background:#ffffff;color:#1c1a17;font-family:"Inter Tight",-apple-system,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
 .mark{position:fixed;top:22px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:9px;font-weight:700;font-size:22px;letter-spacing:-.03em;z-index:2;pointer-events:none}
 .mark img{width:30px;height:30px;border-radius:8px}
-.screen{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:88px 16px 56px;position:relative}
+.signin{position:fixed;top:26px;right:24px;z-index:3;font-size:15px;font-weight:500;letter-spacing:-.01em;color:#1c1a17;text-decoration:none;padding:6px 14px;border:1px solid #e6e3dd;border-radius:999px;background:#ffffff}
+.signin:hover{border-color:#1c1a17}
+.signin:focus-visible{outline:2px solid #1c1a17;outline-offset:3px}
+.stage{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:88px 16px 56px;position:relative}
+.js .track{height:340vh;height:340svh}
+.js .stage{position:sticky;top:0;height:100vh;height:100svh;min-height:0;overflow:hidden}
+.group{display:flex;flex-direction:column;align-items:center;will-change:transform}
+.lines{display:grid;justify-items:center;align-items:center}
+.js .lines>*{grid-area:1/1}
 h1,h2{font-weight:700;font-size:clamp(33px,7vw,88px);line-height:1.02;letter-spacing:-.045em}
-h1{max-width:none}
-
-
-h2{max-width:10ch}
+h1{max-width:10em}
+h2{margin-top:.4em}
+.js h2{margin-top:0}
+.w{display:inline-block;white-space:pre;will-change:opacity,transform,filter}
 p.blurb{margin-top:28px;font-size:clamp(17px,1.9vw,21px);line-height:1.42;letter-spacing:-.01em;color:#3a3732;max-width:31em}
-.cue{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);width:22px;height:34px;border:1.5px solid #c9c5bd;border-radius:12px}
+.cue{position:absolute;bottom:28px;left:50%;margin-left:-11px;width:22px;height:34px;border:1.5px solid #c9c5bd;border-radius:12px}
 .cue::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:#a8a49c;animation:cue 1.8s ease-in-out infinite}
 @keyframes cue{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
+html:not(.js) .cue{display:none}
+@media (max-width:480px){.signin{top:22px;right:16px;font-size:14px;padding:5px 12px}}
 .cta{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:14px}
 .cta small{font-size:14px;color:#8a867e;letter-spacing:-.005em}
 .apps{display:flex;gap:16px}
@@ -40,10 +50,6 @@ p.blurb{margin-top:28px;font-size:clamp(17px,1.9vw,21px);line-height:1.42;letter
 .app.msg svg{width:64px;height:64px}
 .app.slack{background:#ffffff;border:1px solid #e6e3dd}
 .app.slack svg{width:34px;height:34px}
-.js .rv{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
-.js .rv.in{opacity:1;transform:none}
-.js .rv.d1{transition-delay:.25s}.js .rv.d2{transition-delay:.5s}
-@media (prefers-reduced-motion:reduce){.js .rv{transition:none;transform:none}.cue::after{animation:none}}
 footer{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:20px 24px;font-size:13.5px;color:#8a867e}
 footer nav{display:flex;gap:14px}
 footer a{color:#8a867e;text-decoration:none}
@@ -54,27 +60,55 @@ footer a:hover{color:#1c1a17}
 <body>
 <script>document.documentElement.classList.add('js')</script>
 <div class="mark"><img src="/lore-logo-512.png" alt="">lore</div>
-<main>
-  <section class="screen">
-    <h1>It’s not what you know,<br class="w"> or who you know.</h1>
-    <span class="cue" aria-hidden="true"></span>
-  </section>
-  <section class="screen">
-    <h2 class="rv">It’s who your agent knows.</h2>
-    <p class="blurb rv d1">lore is an agent that lives in your iMessage. It learns what you’re working on, talks to the lores of the people you know, and brings you the ones you need.</p>
-    <div class="cta rv d2">
+<a class="signin" href="/me">Sign in</a>
+<main class="track" id="track">
+  <section class="stage">
+    <div class="group" id="group">
+      <div class="lines">
+        <h1 id="l1">It’s not what you know, or who you know.</h1>
+        <h2 id="l2">It’s who your agent knows.</h2>
+      </div>
+      <div id="extras">
+        <p class="blurb" id="blurb">lore is an agent that lives in your iMessage. It learns what you’re working on, talks to the lores of the people you know, and brings you the ones you need.</p>
+    <div class="cta" id="cta">
       <div class="apps">
       <a class="app msg" href="sms:+18083199759?&amp;body=hi%20lore" aria-label="Text lore on iMessage"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="gm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5bf675"/><stop offset="1" stop-color="#0cbd2a"/></linearGradient></defs><path fill="url(#gm)" d="M5.285 0A5.273 5.273 0 0 0 0 5.285v13.43A5.273 5.273 0 0 0 5.285 24h13.43A5.273 5.273 0 0 0 24 18.715V5.285A5.273 5.273 0 0 0 18.715 0ZM12 4.154a8.809 7.337 0 0 1 8.809 7.338A8.809 7.337 0 0 1 12 18.828a8.809 7.337 0 0 1-2.492-.303A8.656 7.337 0 0 1 5.93 19.93a9.929 7.337 0 0 0 1.54-2.155a8.809 7.337 0 0 1-4.279-6.283A8.809 7.337 0 0 1 12 4.154"/></svg></a>
       <a class="app slack" href="https://host.loregroupchat.com/slack/install?continue=1" aria-label="Add lore to Slack"><svg viewBox="0 0 123 123" aria-hidden="true"><path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z" fill="#e01e5a"/><path d="M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2zm0 6.5c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z" fill="#36c5f0"/><path d="M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2zm-6.5 0c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z" fill="#2eb67d"/><path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9zm0-6.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z" fill="#ecb22e"/></svg></a>
     </div>
     <small>Start connecting</small>
     </div>
+      </div>
+    </div>
+    <span class="cue" id="cue" aria-hidden="true"></span>
   </section>
 </main>
 <footer><span>© 2026 lore · Sacramento, CA</span><nav><a href="/docs/how-lore-works/">How it works</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav></footer>
 <script>
-(function(){var els=document.querySelectorAll('.rv');if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
-var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.35});els.forEach(function(e){io.observe(e)})})();
+(function(){
+var root=document.documentElement;
+if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){root.classList.remove('js');return}
+function split(el){var ws=el.textContent.split(' ');el.textContent='';return ws.map(function(w,i){var s=document.createElement('span');s.className='w';s.textContent=w+(i<ws.length-1?' ':'');el.appendChild(s);return s})}
+var a=split(document.getElementById('l1')),b=split(document.getElementById('l2'));
+var blurb=document.getElementById('blurb'),cta=document.getElementById('cta'),extras=document.getElementById('extras'),group=document.getElementById('group'),cue=document.getElementById('cue'),track=document.getElementById('track');
+function c(x){return x<0?0:x>1?1:x}
+function ease(x){return x*x*(3-2*x)}
+function seg(p,s,e){return ease(c((p-s)/(e-s)))}
+function word(el,k,dir){var bl=(1-k)*10;el.style.opacity=k;el.style.transform='translateY('+((1-k)*0.35*dir)+'em)';el.style.filter=bl>.05?'blur('+bl+'px)':'none'}
+var ticking=false;
+function draw(){ticking=false;
+  var span=track.offsetHeight-innerHeight,p=span>0?c(-track.getBoundingClientRect().top/span):1;
+  a.forEach(function(el,i){word(el,1-seg(p,.10+i*.022,.20+i*.022),-1)});
+  b.forEach(function(el,i){word(el,seg(p,.34+i*.03,.46+i*.03),1)});
+  var e1=seg(p,.60,.72),e2=seg(p,.68,.80);
+  blurb.style.opacity=e1;blurb.style.transform='translateY('+(1-e1)*16+'px)';
+  cta.style.opacity=e2;cta.style.transform='translateY('+(1-e2)*16+'px)';
+  cta.style.pointerEvents=e2>.5?'auto':'none';
+  group.style.transform='translateY('+((1-e1)*extras.offsetHeight/2)+'px)';
+  cue.style.opacity=1-seg(p,.02,.08);
+}
+function req(){if(!ticking){ticking=true;requestAnimationFrame(draw)}}
+addEventListener('scroll',req,{passive:true});addEventListener('resize',req);draw();
+})();
 </script>
 </body>
 </html>
