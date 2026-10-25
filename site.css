@@ -1,0 +1,17 @@
+/* The homepage look (2026-10-25) for every other page: white, Inter Tight, bold tight headings, ink pill buttons,
+   hairline fields. Loaded last on each page so it wins over the page's own older styles. */
+html,body{background:#ffffff!important;color:#1c1a17!important}
+body::before,body::after{display:none!important}
+body,body :not(code):not(pre):not(kbd):not(samp){font-family:"Inter Tight",-apple-system,"Helvetica Neue",Arial,sans-serif!important}
+body{-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-weight:700!important;letter-spacing:-.035em!important;color:#1c1a17!important}
+h1{letter-spacing:-.045em!important;line-height:1.05!important}
+p,li,label,small,span,dd,dt,td,th{color:inherit}
+a{color:#1c1a17}
+button:not(.copy),input[type=submit],.btn,.cta,a.button{background:#1c1a17!important;color:#ffffff!important;border:1px solid #1c1a17!important;border-radius:999px!important;box-shadow:none!important;font-weight:600!important}
+button:not(.copy):hover,input[type=submit]:hover,.btn:hover,.cta:hover{background:#000000!important}
+input:not([type=submit]):not([type=checkbox]):not([type=radio]),textarea,select{background:#ffffff!important;color:#1c1a17!important;border:1px solid #dedad2!important;box-shadow:none!important}
+input:not([type=submit]):not([type=checkbox]):not([type=radio]),select{border-radius:999px!important;padding-left:18px!important;padding-right:18px!important}
+textarea{border-radius:18px!important;padding:12px 16px!important}
+input:focus,textarea:focus,select:focus{outline:none!important;border-color:#1c1a17!important}
+::placeholder{color:#a8a49c!important}
