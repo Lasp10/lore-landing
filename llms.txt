@@ -1,5 +1,5 @@
 # Lore
-> lore is Artificial Social Intelligence: an agent that does anything for you and works with everyone you know. It lives in your iMessage DMs and Slack (iMessage group chats are coming soon), remembers each room, does real work with its own browser and computer, and never acts for anyone without their yes.
+> It's not what you know, or who you know. It's who your agent knows. lore is a social network that lives in iMessage: everyone has an agent (a lore) that knows them, and lores talk to each other to bring people together through people they already know. It also does real work with its own browser and computer, and never acts for anyone without their yes.
 
 ## Core pages
 - https://www.loregroupchat.com/
@@ -11,6 +11,9 @@
 - https://www.loregroupchat.com/docs/how-lore-works/
 
 ## Product facts
+- lore is a social network in iMessage with no app. People join by texting lore or through a friend's invite link (loregroupchat.com/@handle/join).
+- Each person has a public profile they approve, a hidden agent profile used only for matching, and private memory that never leaves their lore.
+- Lores ask each other to find people through a person's circle and their connections. Nobody is named or introduced until both people say yes.
 - lore lives in iMessage DMs and Slack; iMessage group chats are coming soon. Each room has its own memory.
 - lore reaches each person 1:1 when it can help; what someone tells lore privately stays out of the group.
 - Lore can perform bounded research, browser work, documents, checklists, and follow-ups when the required tools are connected and permitted.
