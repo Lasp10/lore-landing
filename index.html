@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>lore · It's who your agent knows</title>
-<meta name="description" content="It's not what you know, or who you know. It's who your agent knows. lore lives in your iMessage, talks to the lores of the people you know, and brings you the people you need.">
+<meta name="description" content="lore is your representative: it can do anything on a computer and knows anyone. It's not what you know, or who you know. It's who your agent knows. lore lives in your iMessage, talks to the lores of the people you know, and brings you the people you need.">
 <meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://www.loregroupchat.com/">
 <meta property="og:title" content="lore">
@@ -19,43 +19,63 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:#ffffff;color:#1c1a17;font-family:"Inter Tight",-apple-system,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
-.mark{position:fixed;top:22px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:9px;font-weight:700;font-size:22px;letter-spacing:-.03em;z-index:2;pointer-events:none}
+.mark{position:fixed;top:22px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:9px;font-weight:700;font-size:22px;letter-spacing:-.03em;z-index:5;pointer-events:none}
 .mark img{width:30px;height:30px;border-radius:8px}
-.signin{position:fixed;top:26px;right:24px;z-index:3;font-size:15px;font-weight:500;letter-spacing:-.01em;color:#1c1a17;text-decoration:none;padding:6px 14px;border:1px solid #e6e3dd;border-radius:999px;background:#ffffff}
+.signin{position:fixed;top:26px;right:24px;z-index:6;font-size:15px;font-weight:500;letter-spacing:-.01em;color:#1c1a17;text-decoration:none;padding:6px 14px;border:1px solid #e6e3dd;border-radius:999px;background:#ffffff}
 .signin:hover{border-color:#1c1a17}
-.signin:focus-visible{outline:2px solid #1c1a17;outline-offset:3px}
-.stage{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:88px 16px 56px;position:relative}
-.js .track{height:340vh;height:340svh}
-.js .stage{position:sticky;top:0;height:100vh;height:100svh;min-height:0;overflow:hidden}
-.group{display:flex;flex-direction:column;align-items:center;will-change:transform}
-.lines{display:grid;justify-items:center;align-items:center}
-.js .lines>*{grid-area:1/1}
-h1,h2{font-weight:700;font-size:clamp(33px,7vw,88px);line-height:1.02;letter-spacing:-.045em}
-h1{max-width:10em}
-h2{margin-top:.4em}
-.js h2{margin-top:0}
-.w{display:inline-block;white-space:pre;will-change:opacity,transform,filter}
-p.blurb{margin-top:28px;font-size:clamp(17px,1.9vw,21px);line-height:1.42;letter-spacing:-.01em;color:#3a3732;max-width:31em}
-.cue{position:absolute;bottom:28px;left:50%;margin-left:-11px;width:22px;height:34px;border:1.5px solid #c9c5bd;border-radius:12px}
-.cue::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:#a8a49c;animation:cue 1.8s ease-in-out infinite}
-@keyframes cue{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
-html:not(.js) .cue{display:none}
-@media (max-width:480px){.signin{top:22px;right:16px;font-size:14px;padding:5px 12px}}
-.does{margin-top:30px;display:flex;flex-direction:column;align-items:center;gap:14px}
-.does p{font-size:15px;color:#8a867e;letter-spacing:-.005em;max-width:30em}
-.chat{display:flex;flex-direction:column;gap:6px;width:100%;max-width:400px;text-align:left}
-.bb{align-self:flex-start;max-width:82%;padding:9px 14px;border-radius:19px;background:#e9e9eb;color:#111;font-size:15.5px;line-height:1.3;letter-spacing:-.01em}
-.bb.me{align-self:flex-end;background:#0a84ff;color:#fff}
-@media (max-width:480px){.does{margin-top:22px;gap:10px}.bb{font-size:14.5px;padding:8px 12px}}
-.cta{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.signin:focus-visible,.app:focus-visible{outline:2px solid #1c1a17;outline-offset:3px}
+
+/* No-JS and reduced motion: everything in normal flow. */
+.stage{display:flex;flex-direction:column;align-items:center;text-align:center;gap:56px;padding:110px 16px 64px}
+.big{font-weight:700;font-size:clamp(33px,7vw,88px);line-height:1.02;letter-spacing:-.045em}
+#l1{max-width:10em}
+.rep{display:flex;flex-direction:column;align-items:center;gap:14px}
+.rep b{font-weight:700;font-size:clamp(30px,5.4vw,68px);line-height:1.04;letter-spacing:-.045em}
+.rep span{font-size:clamp(18px,2.2vw,26px);line-height:1.3;letter-spacing:-.02em;color:#3a3732;max-width:22em}
+.cta{display:flex;flex-direction:column;align-items:center;gap:14px;background:#ffffff;padding:18px 22px;border-radius:28px}
+.cta h3{font-weight:700;font-size:clamp(28px,4vw,48px);letter-spacing:-.04em;line-height:1.05}
 .cta small{font-size:14px;color:#8a867e;letter-spacing:-.005em}
-.apps{display:flex;gap:16px}
+.apps{display:flex;gap:16px;margin-top:6px}
 .app{display:grid;place-items:center;width:64px;height:64px;border-radius:16px;line-height:0;transition:transform .15s ease}
 .app:hover{transform:translateY(-2px)}
-.app:focus-visible{outline:2px solid #1c1a17;outline-offset:3px}
 .app.msg svg{width:64px;height:64px}
 .app.slack{background:#ffffff;border:1px solid #e6e3dd}
 .app.slack svg{width:34px;height:34px}
+
+/* Phones: one component, sized by --h; everything inside scales in em. */
+.ph{--h:520px;height:var(--h);width:calc(var(--h)*.49);font-size:calc(var(--h)/38);border:calc(var(--h)/52) solid #1c1a17;border-radius:calc(var(--h)/8.5);background:#ffffff;display:flex;flex-direction:column;overflow:hidden;text-align:left;flex:none}
+.ph .top{display:flex;flex-direction:column;align-items:center;gap:.25em;padding:1.6em .8em .6em;border-bottom:1px solid #efede8;font-size:.78em;font-weight:600;color:#1c1a17}
+.ph .top i{width:2.2em;height:2.2em;border-radius:50%;background:#1c1a17 url(/lore-logo-512.png) center/cover}
+.ph .th{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:.4em;padding:.8em}
+.bb{align-self:flex-start;max-width:84%;padding:.5em .8em;border-radius:1.1em;background:#e9e9eb;color:#111;line-height:1.28;letter-spacing:-.01em}
+.bb.me{align-self:flex-end;background:#0a84ff;color:#ffffff}
+.bb.dots{letter-spacing:.15em;color:#8e8e93}
+.net{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
+.net .ph{--h:200px}
+#lines{display:none}
+.cue{display:none}
+
+/* Scroll story */
+.js .track{height:620vh;height:620svh}
+.js .stage{position:sticky;top:0;height:100vh;height:100svh;padding:0;display:block;overflow:hidden}
+.js .stage>*{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+.js #l1,.js #l2{width:max-content;max-width:92vw;text-align:center}
+.js #l1{max-width:min(92vw,10em)}
+.js .rep{width:min(92vw,900px)}
+.js .main{--h:min(58svh,520px)}
+.js .net{display:block;position:absolute;inset:0;transform:none;left:0;top:0}
+.js .net .ph{position:absolute;--h:min(24svh,210px);transform:translate(-50%,-50%)}
+.js #lines{display:block;position:absolute;inset:0;width:100%;height:100%;transform:none;left:0;top:0;pointer-events:none}
+.js #lines line{stroke:#dedad2;stroke-width:1.2}
+.js .cta{z-index:2}
+.js .cue{display:block;left:50%;top:auto;bottom:28px;transform:translateX(-50%);width:22px;height:34px;border:1.5px solid #c9c5bd;border-radius:12px}
+.cue::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:#a8a49c;animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
+.w{display:inline-block;white-space:pre}
+.js .net .ph:nth-child(n+5){display:none}
+@media (min-width:700px){.js .net .ph:nth-child(n+5){display:flex}}
+@media (max-width:480px){.signin{top:22px;right:16px;font-size:14px;padding:5px 12px}}
+
 footer{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:20px 24px;font-size:13.5px;color:#8a867e}
 footer nav{display:flex;gap:14px}
 footer a{color:#8a867e;text-decoration:none}
@@ -68,29 +88,36 @@ footer a:hover{color:#1c1a17}
 <div class="mark"><img src="/lore-logo-512.png" alt="">lore</div>
 <a class="signin" href="/me">Sign in</a>
 <main class="track" id="track">
-  <section class="stage">
-    <div class="group" id="group">
-      <div class="lines">
-        <h1 id="l1">It’s not what you know, or who you know.</h1>
-        <h2 id="l2">It’s who your agent knows.</h2>
+  <section class="stage" id="stage">
+    <svg id="lines" aria-hidden="true"></svg>
+    <h1 class="big" id="l1">It’s not what you know, or who you know.</h1>
+    <h2 class="big" id="l2">It’s who your agent knows.</h2>
+    <p class="rep" id="rep"><b>lore is your representative.</b><span>It can do anything on a computer, and it knows anyone.</span></p>
+    <div class="ph main" id="main" aria-label="Example conversation with lore">
+      <div class="top"><i></i>lore</div>
+      <div class="th">
+        <div class="bb me" data-s="1">know anyone who got into Stanford?</div>
+        <div class="bb dots" data-s="2">•••</div>
+        <div class="bb" data-s="3">John’s friend Jack did. His lore checked, he’s happy to talk.</div>
+        <div class="bb" data-s="4">Thursday at 4?</div>
+        <div class="bb me" data-s="5">yes!</div>
       </div>
-      <div id="extras">
-        <p class="blurb" id="blurb">lore is a social network that lives in your iMessage. Everyone has a lore that knows them. Your lore talks to the lores of the people you know and brings you the ones you need.</p>
-        <div class="does" id="does">
-          <div class="chat" aria-label="Example">
-            <div class="bb me">know anyone who got into Stanford?</div>
-            <div class="bb">John’s friend Jack did. His lore checked, he’s happy to talk.</div>
-            <div class="bb">Thursday at 4?</div>
-          </div>
-        </div>
+    </div>
+    <div class="net" id="net" aria-hidden="true">
+      <div class="ph"><div class="top"><i></i>lore</div><div class="th"><div class="bb me">need a cofounder who codes</div><div class="bb">Sam’s lore found one. Intro?</div></div></div>
+      <div class="ph"><div class="top"><i></i>lore</div><div class="th"><div class="bb me">know a VC in AI?</div><div class="bb">Noah’s old boss invests. Call Friday?</div></div></div>
+      <div class="ph"><div class="top"><i></i>lore</div><div class="th"><div class="bb me">who can read my essay tonight?</div><div class="bb">Ava can. 9pm?</div></div></div>
+      <div class="ph"><div class="top"><i></i>lore</div><div class="th"><div class="bb me">anyone hiring interns at Google?</div><div class="bb">Leo’s sister is. She said yes.</div></div></div>
+      <div class="ph"><div class="top"><i></i>lore</div><div class="th"><div class="bb me">book me a court for Saturday</div><div class="bb">Done. 10am, court 3.</div></div></div>
+      <div class="ph"><div class="top"><i></i>lore</div><div class="th"><div class="bb me">looking for a lab this summer</div><div class="bb">Ben knows a PI at Stanford.</div></div></div>
+    </div>
     <div class="cta" id="cta">
+      <h3>Start connecting.</h3>
       <div class="apps">
-      <a class="app msg" href="sms:+18083199759?&amp;body=hi%20lore" aria-label="Text lore on iMessage"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="gm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5bf675"/><stop offset="1" stop-color="#0cbd2a"/></linearGradient></defs><path fill="url(#gm)" d="M5.285 0A5.273 5.273 0 0 0 0 5.285v13.43A5.273 5.273 0 0 0 5.285 24h13.43A5.273 5.273 0 0 0 24 18.715V5.285A5.273 5.273 0 0 0 18.715 0ZM12 4.154a8.809 7.337 0 0 1 8.809 7.338A8.809 7.337 0 0 1 12 18.828a8.809 7.337 0 0 1-2.492-.303A8.656 7.337 0 0 1 5.93 19.93a9.929 7.337 0 0 0 1.54-2.155a8.809 7.337 0 0 1-4.279-6.283A8.809 7.337 0 0 1 12 4.154"/></svg></a>
+        <a class="app msg" href="sms:+18083199759?&amp;body=hi%20lore" aria-label="Text lore on iMessage"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="gm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5bf675"/><stop offset="1" stop-color="#0cbd2a"/></linearGradient></defs><path fill="url(#gm)" d="M5.285 0A5.273 5.273 0 0 0 0 5.285v13.43A5.273 5.273 0 0 0 5.285 24h13.43A5.273 5.273 0 0 0 24 18.715V5.285A5.273 5.273 0 0 0 18.715 0ZM12 4.154a8.809 7.337 0 0 1 8.809 7.338A8.809 7.337 0 0 1 12 18.828a8.809 7.337 0 0 1-2.492-.303A8.656 7.337 0 0 1 5.93 19.93a9.929 7.337 0 0 0 1.54-2.155a8.809 7.337 0 0 1-4.279-6.283A8.809 7.337 0 0 1 12 4.154"/></svg></a>
       <a class="app slack" href="https://host.loregroupchat.com/slack/install?continue=1" aria-label="Add lore to Slack"><svg viewBox="0 0 123 123" aria-hidden="true"><path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z" fill="#e01e5a"/><path d="M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2zm0 6.5c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z" fill="#36c5f0"/><path d="M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2zm-6.5 0c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z" fill="#2eb67d"/><path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9zm0-6.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z" fill="#ecb22e"/></svg></a>
-    </div>
-    <small>Invite-only. Text lore to request an invite.</small>
-    </div>
       </div>
+      <small>Invite-only. Text lore to request an invite.</small>
     </div>
     <span class="cue" id="cue" aria-hidden="true"></span>
   </section>
@@ -100,28 +127,49 @@ footer a:hover{color:#1c1a17}
 (function(){
 var root=document.documentElement;
 if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){root.classList.remove('js');return}
+function $(id){return document.getElementById(id)}
 function split(el){var ws=el.textContent.split(' ');el.textContent='';return ws.map(function(w,i){var s=document.createElement('span');s.className='w';s.textContent=w+(i<ws.length-1?' ':'');el.appendChild(s);return s})}
-var a=split(document.getElementById('l1')),b=split(document.getElementById('l2'));
-var blurb=document.getElementById('blurb'),does=document.getElementById('does'),cta=document.getElementById('cta'),extras=document.getElementById('extras'),group=document.getElementById('group'),cue=document.getElementById('cue'),track=document.getElementById('track');
+var A=split($('l1')),B=split($('l2')),l2=$('l2'),rep=$('rep'),main=$('main'),cta=$('cta'),cue=$('cue'),track=$('track'),stage=$('stage'),svg=$('lines');
+var bubbles=[].slice.call(main.querySelectorAll('[data-s]')),nets=[].slice.call($('net').children);
+// where the small phones sit, as fractions of the stage (desktop, then phone)
+var POS_D=[[.13,.27],[.87,.27],[.09,.66],[.91,.66],[.3,.87],[.7,.87]],POS_M=[[.25,.2],[.75,.2],[.25,.82],[.75,.82]];
 function c(x){return x<0?0:x>1?1:x}
 function ease(x){return x*x*(3-2*x)}
 function seg(p,s,e){return ease(c((p-s)/(e-s)))}
-function word(el,k,dir){var bl=(1-k)*10;el.style.opacity=k;el.style.transform='translateY('+((1-k)*0.35*dir)+'em)';el.style.filter=bl>.05?'blur('+bl+'px)':'none'}
+function word(el,k,dir){var bl=(1-k)*10;el.style.opacity=k;el.style.transform='translateY('+((1-k)*.35*dir)+'em)';el.style.filter=bl>.05?'blur('+bl+'px)':'none'}
+function place(el,k,dy,sc){el.style.opacity=k;el.style.transform='translate(-50%,-50%) translateY('+dy+'px) scale('+sc+')';el.style.visibility=k<.01?'hidden':'visible'}
+var W=0,H=0,mobile=false,links=[];
+function layout(){
+  W=stage.clientWidth;H=stage.clientHeight;mobile=W<700;
+  var pos=mobile?POS_M:POS_D;
+  nets.forEach(function(n,i){var q=pos[i];if(!q)return;n.style.left=(q[0]*100)+'%';n.style.top=(q[1]*100)+'%'});
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);svg.innerHTML='';links=[];
+  var cx=W/2,cy=H/2,pts=pos.map(function(q){return [q[0]*W,q[1]*H]});
+  var pairs=pts.map(function(_,i){return [-1,i]});
+  if(mobile)pairs.push([0,1],[2,3]);else pairs.push([0,2],[1,3],[2,4],[3,5],[4,5]);
+  pairs.forEach(function(pr){var a=pr[0]<0?[cx,cy]:pts[pr[0]],b=pts[pr[1]];var l=document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',a[0]);l.setAttribute('y1',a[1]);l.setAttribute('x2',b[0]);l.setAttribute('y2',b[1]);
+    var len=Math.hypot(b[0]-a[0],b[1]-a[1]);l.style.strokeDasharray=len;l.style.strokeDashoffset=len;l._len=len;svg.appendChild(l);links.push(l)});
+}
 var ticking=false;
 function draw(){ticking=false;
   var span=track.offsetHeight-innerHeight,p=span>0?c(-track.getBoundingClientRect().top/span):1;
-  a.forEach(function(el,i){word(el,1-seg(p,.10+i*.022,.20+i*.022),-1)});
-  b.forEach(function(el,i){word(el,seg(p,.34+i*.03,.46+i*.03),1)});
-  var e1=seg(p,.58,.70),e3=seg(p,.66,.78),e2=seg(p,.74,.86);
-  does.style.opacity=e3;does.style.transform='translateY('+(1-e3)*16+'px)';
-  blurb.style.opacity=e1;blurb.style.transform='translateY('+(1-e1)*16+'px)';
-  cta.style.opacity=e2;cta.style.transform='translateY('+(1-e2)*16+'px)';
-  cta.style.pointerEvents=e2>.5?'auto':'none';
-  group.style.transform='translateY('+((1-e1)*extras.offsetHeight/2)+'px)';
-  cue.style.opacity=1-seg(p,.02,.08);
+  A.forEach(function(el,i){word(el,1-seg(p,.03+i*.012,.09+i*.012),-1)});
+  B.forEach(function(el,i){word(el,seg(p,.12+i*.015,.18+i*.015),1)});
+  // the punchline stays; lore is your representative arrives under it, then both give way to the phone
+  var gap=Math.min(H*.05,40),up=seg(p,.24,.3),ri=seg(p,.26,.32),out=seg(p,.4,.45);
+  var h2h=l2.offsetHeight,reh=rep.offsetHeight,tot=h2h+gap+reh;
+  l2.style.opacity=1-out;l2.style.transform='translate(-50%,-50%) translateY('+(-up*(tot-h2h)/2-out*30)+'px) scale('+(1-out*.15)+')';
+  place(rep,ri*(1-out),(tot-reh)/2*up+(1-ri)*24-out*30,1-out*.15);
+  var pi=seg(p,.43,.5),pa=seg(p,.7,.79);place(main,pi,(1-pi)*40-pa*(H*.5+main.offsetHeight),.82+.18*pi);
+  var th=[.5,.53,.575,.61,.645];bubbles.forEach(function(b,i){var k=seg(p,th[i],th[i]+.02);if(i===1)k=k*(1-seg(p,th[2]-.005,th[2]+.01));b.style.opacity=k;b.style.transform='translateY('+(1-k)*.6+'em)';b.style.display=(i===1&&k<.01&&p>th[2])?'none':''});
+  var ci=seg(p,.76,.82);place(cta,ci,(1-ci)*24,1);cta.style.pointerEvents=ci>.5?'auto':'none';
+  nets.forEach(function(n,i){var k=seg(p,.82+i*.018,.87+i*.018);n.style.opacity=k;n.style.transform='translate(-50%,-50%) scale('+(.85+.15*k)+')'});
+  links.forEach(function(l,i){var k=seg(p,.85+i*.008,.95+i*.008);l.style.strokeDashoffset=l._len*(1-k)});
+  cue.style.opacity=1-seg(p,.01,.05);
 }
 function req(){if(!ticking){ticking=true;requestAnimationFrame(draw)}}
-addEventListener('scroll',req,{passive:true});addEventListener('resize',req);draw();
+addEventListener('scroll',req,{passive:true});addEventListener('resize',function(){layout();req()});layout();draw();
 })();
 </script>
 </body>

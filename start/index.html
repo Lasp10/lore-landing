@@ -1,68 +1,12 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Get started with lore</title>
-<meta name="description" content="Text lore or add it to Slack, then give it a first task.">
-<link rel="canonical" href="https://www.loregroupchat.com/start/">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png">
-<link rel="apple-touch-icon" href="/lore-icon-180.png">
-<style>
-:root{--paper:#f3f2eb;--ink:#242820;--link:#285847;--muted:#62675e}
-html{background:var(--paper)}
-body{max-width:760px;margin:0 auto;padding:64px 28px 48px;font:19px/1.7 Georgia,Charter,"Times New Roman",serif;color:var(--ink)}
-h1,h2{line-height:1.15;letter-spacing:-.025em}
-h1{display:flex;align-items:center;gap:10px;margin:0 0 40px;font-size:36px}
-h1 img{width:26px;height:26px}
-h1 a{color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px}
-h2{font-size:24px;margin:48px 0 10px}
-p{margin:0 0 22px}
-a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}
-.btn{display:inline-block;padding:14px 22px;background:var(--ink);color:#f7f5ef;text-decoration:none;border-radius:10px;font:600 15px/1 -apple-system,"Segoe UI",Arial,sans-serif}
-.btn:hover{background:#3b403a;color:#f7f5ef}
-.small{font-size:15px;color:var(--muted)}
-button.copy{all:unset;cursor:pointer;color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
-ul{padding-left:0;margin:0 0 22px;list-style:none}li{margin:10px 0;position:relative;padding-left:1.5em}li:before{content:"\2192";color:var(--muted);position:absolute;left:0}button.copy{text-align:left}
-footer{margin-top:96px;padding-top:20px;border-top:1px solid #d3d6ce;color:var(--muted);font-size:14px}
-@media(max-width:600px){body{padding:38px 22px 32px;font-size:18px}h1{font-size:32px}}
-</style>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/site.css">
-</head>
-<body>
-<h1><a href="/"><img src="/lore-logo-512.png" alt="">lore</a></h1>
-<p>You are in. Choose where your group talks.</p>
-
-<h2>iMessage</h2>
-<p>Text lore from your phone. It replies with its contact card right in the thread. Tap it to save lore, then add it to your group.</p>
-<p><a class="btn" href="sms:+18083199759?&amp;body=hi%20lore">Text lore</a></p>
-
-<h2>Slack</h2>
-<p>Add lore to your workspace, then mention <b>@Lore</b> in any channel.</p>
-<p><a class="btn" id="slack" href="https://host.loregroupchat.com/slack/install?continue=1">Add to Slack</a></p>
-<p class="small">Slack will say lore is not approved by the Marketplace. That is expected; approve it to continue.</p>
-
-<h2>Then ask for something</h2>
-<p>Talk to it the way you would text a friend. No special words.</p>
-<ul>
-<li><button class="copy" type="button" data-copy="lore what's the top story on hacker news right now">what's the top story on hacker news right now</button></li>
-<li><button class="copy" type="button" data-copy="lore order me a usb-c cable on amazon">order me a usb-c cable on amazon</button> <span class="small">(stops at checkout and shows you the total)</span></li>
-<li><button class="copy" type="button" data-copy="lore every morning check the weather for us and post it here">every morning check the weather for us and post it here</button></li>
-<li><button class="copy" type="button" data-copy="lore summarize this">summarize this</button> <span class="small">(send a PDF or photo first)</span></li>
-<li><button class="copy" type="button" data-copy="lore should we do tahoe or yosemite this weekend">should we do tahoe or yosemite this weekend</button></li>
-<li><button class="copy" type="button" data-copy="lore remember: we decided ">remember: we decided …</button></li>
-</ul>
-<p class="small">Tap to copy. lore asks before it sends, posts, books or buys anything. When a site needs your login, it sends you a private link, and anything from your own account comes to you privately, not to the group. <a href="/privacy/">Privacy</a></p>
-
-<footer><a href="/">Home</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms of Service</a></footer>
-<script>
-(function(){
-var a=new URLSearchParams(location.search).get('access');
-if(a)document.getElementById('slack').href+='&access='+encodeURIComponent(a);
-[].forEach.call(document.querySelectorAll('[data-copy]'),function(b){var t=b.textContent;b.onclick=function(){
- if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(b.dataset.copy).then(function(){b.textContent='copied';setTimeout(function(){b.textContent=t},1400)},function(){})}});
-})();
-</script>
-</body>
-</html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Get started · lore</title><meta name="description" content="lore is invite-only. Text lore to request an invite."><link rel="icon" href="/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/lore-icon-180.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box;margin:0;padding:0}body{background:#fff;color:#1c1a17;font-family:"Inter Tight",-apple-system,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
+main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:18px;padding:56px 16px}
+.mark{display:flex;align-items:center;gap:9px;font-weight:700;font-size:22px;letter-spacing:-.03em;text-decoration:none;color:inherit;margin-bottom:22px}.mark img{width:30px;height:30px;border-radius:8px}
+h1{font-weight:700;font-size:clamp(32px,5vw,56px);line-height:1.04;letter-spacing:-.045em}p{font-size:18px;color:#3a3732;letter-spacing:-.01em;max-width:26em;line-height:1.4}
+.apps{display:flex;gap:16px;margin-top:10px}.app{display:grid;place-items:center;width:64px;height:64px;border-radius:16px;line-height:0}.app.msg svg{width:64px;height:64px}.app.slack{background:#fff;border:1px solid #e6e3dd}.app.slack svg{width:34px;height:34px}
+.app:focus-visible{outline:2px solid #1c1a17;outline-offset:3px}small{font-size:14px;color:#8a867e}
+footer{display:flex;justify-content:center;gap:14px;padding:20px;font-size:13.5px}footer a{color:#8a867e;text-decoration:none}</style></head>
+<body><main><a class="mark" href="/"><img src="/lore-logo-512.png" alt="">lore</a><h1>lore is invite-only.</h1><p>Text lore to request an invite. It asks who you know, and anyone you know on lore can vouch you in.</p><div class="apps"><a class="app msg" id="imessage" href="sms:+18083199759?&amp;body=hi%20lore" aria-label="Text lore on iMessage"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="gm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5bf675"/><stop offset="1" stop-color="#0cbd2a"/></linearGradient></defs><path fill="url(#gm)" d="M5.285 0A5.273 5.273 0 0 0 0 5.285v13.43A5.273 5.273 0 0 0 5.285 24h13.43A5.273 5.273 0 0 0 24 18.715V5.285A5.273 5.273 0 0 0 18.715 0ZM12 4.154a8.809 7.337 0 0 1 8.809 7.338A8.809 7.337 0 0 1 12 18.828a8.809 7.337 0 0 1-2.492-.303A8.656 7.337 0 0 1 5.93 19.93a9.929 7.337 0 0 0 1.54-2.155a8.809 7.337 0 0 1-4.279-6.283A8.809 7.337 0 0 1 12 4.154"/></svg></a>
+      <a class="app slack" id="slack" href="https://host.loregroupchat.com/slack/install?continue=1" aria-label="Add lore to Slack"><svg viewBox="0 0 123 123" aria-hidden="true"><path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z" fill="#e01e5a"/><path d="M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2zm0 6.5c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z" fill="#36c5f0"/><path d="M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2zm-6.5 0c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z" fill="#2eb67d"/><path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9zm0-6.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z" fill="#ecb22e"/></svg></a></div><small>Teams can add lore to Slack.</small></main>
+<footer><a href="/docs/how-lore-works/">How it works</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></footer>
+<script>{const q=new URLSearchParams(location.search).get('p');const go={slack:document.getElementById('slack').href,imessage:document.getElementById('imessage').href}[q];if(go)location.replace(go)}</script></body></html>
