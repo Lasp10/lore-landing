@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Get started with lore</title>
-<meta name="description" content="Text lore or add it to Slack, then give it a first task.">
+<meta name="description" content="Text lore, then give it a first task.">
 <link rel="canonical" href="https://www.loregroupchat.com/start/">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png">
@@ -31,16 +31,11 @@ footer{margin-top:96px;padding-top:20px;border-top:1px solid #d3d6ce;color:var(-
 </head>
 <body>
 <h1><a href="/"><img src="/lore-logo-512.png" alt="">lore</a></h1>
-<p>You are in. Choose where your group talks.</p>
+<p>You are in. lore lives in iMessage.</p>
 
 <h2>iMessage</h2>
 <p>Text lore from your phone. It replies with its contact card right in the thread. Tap it to save lore, then add it to your group.</p>
 <p><a class="btn" href="sms:+19362833328?&amp;body=hi%20lore">Text lore</a></p>
-
-<h2>Slack</h2>
-<p>Add lore to your workspace, then mention <b>@Lore</b> in any channel.</p>
-<p><a class="btn" id="slack" href="https://host.loregroupchat.com/slack/install?continue=1">Add to Slack</a></p>
-<p class="small">Slack will say lore is not approved by the Marketplace. That is expected; approve it to continue.</p>
 
 <h2>Then ask for something</h2>
 <p>Talk to it the way you would text a friend. No special words.</p>
@@ -57,8 +52,6 @@ footer{margin-top:96px;padding-top:20px;border-top:1px solid #d3d6ce;color:var(-
 <footer><a href="/">Home</a> · <a href="/privacy/">Privacy Policy</a> · <a href="/terms/">Terms of Service</a></footer>
 <script>
 (function(){
-var a=new URLSearchParams(location.search).get('access');
-if(a)document.getElementById('slack').href+='&access='+encodeURIComponent(a);
 [].forEach.call(document.querySelectorAll('[data-copy]'),function(b){var t=b.textContent;b.onclick=function(){
  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(b.dataset.copy).then(function(){b.textContent='copied';setTimeout(function(){b.textContent=t},1400)},function(){})}});
 })();
