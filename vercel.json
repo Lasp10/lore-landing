@@ -1,1 +1,131 @@
-{"rewrites":[{"source":"/lore.vcf","destination":"https://host.loregroupchat.com/lore.vcf"},{"source":"/lore-avatar.jpg","destination":"https://host.loregroupchat.com/lore-avatar.jpg"},{"source":"/signup","destination":"https://host.loregroupchat.com/signup"},{"source":"/deck","destination":"https://host.loregroupchat.com/deck"},{"source":"/deck/opens","destination":"https://host.loregroupchat.com/deck/opens"},{"source":"/waitlist/list","destination":"https://host.loregroupchat.com/waitlist/list"},{"source":"/vault/:path*","destination":"https://host.loregroupchat.com/vault/:path*"},{"source":"/agent/receipt/:path*","destination":"https://host.loregroupchat.com/agent/receipt/:path*"},{"source":"/browser/receipt/:path*","destination":"https://host.loregroupchat.com/browser/receipt/:path*"},{"source":"/@:handle","destination":"https://host.loregroupchat.com/@:handle"},{"source":"/@:handle/:path*","destination":"https://host.loregroupchat.com/@:handle/:path*"},{"source":"/c/:path*","destination":"https://host.loregroupchat.com/c/:path*"},{"source":"/me","destination":"https://host.loregroupchat.com/me"},{"source":"/me/:path*","destination":"https://host.loregroupchat.com/me/:path*"},{"source":"/go/:path*","destination":"https://host.loregroupchat.com/go/:path*"},{"source":"/claim/:path*","destination":"https://host.loregroupchat.com/claim/:path*"},{"source":"/l/:path*","destination":"https://host.loregroupchat.com/l/:path*"},{"source":"/computer/:path*","destination":"https://host.loregroupchat.com/computer/:path*"},{"source":"/docs/:path*","destination":"https://host.loregroupchat.com/docs/:path*"},{"source":"/welcome","destination":"https://host.loregroupchat.com/welcome"},{"source":"/welcome/:path*","destination":"https://host.loregroupchat.com/welcome/:path*"},{"source":"/connect/:path*","destination":"https://host.loregroupchat.com/connect/:path*"},{"source":"/logout","destination":"https://host.loregroupchat.com/logout"},{"source":"/s/:path*","destination":"https://host.loregroupchat.com/s/:path*"},{"source":"/m/:path*","destination":"https://host.loregroupchat.com/m/:path*"},{"source":"/get-started","destination":"https://host.loregroupchat.com/get-started"},{"source":"/onboard/:path*","destination":"https://host.loregroupchat.com/onboard/:path*"}]}
+{
+  "rewrites": [
+    {
+      "source": "/lore.vcf",
+      "destination": "https://host.loregroupchat.com/lore.vcf"
+    },
+    {
+      "source": "/lore-avatar.jpg",
+      "destination": "https://host.loregroupchat.com/lore-avatar.jpg"
+    },
+    {
+      "source": "/deck",
+      "destination": "https://host.loregroupchat.com/deck"
+    },
+    {
+      "source": "/deck/opens",
+      "destination": "https://host.loregroupchat.com/deck/opens"
+    },
+    {
+      "source": "/agent/receipt/:path*",
+      "destination": "https://host.loregroupchat.com/agent/receipt/:path*"
+    },
+    {
+      "source": "/browser/receipt/:path*",
+      "destination": "https://host.loregroupchat.com/browser/receipt/:path*"
+    },
+    {
+      "source": "/@:handle",
+      "destination": "https://host.loregroupchat.com/@:handle"
+    },
+    {
+      "source": "/@:handle/:path*",
+      "destination": "https://host.loregroupchat.com/@:handle/:path*"
+    },
+    {
+      "source": "/c/:path*",
+      "destination": "https://host.loregroupchat.com/c/:path*"
+    },
+    {
+      "source": "/docs/:path*",
+      "destination": "https://host.loregroupchat.com/docs/:path*"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/signup",
+      "destination": "https://host.loregroupchat.com/signup",
+      "permanent": false
+    },
+    {
+      "source": "/waitlist/list",
+      "destination": "https://host.loregroupchat.com/waitlist/list",
+      "permanent": false
+    },
+    {
+      "source": "/vault/:path*",
+      "destination": "https://host.loregroupchat.com/vault/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/me",
+      "destination": "https://host.loregroupchat.com/me",
+      "permanent": false
+    },
+    {
+      "source": "/me/:path*",
+      "destination": "https://host.loregroupchat.com/me/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/go/:path*",
+      "destination": "https://host.loregroupchat.com/go/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/claim/:path*",
+      "destination": "https://host.loregroupchat.com/claim/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/l/:path*",
+      "destination": "https://host.loregroupchat.com/l/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/computer/:path*",
+      "destination": "https://host.loregroupchat.com/computer/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/welcome",
+      "destination": "https://host.loregroupchat.com/welcome",
+      "permanent": false
+    },
+    {
+      "source": "/welcome/:path*",
+      "destination": "https://host.loregroupchat.com/welcome/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/connect/:path*",
+      "destination": "https://host.loregroupchat.com/connect/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/logout",
+      "destination": "https://host.loregroupchat.com/logout",
+      "permanent": false
+    },
+    {
+      "source": "/s/:path*",
+      "destination": "https://host.loregroupchat.com/s/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/m/:path*",
+      "destination": "https://host.loregroupchat.com/m/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/get-started",
+      "destination": "https://host.loregroupchat.com/get-started",
+      "permanent": false
+    },
+    {
+      "source": "/onboard/:path*",
+      "destination": "https://host.loregroupchat.com/onboard/:path*",
+      "permanent": false
+    }
+  ]
+}
