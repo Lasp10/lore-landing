@@ -28,10 +28,14 @@ body{background:#ffffff;color:#1c1a17;font-family:"Inter Tight",-apple-system,"H
 /* No-JS and reduced motion: everything in normal flow. */
 .stage{display:flex;flex-direction:column;align-items:center;text-align:center;gap:56px;padding:110px 16px 64px}
 .big{font-weight:700;font-size:clamp(33px,7vw,88px);line-height:1.02;letter-spacing:-.045em}
-#l1{max-width:10em}
-.rep{display:flex;flex-direction:column;align-items:center;gap:14px}
-.rep b{font-weight:700;font-size:clamp(30px,5.4vw,68px);line-height:1.04;letter-spacing:-.045em}
-.rep span{font-size:clamp(18px,2.2vw,26px);line-height:1.3;letter-spacing:-.02em;color:#3a3732;max-width:22em}
+.hero{display:flex;flex-direction:column;align-items:center;gap:18px;max-width:640px}
+.hero .kick{font-size:clamp(17px,1.9vw,24px);font-weight:500;letter-spacing:-.02em;color:#6f6b64}
+.hero .big{font-size:clamp(40px,6.2vw,84px)}
+.hero .sub{font-size:clamp(17px,1.6vw,21px);line-height:1.38;letter-spacing:-.015em;color:#3a3732;max-width:26em}
+.btn{display:inline-flex;align-items:center;justify-content:center;margin-top:8px;padding:15px 30px;border-radius:999px;background:#1c1a17;color:#ffffff;font-size:17px;font-weight:600;letter-spacing:-.01em;text-decoration:none;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible{outline:2px solid #1c1a17;outline-offset:3px}
+.hero small{font-size:14px;color:#8a867e}
 .cta{display:flex;flex-direction:column;align-items:center;gap:14px;background:#ffffff;padding:18px 22px;border-radius:28px}
 .cta h3{font-weight:700;font-size:clamp(28px,4vw,48px);letter-spacing:-.04em;line-height:1.05}
 .cta small{font-size:14px;color:#8a867e;letter-spacing:-.005em}
@@ -80,13 +84,12 @@ box-shadow:inset 0 0 0 calc(var(--h)/400) #9a9aa0,inset 0 0 0 calc(var(--h)/95) 
 .cue{display:none}
 
 /* Scroll story */
-.js .track{height:620vh;height:620svh}
+.js .track{height:460vh;height:460svh}
 .js .stage{position:sticky;top:0;height:100vh;height:100svh;padding:0;display:block;overflow:hidden}
 .js .stage>*{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
-.js #l1,.js #l2{width:max-content;max-width:92vw;text-align:center}
-.js #l1{max-width:min(92vw,10em)}
-.js .rep{width:min(92vw,900px)}
-.js .main{--h:min(58svh,520px)}
+.js .hero{width:min(44vw,620px);align-items:flex-start;text-align:left}
+.js .main{--h:min(74svh,600px)}
+@media (max-width:899px){.js .cue{display:none}.js .hero{width:min(92vw,560px);align-items:center;text-align:center;gap:12px}.js .hero .big{font-size:clamp(34px,9vw,60px)}.js .hero small{display:none}}
 .js .net{display:block;width:0;height:0;perspective:1500px;transform-style:preserve-3d}
 .js .ring{position:absolute;left:0;top:0;transform-style:preserve-3d}
 .js .net .ph{position:absolute;left:0;top:0;--h:min(34svh,300px);transform-origin:50% 50%;will-change:transform}
@@ -113,10 +116,14 @@ footer a:hover{color:#1c1a17}
 <a class="signin" href="/me">Sign in</a>
 <main class="track" id="track">
   <section class="stage" id="stage">
-    <h1 class="big" id="l1">It’s not what you know, or who you know.</h1>
-    <h2 class="big" id="l2">It’s who your agent knows.</h2>
-    <p class="rep" id="rep"><b>lore is your representative.</b><span>It can do anything on a computer, and it knows anyone.</span></p>
-    <div class="ph main" id="main" aria-label="Example conversation with lore"><b class="ly" style="--k:.34"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me" data-s="1">know anyone who got into Stanford?</div><div class="bb dots" data-s="2">•••</div><div class="nt" data-s="3"><i></i><i></i>talked to John’s lore and Jack’s lore</div><div class="bb" data-s="4">Jack got in last year. His lore checked, he’s happy to talk.</div><div class="bb" data-s="5">Thursday at 4?</div><div class="bb me" data-s="6">yes!</div><div class="bb" data-s="7">Done. It’s on both your calendars.</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
+    <div class="hero" id="hero">
+      <p class="kick">It’s not what you know, or who you know.</p>
+      <h1 class="big">It’s who your agent knows.</h1>
+      <p class="sub">Text lore who you need. It asks the lores of people you know, and nobody’s introduced until both say yes.</p>
+      <a class="btn" href="sms:+19362833328?&amp;body=hi%20lore">Text lore</a>
+      <small>Invite-only. Text lore to request an invite.</small>
+    </div>
+    <div class="ph main" id="main" aria-label="Example conversation with lore"><b class="ly" style="--k:.34"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me" data-s="1">know anyone who got into Stanford?</div><div class="nt" data-s="3"><i></i><i></i>talked to John’s lore and Jack’s lore</div><div class="bb" data-s="4">Jack got in last year. His lore checked, he’s happy to talk.</div><div class="bb" data-s="5">Thursday at 4?</div><div class="bb me" data-s="6">yes!</div><div class="bb" data-s="7">Done. It’s on both your calendars.</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
     <div class="net" id="net" aria-hidden="true"><div class="ring" id="ring">
       <div class="ph"><b class="ly" style="--k:.34"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me">know anyone who got into Stanford?</div><div class="nt"><i></i><i></i>talked to John’s lore and Jack’s lore</div><div class="bb">Jack got in last year. His lore checked, he’s happy to talk.</div><div class="bb">Thursday at 4?</div><div class="bb me">yes!</div><div class="bb">Done. It’s on both your calendars.</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
       <div class="ph"><b class="ly" style="--k:.34"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me">need a cofounder who codes</div><div class="nt"><i></i><i></i>asked 6 lores in your circle</div><div class="bb">Maya ships iOS apps. Her lore says she’s in.</div><div class="bb">Intro tomorrow?</div><div class="bb me">yes</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
@@ -143,42 +150,35 @@ footer a:hover{color:#1c1a17}
 var root=document.documentElement;
 if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){root.classList.remove('js');return}
 function $(id){return document.getElementById(id)}
-function split(el){var ws=el.textContent.split(' ');el.textContent='';return ws.map(function(w,i){var s=document.createElement('span');s.className='w';s.textContent=w+(i<ws.length-1?' ':'');el.appendChild(s);return s})}
-var A=split($('l1')),B=split($('l2')),l2=$('l2'),rep=$('rep'),main=$('main'),cta=$('cta'),cue=$('cue'),track=$('track'),stage=$('stage');
-var bubbles=[].slice.call(main.querySelectorAll('[data-s]')),ring=$('ring'),rings=[].slice.call(ring.children),N=rings.length,net=$('net');
+var hero=$('hero'),main=$('main'),cta=$('cta'),cue=$('cue'),track=$('track'),stage=$('stage');
+var ring=$('ring'),rings=[].slice.call(ring.children),N=rings.length,net=$('net');
 function c(x){return x<0?0:x>1?1:x}
 function ease(x){return x*x*(3-2*x)}
 function seg(p,s,e){return ease(c((p-s)/(e-s)))}
-function word(el,k,dir){var bl=(1-k)*10;el.style.opacity=k;el.style.transform='translateY('+((1-k)*.35*dir)+'em)';el.style.filter=bl>.05?'blur('+bl+'px)':'none'}
-function place(el,k,dy,sc){el.style.opacity=k;el.style.transform='translate(-50%,-50%) translateY('+dy+'px) scale('+sc+')';el.style.visibility=k<.01?'hidden':'visible'}
-var W=0,H=0,R=0,PW=0,PH=0,P=1500;
-var L={};
-function layout(){W=stage.clientWidth;H=stage.clientHeight;L.h2h=l2.offsetHeight;L.reh=rep.offsetHeight;L.mh=main.offsetHeight;PW=rings[0].offsetWidth;PH=rings[0].offsetHeight;R=PW*(W<700?1.55:2.25)}
+function place(el,k,dx,dy,sc){el.style.opacity=k;el.style.transform='translate(-50%,-50%) translate('+dx+'px,'+dy+'px) scale('+sc+')';el.style.visibility=k<.01?'hidden':'visible'}
+var W=0,H=0,R=0,PW=0,PH=0,P=1500,wide=true,L={};
+function layout(){W=stage.clientWidth;H=stage.clientHeight;wide=W>=900;main.style.removeProperty('--h');L.hh=hero.offsetHeight;
+  if(!wide){var avail=H-78-L.hh-28;main.style.setProperty('--h',Math.max(220,Math.min(avail,460))+'px')}
+  L.mh=main.offsetHeight;PW=rings[0].offsetWidth;PH=rings[0].offsetHeight;R=PW*(W<700?1.55:2.25);
+  if(wide){L.hx=-W*.2;L.hy=0;L.mx=W*.2;L.my=0}
+  else{var top=78,tot=L.hh+20+L.mh,off=Math.max(top,(H-tot)/2+20);L.hx=0;L.hy=off+L.hh/2-H/2;L.mx=0;L.my=off+L.hh+20+L.mh/2-H/2}}
 var ticking=false,sp=-1;
 function draw(){ticking=false;
   var span=track.offsetHeight-innerHeight,tp=span>0?c(-track.getBoundingClientRect().top/span):1;
   if(sp<0||Math.abs(tp-sp)>.25)sp=tp;else sp+=(tp-sp)*.12;
   var p=sp;if(Math.abs(tp-sp)>.0004)req();
-  A.forEach(function(el,i){word(el,1-seg(p,.03+i*.012,.09+i*.012),-1)});
-  B.forEach(function(el,i){word(el,seg(p,.12+i*.015,.18+i*.015),1)});
-  // the punchline stays; lore is your representative arrives under it, then both give way to the phone
-  var gap=Math.min(H*.05,40),up=seg(p,.24,.3),ri=seg(p,.26,.32),out=seg(p,.4,.45);
-  var h2h=L.h2h,reh=L.reh,tot=h2h+gap+reh;
-  l2.style.opacity=1-out;l2.style.transform='translate(-50%,-50%) translateY('+(-up*(tot-h2h)/2-out*30)+'px) scale('+(1-out*.15)+')';
-  place(rep,ri*(1-out),(tot-reh)/2*up+(1-ri)*24-out*30,1-out*.15);
-  var pi=seg(p,.43,.5);
-  var th=[.49,.512,.535,.56,.585,.61,.635];bubbles.forEach(function(b,i){var k=seg(p,th[i],th[i]+.02);if(i===1)k=k*(1-seg(p,th[2]-.005,th[2]+.01));b.style.opacity=k;b.style.transform='translateY('+(1-k)*.6+'em)';b.style.display=(i===1&&k<.01&&p>th[2])?'none':''});
-  // the conversation phone becomes the front phone of a ring that turns as you scroll
-  var front=P/(P-R),toRing=seg(p,.66,.74),ringIn=seg(p,.68,.76);
-  var mainScale=(.82+.18*pi)*(1-toRing)+toRing*(PH*front/L.mh);
-  var lift=seg(p,.88,.95),ringY=-lift*H*(W<700?.13:.1);
-  place(main,pi*(1-seg(p,.738,.744)),(1-pi)*40+toRing*ringY,mainScale);
-  var tilt=1-toRing;main.style.transform+=' perspective(1400px) rotateY('+(-24*tilt*(1-pi*.4))+'deg) rotateX('+(7*tilt)+'deg)';
-  var turn=seg(p,.75,.98)*-360*(N-1)/N;
+  // first screen: the hook, one readable conversation and a button; scrolling hands the phone to the ring
+  var out=seg(p,.05,.16);place(hero,1-out,L.hx,L.hy-out*30,1);hero.style.pointerEvents=out<.5?'auto':'none';
+  var front=P/(P-R),toRing=seg(p,.08,.24),ringIn=seg(p,.14,.26);
+  var lift=seg(p,.82,.92),ringY=-lift*H*(W<700?.13:.1);
+  var mainScale=(1-toRing)+toRing*(PH*front/L.mh);
+  place(main,1-seg(p,.236,.244),L.mx*(1-toRing),L.my*(1-toRing)+toRing*ringY,mainScale);
+  var tilt=1-toRing;main.style.transform+=' perspective(1400px) rotateY('+(wide?-14*tilt:0)+'deg) rotateX('+(wide?4*tilt:0)+'deg)';
+  var turn=seg(p,.26,.93)*-360*(N-1)/N;
   net.style.opacity=ringIn<1?ringIn:'';net.style.transform='translate(-50%,-50%) translateY('+ringY+'px)';
-  rings.forEach(function(r,i){var a=i*360/N+turn,rad=a*Math.PI/180,f=(Math.cos(rad)+1)/2;
-    r.style.transform='translate(-50%,-50%) rotateY('+a+'deg) translateZ('+R+'px)';var k0=i===0?seg(p,.738,.744):1;r.style.opacity=k0<1?k0:''});
-  var ci=seg(p,.88,.95);place(cta,ci,(1-ci)*24+H*(W<700?.27:.3),1);cta.style.pointerEvents=ci>.5?'auto':'none';
+  rings.forEach(function(r,i){var a=i*360/N+turn;
+    r.style.transform='translate(-50%,-50%) rotateY('+a+'deg) translateZ('+R+'px)';var k0=i===0?seg(p,.236,.244):1;r.style.opacity=k0<1?k0:''});
+  var ci=seg(p,.84,.93);place(cta,ci,0,(1-ci)*24+H*(W<700?.27:.3),1);cta.style.pointerEvents=ci>.5?'auto':'none';
   cue.style.opacity=1-seg(p,.01,.05);
 }
 function req(){if(!ticking){ticking=true;requestAnimationFrame(draw)}}
