@@ -3,199 +3,116 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>lore · It's who your agent knows</title>
-<meta name="description" content="lore is an invite-only network where your agent does the networking. Ask for anyone in iMessage. Your lore asks the lores of people you know, and they ask theirs. You only meet people who said yes.">
+<title>lore · a private network on iMessage</title>
+<meta name="description" content="lore is a private network on iMessage. Tell it who you need to meet, and it gets you there through people you already know. Nobody is named until both people say yes.">
 <meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://www.loregroupchat.com/">
 <meta property="og:title" content="lore">
-<meta property="og:description" content="It's not what you know, or who you know. It's who your agent knows.">
+<meta property="og:description" content="A private network on iMessage. Tell it who you need to meet, and it gets you there through people you already know.">
 <meta property="og:url" content="https://www.loregroupchat.com/">
 <link rel="icon" href="/favicon.ico?v=2" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png?v=2">
 <link rel="apple-touch-icon" href="/lore-icon-180.png?v=2">
-<link rel="preload" href="/fonts/inter-tight-latin-v9.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/newsreader-latin-v26.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* Inter Tight (OFL), the latin file Google Fonts serves, self-hosted so first paint waits on no other origin. */
-@font-face{font-family:"Inter Tight";font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/inter-tight-latin-v9.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Inter Tight";font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/inter-tight-latin-v9.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-@font-face{font-family:"Inter Tight";font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/inter-tight-latin-v9.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+/* Newsreader (OFL), the latin files Google Fonts serves, self-hosted. One variable file covers every upright weight. */
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:200 800;font-display:swap;src:url(/fonts/newsreader-latin-v26.woff2) format("woff2")}
+@font-face{font-family:"Newsreader";font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/newsreader-italic-latin-v26.woff2) format("woff2")}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:#ffffff;color:#1c1a17;font-family:"Inter Tight",-apple-system,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
-.mark{position:fixed;top:22px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:9px;font-weight:700;font-size:22px;letter-spacing:-.03em;z-index:5;pointer-events:none}
-.mark picture{display:flex}
-.mark img{width:30px;height:30px;border-radius:8px}
-.signin{position:fixed;top:26px;right:24px;z-index:6;font-size:15px;font-weight:500;letter-spacing:-.01em;color:#1c1a17;text-decoration:none;padding:6px 14px;border:1px solid #e6e3dd;border-radius:999px;background:#ffffff}
-.signin:hover{border-color:#1c1a17}
-.signin:focus-visible,.app:focus-visible{outline:2px solid #1c1a17;outline-offset:3px}
-
-/* No-JS and reduced motion: everything in normal flow. */
-.stage{display:flex;flex-direction:column;align-items:center;text-align:center;gap:56px;padding:110px 16px 64px}
-.big{font-weight:700;font-size:clamp(33px,7vw,88px);line-height:1.02;letter-spacing:-.045em}
-#l1{max-width:10em}
-.rep{display:flex;flex-direction:column;align-items:center;gap:14px}
-.rep b{font-weight:700;font-size:clamp(30px,5.4vw,68px);line-height:1.04;letter-spacing:-.045em}
-.rep span{font-size:clamp(18px,2.2vw,26px);line-height:1.3;letter-spacing:-.02em;color:#3a3732;max-width:22em}
-.cta{display:flex;flex-direction:column;align-items:center;gap:14px;background:#ffffff;padding:18px 22px;border-radius:28px}
-.cta h3{font-weight:700;font-size:clamp(28px,4vw,48px);letter-spacing:-.04em;line-height:1.05}
-.cta small{font-size:14px;color:#8a867e;letter-spacing:-.005em}
-.apps{display:flex;gap:16px;margin-top:6px}
-.app{display:grid;place-items:center;width:64px;height:64px;border-radius:16px;line-height:0;transition:transform .15s ease}
-.app:hover{transform:translateY(-2px)}
-.app.msg svg{width:64px;height:64px}
-
-/* Phones: one component, sized by --h; everything inside scales in em. */
-.ph{--h:520px;--t:calc(var(--h)/42);position:relative;transform-style:preserve-3d;height:var(--h);width:calc(var(--h)*.487);font-size:calc(var(--h)/30);padding:calc(var(--h)/52);border-radius:calc(var(--h)/9.6);flex:none;text-align:left;outline:1px solid transparent;
-background:linear-gradient(90deg,#8f8f95 0%,#ececef 2.2%,#c3c3c8 5%,#dcdce0 18%,#e6e6e9 50%,#d6d6da 82%,#c0c0c5 95%,#f1f1f3 97.8%,#8f8f95 100%);
-box-shadow:inset 0 0 0 1px rgba(0,0,0,.28),inset 0 1px 1px rgba(255,255,255,.9),inset 0 -1px 1px rgba(0,0,0,.12),0 1px 1px rgba(20,18,15,.08),0 1.1em 1.8em -.8em rgba(20,18,15,.22),0 3em 4.6em -2em rgba(20,18,15,.32)}
-.ph::before,.ph::after{content:"";position:absolute;width:calc(var(--h)/170);border-radius:calc(var(--h)/400);background:linear-gradient(90deg,#9c9ca2,#ededf0 55%,#b7b7bc)}
-.ph::before{left:calc(var(--h)/-200);top:20%;height:7%;box-shadow:0 calc(var(--h)*.1) 0 #b9b9bf,0 calc(var(--h)*.19) 0 #b9b9bf}
-.ph::after{right:calc(var(--h)/-200);top:27%;height:11%}
-.scr{position:relative;transform:translateZ(.5px);height:100%;border-radius:calc(var(--h)/11.4);background:#ffffff;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 0 calc(var(--h)/105) #060607,0 0 0 calc(var(--h)/105 + 1px) rgba(0,0,0,.35);outline:1px solid transparent}
-.scr::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(122deg,rgba(255,255,255,.22) 0%,rgba(255,255,255,0) 26%,rgba(255,255,255,0) 78%,rgba(255,255,255,.08) 100%)}
-.isl{position:absolute;left:50%;top:.55em;transform:translateX(-50%);width:32%;height:1.05em;border-radius:1em;background:#0b0b0c;z-index:2}
-.sb{display:flex;justify-content:space-between;align-items:center;padding:.75em 1.55em 0;font-size:.62em;font-weight:600;letter-spacing:-.01em;color:#111;height:2.2em}
-.sb .ic{display:flex;gap:.35em;align-items:center}
-.sig{display:flex;gap:.12em;align-items:flex-end;height:.75em}.sig i{width:.18em;background:#111;border-radius:.05em}
-.sig i:nth-child(1){height:35%}.sig i:nth-child(2){height:55%}.sig i:nth-child(3){height:78%}.sig i:nth-child(4){height:100%}
-.bat{width:1.55em;height:.75em;border:.08em solid #8e8e93;border-radius:.22em;padding:.07em;position:relative}.bat::after{content:"";position:absolute;right:-.2em;top:30%;height:40%;width:.1em;background:#8e8e93;border-radius:0 .1em .1em 0}.bat i{display:block;height:100%;width:78%;background:#111;border-radius:.1em}
-.ph .top{display:flex;flex-direction:column;align-items:center;gap:.2em;padding:.35em .8em .55em;border-bottom:1px solid #efede8;font-size:.72em;font-weight:500;color:#1c1a17;position:relative;background:rgba(249,249,249,.9)}
-.ph .top i{width:2.6em;height:2.6em;border-radius:50%;background:#f1f0ee url(/lore-logo-128.png) center/cover;background-image:image-set(url(/lore-logo-128.webp) type("image/webp"),url(/lore-logo-128.png) type("image/png"));box-shadow:0 .1em .3em rgba(0,0,0,.15)}
-.ph .top b{font-weight:600}
-.ph .top s{position:absolute;left:.9em;top:1.25em;width:.6em;height:.6em;border-left:.16em solid #0a84ff;border-bottom:.16em solid #0a84ff;transform:rotate(45deg)}
-.ph .th{flex:1;display:flex;flex-direction:column;justify-content:flex-start;gap:.38em;padding:.85em .75em}
-.ph .th .tm{align-self:center;font-size:.62em;color:#8e8e93;margin-bottom:.2em}
-.bb{align-self:flex-start;max-width:80%;padding:.48em .78em;border-radius:1.05em;background:#e9e9eb;color:#111;line-height:1.28;letter-spacing:-.01em}
-.bb.me{align-self:flex-end;background:linear-gradient(180deg,#2a92ff,#0a7cff);color:#ffffff}
-.ph .th .nt{align-self:center;display:flex;align-items:center;gap:.35em;font-size:.7em;font-weight:500;color:#6e6e73;margin:.1em 0;text-align:center}
-.ph .th .nt i{flex:none;width:1.35em;height:1.35em;border-radius:50%;border:.12em solid #fff;background:#1c1a17 url(/lore-logo-128.png) center/cover;background-image:image-set(url(/lore-logo-128.webp) type("image/webp"),url(/lore-logo-128.png) type("image/png"))}
-.ph .th .nt i+i{margin-left:-.75em;margin-right:.1em}
-.bb.dots{letter-spacing:.15em;color:#8e8e93}
-.ph .in{display:flex;align-items:center;gap:.45em;padding:.4em .7em 1.35em}
-.ph .in u{flex:none;width:1.6em;height:1.6em;border-radius:50%;background:#e9e9eb;display:grid;place-items:center;text-decoration:none;color:#8e8e93;font-size:.9em;line-height:1}
-.ph .in span{flex:1;height:1.75em;border:1px solid #d9d9de;border-radius:1em;display:flex;align-items:center;padding:0 .75em;font-size:.72em;color:#a1a1a6}
-.ph .ly{position:absolute;inset:0;border-radius:inherit;transform:translateZ(calc(var(--t)*var(--k)*-1));background:linear-gradient(90deg,#9a9aa0,#d7d7db 6%,#cfcfd4 50%,#d2d2d6 94%,#9a9aa0);outline:1px solid transparent;pointer-events:none}
-.ph .bk{position:absolute;inset:0;border-radius:inherit;transform:translateZ(calc(var(--t)*-1.02)) rotateY(180deg);background:linear-gradient(150deg,#f4f4f6,#e3e3e7 45%,#d2d2d7);box-shadow:inset 0 0 0 calc(var(--h)/300) #b9b9bf;pointer-events:none}
-.ph .bk::before{content:"";position:absolute;top:3.5%;left:6%;width:38%;aspect-ratio:1;border-radius:22%;background:linear-gradient(145deg,#ececef,#cfcfd4);box-shadow:inset 0 0 0 1px #b4b4ba,0 1px 3px rgba(0,0,0,.12)}
-.ph .bk::after{content:"";position:absolute;top:calc(3.5% + 4%);left:calc(6% + 5%);width:13%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 40%,#5b6575,#141418 60%);box-shadow:calc(var(--h)*.075) 0 0 #141418,0 calc(var(--h)*.075) 0 #141418}
-.ph .hb{position:absolute;left:50%;bottom:.42em;transform:translateX(-50%);width:34%;height:.22em;border-radius:1em;background:#111}
-.net{display:flex;flex-wrap:wrap;justify-content:center;gap:20px}
-.net .ph{--h:240px}
-.cue{display:none}
-
-/* Scroll story */
-.js .track{height:620vh;height:620svh}
-.js .stage{position:sticky;top:0;height:100vh;height:100svh;padding:0;display:block;overflow:hidden}
-.js .stage>*{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
-.js #l1,.js #l2{width:max-content;max-width:92vw;text-align:center}
-.js #l1{max-width:min(92vw,10em)}
-.js .rep{width:min(92vw,900px)}
-.js .main{--h:min(58svh,520px)}
-.js .net{display:block;width:0;height:0;perspective:1500px;transform-style:preserve-3d}
-.js .ring{position:absolute;left:0;top:0;transform-style:preserve-3d}
-.js .net .ph{position:absolute;left:0;top:0;--h:min(44svh,390px);transform-origin:50% 50%;will-change:transform}
-.js .main{will-change:transform,opacity}
-@media (max-width:699px){.js .net .ph{--h:min(39svh,300px)}}
-.js .cta{z-index:2;width:max-content;max-width:92vw}
-.js .cue{display:block;left:50%;top:auto;bottom:28px;transform:translateX(-50%);width:22px;height:34px;border:1.5px solid #c9c5bd;border-radius:12px}
-.cue::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:#a8a49c;animation:cue 1.8s ease-in-out infinite}
-@keyframes cue{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
-.w{display:inline-block;white-space:pre}
-@media (max-width:480px){.signin{top:22px;right:16px;font-size:14px;padding:5px 12px}}
-
-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:20px 24px;font-size:13.5px;color:#8a867e}
-footer nav{display:flex;gap:14px}
-footer a{color:#8a867e;text-decoration:none}
-footer a:hover{color:#1c1a17}
-@media (max-width:480px){footer{justify-content:center}}
+:root{--ink:#141414;--mid:#5c5c5c;--soft:#8c8c8c;--rule:#e2e2e2;--paper:#ffffff}
+body{background:var(--paper);color:var(--ink);font-family:"Newsreader","Times New Roman",Times,serif;font-optical-sizing:auto;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit}
+.wrap{max-width:720px;margin:0 auto;padding:40px 24px 0}
+header{display:flex;align-items:center;justify-content:space-between}
+.mark{display:flex;align-items:center;gap:10px;text-decoration:none;font-size:26px;letter-spacing:-.01em}
+.mark img{width:30px;height:30px;border-radius:50%;filter:grayscale(1)}
+.top-link{font-size:18px;text-decoration:none;color:var(--mid)}
+.top-link:hover{color:var(--ink)}
+figure{margin:56px -24px 0}
+figure img{display:block;width:100%;height:auto;filter:grayscale(1) contrast(1.04)}
+figcaption{padding:12px 24px 0;font-style:italic;font-size:16px;line-height:1.4;color:var(--soft)}
+h1{font-weight:400;font-size:clamp(30px,4.6vw,42px);line-height:1.18;letter-spacing:-.012em;margin:64px 0 0}
+.label{margin:72px 0 0;font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.row{padding:26px 0;border-bottom:1px solid var(--rule)}
+.label+.row{padding-top:18px}
+.row h2{font-weight:400;font-size:clamp(22px,2.7vw,26px);line-height:1.25;letter-spacing:-.005em}
+.row p{margin-top:12px;font-size:clamp(18px,2.1vw,21px);line-height:1.5;color:var(--mid)}
+.thread{display:flex;flex-direction:column;gap:6px;margin-top:20px;max-width:430px;font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.3}
+.thread span{max-width:82%;padding:8px 13px;border-radius:18px;background:#ececec;color:#141414;align-self:flex-start}
+.thread .me{align-self:flex-end;background:#2b2b2b;color:#fff}
+.thread .note{align-self:center;background:none;padding:2px 0;font-size:13px;color:var(--soft)}
+.go{margin:56px 0 0;display:flex;flex-direction:column;gap:14px;font-size:24px}
+.go a{text-decoration:none;align-self:flex-start;border-bottom:1px solid var(--ink);line-height:1.2}
+.go a::after{content:" ›";color:var(--soft)}
+.go a:hover{color:var(--mid)}
+.go p{font-size:18px;color:var(--mid);margin-bottom:6px}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+footer{max-width:720px;margin:96px auto 0;padding:24px 24px 40px;display:flex;flex-wrap:wrap;gap:8px 22px;font-size:15px;color:var(--soft)}
+footer nav{display:flex;gap:22px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--ink)}
+@media (max-width:600px){.wrap{padding-top:28px}figure{margin-top:36px}h1{margin-top:44px}.label{margin-top:56px}.go{font-size:22px}}
 </style>
-<meta property="og:image" content="https://www.loregroupchat.com/brand/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://www.loregroupchat.com/brand/og.png">
 </head>
 <body>
-<script>document.documentElement.classList.add('js')</script>
-<div class="mark"><picture><source srcset="/lore-logo-128.webp" type="image/webp"><img src="/lore-logo-128.png" width="30" height="30" alt=""></picture>lore</div>
-<a class="signin" href="/me">Sign in</a>
-<main class="track" id="track">
-  <section class="stage" id="stage">
-    <h1 class="big" id="l1">It’s not what you know, or who you know.</h1>
-    <h2 class="big" id="l2">It’s who your agent knows.</h2>
-    <p class="rep" id="rep"><b>lore is your representative.</b><span>Ask for anyone. Your lore asks the lores of people you know, and they ask theirs.</span></p>
-    <div class="ph main" id="main" aria-label="Example conversation with lore"><b class="ly" style="--k:.17"></b><b class="ly" style="--k:.33"></b><b class="ly" style="--k:.5"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:.83"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me" data-s="1">know anyone who got into Stanford?</div><div class="bb dots" data-s="2">•••</div><div class="nt" data-s="3"><i></i><i></i>talked to John’s lore and Jack’s lore</div><div class="bb" data-s="4">Jack got in last year. His lore checked, he’s happy to talk.</div><div class="bb" data-s="5">Thursday at 4?</div><div class="bb me" data-s="6">yes!</div><div class="bb" data-s="7">Done. It’s on both your calendars.</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
-    <div class="net" id="net" aria-hidden="true"><div class="ring" id="ring">
-      <div class="ph"><b class="ly" style="--k:.17"></b><b class="ly" style="--k:.33"></b><b class="ly" style="--k:.5"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:.83"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me">know anyone who got into Stanford?</div><div class="nt"><i></i><i></i>talked to John’s lore and Jack’s lore</div><div class="bb">Jack got in last year. His lore checked, he’s happy to talk.</div><div class="bb">Thursday at 4?</div><div class="bb me">yes!</div><div class="bb">Done. It’s on both your calendars.</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
-      <div class="ph"><b class="ly" style="--k:.17"></b><b class="ly" style="--k:.33"></b><b class="ly" style="--k:.5"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:.83"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me">need a cofounder who codes</div><div class="nt"><i></i><i></i>asked 6 lores in your circle</div><div class="bb">Maya’s app has 40k users. Her lore says she’s in.</div><div class="bb">Intro tomorrow?</div><div class="bb me">yes</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
-      <div class="ph"><b class="ly" style="--k:.17"></b><b class="ly" style="--k:.33"></b><b class="ly" style="--k:.5"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:.83"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me">know an investor who backs AI?</div><div class="nt"><i></i><i></i>Noah’s lore checked with him</div><div class="bb">His old boss writes first checks in AI. She said yes.</div><div class="bb">Call Friday at 2?</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
-      <div class="ph"><b class="ly" style="--k:.17"></b><b class="ly" style="--k:.33"></b><b class="ly" style="--k:.5"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:.83"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me">anyone in a robotics lab at MIT?</div><div class="nt"><i></i><i></i>Ava’s lore asked her brother</div><div class="bb">He’s a PhD there and said yes to coffee.</div><div class="bb">Next Tuesday?</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
-      <div class="ph"><b class="ly" style="--k:.17"></b><b class="ly" style="--k:.33"></b><b class="ly" style="--k:.5"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:.83"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me">anyone hiring interns at Google?</div><div class="nt"><i></i><i></i>Leo’s lore asked his sister</div><div class="bb">She’s on the team and said yes to a call.</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
-      <div class="ph"><b class="ly" style="--k:.17"></b><b class="ly" style="--k:.33"></b><b class="ly" style="--k:.5"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:.83"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me">who’s been through YC?</div><div class="nt"><i></i><i></i>asked 9 lores in your circle</div><div class="bb">Priya’s cousin did W24. She’ll read your application this week.</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
-      <div class="ph"><b class="ly" style="--k:.17"></b><b class="ly" style="--k:.33"></b><b class="ly" style="--k:.5"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:.83"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me">know anyone at Jane Street?</div><div class="nt"><i></i><i></i>Ben’s lore asked his roommate</div><div class="bb">He interned there. Mock interview Sunday?</div><div class="bb me">yes</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
-      <div class="ph"><b class="ly" style="--k:.17"></b><b class="ly" style="--k:.33"></b><b class="ly" style="--k:.5"></b><b class="ly" style="--k:.67"></b><b class="ly" style="--k:.83"></b><b class="ly" style="--k:1"></b><b class="bk"></b><div class="scr"><div class="isl"></div><div class="sb"><span>9:41</span><span class="ic"><span class="sig"><i></i><i></i><i></i><i></i></span><span class="bat"><i></i></span></span></div><div class="top"><s></s><i></i><b>lore</b></div><div class="th"><div class="tm">Today 9:41 AM</div><div class="bb me">want to talk to a Thiel Fellow</div><div class="nt"><i></i><i></i>found one two hops away</div><div class="bb">Sam’s lore asked him. He said yes. Thursday at 6?</div></div><div class="in"><u>+</u><span>iMessage</span></div><div class="hb"></div></div></div>
-    </div></div>
-    <div class="cta" id="cta">
-      <h3>lore is invite-only.</h3>
-      <small>Every member was invited by another member.<br>Ask someone on lore to bring you in.</small>
+<main class="wrap">
+  <header>
+    <a class="mark" href="/" aria-label="lore home"><picture><source type="image/webp" srcset="/lore-logo-128.webp"><img src="/lore-logo-128.png" alt="" width="30" height="30"></picture>lore</a>
+    <a class="top-link" href="/me">Sign in</a>
+  </header>
+
+  <figure>
+    <picture><source type="image/webp" srcset="/img/solvay-1927-sm.webp 1000w, /img/solvay-1927.webp 2000w" sizes="(max-width:768px) 100vw, 768px"><img src="/img/solvay-1927.jpg" srcset="/img/solvay-1927-sm.jpg 1000w, /img/solvay-1927.jpg 2000w" sizes="(max-width:768px) 100vw, 768px" width="2000" height="1447" alt="The 1927 Solvay Conference in Brussels: twenty-nine physicists posed in three rows."></picture>
+    <figcaption>Brussels, 1927. Twenty-nine people in one room. Seventeen of them won a Nobel Prize.</figcaption>
+  </figure>
+
+  <h1>lore is a private network on iMessage. Tell it who you need to meet, and it gets you there through people you already know.</h1>
+
+  <p class="label">The problem</p>
+  <div class="row">
+    <h2>Cold outreach doesn’t work.</h2>
+    <p>You message fifty strangers and two write back. The people who could help you are buried under spam, and most of your connections are people you have never spoken to.</p>
+  </div>
+  <div class="row">
+    <h2>The right introduction usually comes from someone you know.</h2>
+    <p>But you can’t see who your friends know, and nobody has time to ask around for you.</p>
+  </div>
+
+  <p class="label">How lore works</p>
+  <div class="row">
+    <h2>Text lore who you need.</h2>
+    <p>A cofounder who codes. Someone at Jane Street. An investor who backs AI. A student who got into Stanford last year.</p>
+    <div class="thread" aria-label="Example conversation with lore">
+      <span class="me">know anyone who got into Stanford?</span>
+      <span class="note">asked John’s lore and Jack’s lore</span>
+      <span>Jack got in last year and said yes to a call. Thursday at 4?</span>
+      <span class="me">yes</span>
+      <span>Done. It’s on both your calendars.</span>
     </div>
-    <span class="cue" id="cue" aria-hidden="true"></span>
-  </section>
+  </div>
+  <div class="row">
+    <h2>Your lore asks theirs.</h2>
+    <p>Every member has a lore. It asks the lores of the people you know, and they ask the people they know, until it finds the right person.</p>
+  </div>
+  <div class="row">
+    <h2>Nobody is named until both say yes.</h2>
+    <p>No cold messages and no ignored requests. Every introduction is one both people wanted.</p>
+  </div>
+  <div class="row">
+    <h2>Helping is how you get helped.</h2>
+    <p>Members who say yes to other people’s asks get their own answered first.</p>
+  </div>
+  <div class="row">
+    <h2>By invitation.</h2>
+    <p>Every member was invited by another member, so everyone you meet is someone’s word.</p>
+  </div>
+
+  <div class="go">
+    <p>Have an invite? Open your link to join.</p>
+    <a href="/waitlist/">Request an invite</a>
+    <a href="/me">Sign in</a>
+  </div>
 </main>
 <footer><span>© 2026 lore · Sacramento, CA</span><nav><a href="/docs/how-lore-works/">How it works</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a></nav></footer>
-<script>
-(function(){
-var root=document.documentElement;
-if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){root.classList.remove('js');return}
-function $(id){return document.getElementById(id)}
-function split(el){var ws=el.textContent.split(' ');el.textContent='';return ws.map(function(w,i){var s=document.createElement('span');s.className='w';s.textContent=w+(i<ws.length-1?' ':'');el.appendChild(s);return s})}
-var A=split($('l1')),B=split($('l2')),l2=$('l2'),rep=$('rep'),main=$('main'),cta=$('cta'),cue=$('cue'),track=$('track'),stage=$('stage');
-var bubbles=[].slice.call(main.querySelectorAll('[data-s]')),ring=$('ring'),rings=[].slice.call(ring.children),N=rings.length,net=$('net');
-function c(x){return x<0?0:x>1?1:x}
-function ease(x){return x*x*(3-2*x)}
-function seg(p,s,e){return ease(c((p-s)/(e-s)))}
-// every style write goes through css(): a value that did not change never touches the style system
-function css(el,k,v){var m=el._css||(el._css={});v=''+v;if(m[k]!==v){m[k]=v;el.style[k]=v}}
-// while a word, line or the CTA is mid-move it gets its own layer, so the compositor moves and fades it without repainting the stage;
-// at rest it goes back to being painted in place, pixel for pixel as before
-function live(el,on){}  // no extra layers: a layered word rasterizes soft mid-move (checked 2026-10-29)
-function mid(x){return x>0&&x<1}
-function word(el,k,dir,on){var bl=(1-k)*10;live(el,on);css(el,'opacity',k);css(el,'transform','translateY('+((1-k)*.35*dir)+'em)');css(el,'filter',bl>.05?'blur('+bl+'px)':'none')}
-function place(el,k,dy,sc,extra){css(el,'opacity',k);css(el,'transform','translate(-50%,-50%) translateY('+dy+'px) scale('+sc+')'+(extra||''));css(el,'visibility',k<.01?'hidden':'visible')}
-var W=0,H=0,R=0,PW=0,PH=0,P=1500,RS=.77;  // ring phones are laid out 1.3x and drawn at .77, so their text stays sharp at the front of the ring
-var L={};
-function layout(){W=stage.clientWidth;H=stage.clientHeight;L.h2h=l2.offsetHeight;L.reh=rep.offsetHeight;L.mh=main.offsetHeight;PW=rings[0].offsetWidth*RS;PH=rings[0].offsetHeight*RS;R=PW*(W<700?1.55:2.25);
-  // each phone keeps a fixed seat on the ring; scrolling turns the ring itself (one transform a frame instead of N)
-  rings.forEach(function(r,i){css(r,'transform','translate(-50%,-50%) rotateY('+(i*360/N)+'deg) translateZ('+R+'px) scale('+RS+')')})}
-var ticking=false,sp=-1;
-function draw(){ticking=false;
-  var span=track.offsetHeight-innerHeight,tp=span>0?c(-track.getBoundingClientRect().top/span):1;
-  if(sp<0||Math.abs(tp-sp)>.25)sp=tp;else sp+=(tp-sp)*.12;
-  var p=sp;if(Math.abs(tp-sp)>.0004)req();
-  // a line's words get their layers together for the whole time any of them moves (one layer change per line, not per word)
-  var aOn=p>.03&&p<.09+(A.length-1)*.012,bOn=p>.12&&p<.18+(B.length-1)*.015;
-  A.forEach(function(el,i){word(el,1-seg(p,.03+i*.012,.09+i*.012),-1,aOn)});
-  B.forEach(function(el,i){word(el,seg(p,.12+i*.015,.18+i*.015),1,bOn)});
-  // the punchline stays; lore is your representative arrives under it, then both give way to the phone
-  var gap=Math.min(H*.05,40),up=seg(p,.24,.3),ri=seg(p,.26,.32),out=seg(p,.4,.45);
-  var h2h=L.h2h,reh=L.reh,tot=h2h+gap+reh;
-  live(l2,mid(up)||mid(out));live(rep,mid(up)||mid(ri)||mid(out));
-  css(l2,'opacity',1-out);css(l2,'transform','translate(-50%,-50%) translateY('+(-up*(tot-h2h)/2-out*30)+'px) scale('+(1-out*.15)+')');
-  place(rep,ri*(1-out),(tot-reh)/2*up+(1-ri)*24-out*30,1-out*.15);
-  var pi=seg(p,.43,.5);
-  var th=[.49,.512,.535,.56,.585,.61,.635];bubbles.forEach(function(b,i){var k=seg(p,th[i],th[i]+.02);if(i===1)k=k*(1-seg(p,th[2]-.005,th[2]+.01));live(b,mid(k));css(b,'opacity',k);css(b,'transform','translateY('+(1-k)*.6+'em)');css(b,'display',(i===1&&k<.01&&p>th[2])?'none':'')});
-  // the conversation phone becomes the front phone of a ring that turns as you scroll
-  var front=P/(P-R),toRing=seg(p,.66,.74),ringIn=seg(p,.68,.76);
-  var mainScale=(.82+.18*pi)*(1-toRing)+toRing*(PH*front/L.mh);
-  var lift=seg(p,.88,.95),ringY=-lift*H*(W<700?.13:.1);
-  var tilt=1-toRing;
-  place(main,pi*(1-seg(p,.738,.744)),(1-pi)*40+toRing*ringY,mainScale,' perspective(1400px) rotateY('+(-24*tilt*(1-pi*.4))+'deg) rotateX('+(7*tilt)+'deg)');
-  var turn=seg(p,.75,.98)*-360*(N-1)/N;
-  css(net,'opacity',ringIn<1?ringIn:'');css(net,'transform','translate(-50%,-50%) translateY('+ringY+'px)');
-  css(ring,'transform','rotateY('+turn+'deg)');var k0=seg(p,.738,.744);css(rings[0],'opacity',k0<1?k0:'');
-  var ci=seg(p,.88,.95);live(cta,mid(ci));place(cta,ci,(1-ci)*24+H*(W<700?.27:.3),1);css(cta,'pointerEvents',ci>.5?'auto':'none');
-  css(cue,'opacity',1-seg(p,.01,.05));
-}
-function req(){if(!ticking){ticking=true;requestAnimationFrame(draw)}}
-addEventListener('scroll',req,{passive:true});addEventListener('resize',function(){layout();req()});layout();draw();
-// heights above were measured before the web font arrived; measure again once it has
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){layout();req()});
-})();
-</script>
 </body>
 </html>
