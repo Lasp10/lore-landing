@@ -1,18 +1,18 @@
-:root{--paper:#f3f2eb;--ink:#242820;--muted:#62675e;--link:#285847;--line:#d3d6ce}
+:root{--paper:#ffffff;--ink:#161616;--muted:#161616;--link:#161616;--line:transparent}
 *{box-sizing:border-box}
 html{background:var(--paper)}
-body{margin:0;color:var(--ink);background:var(--paper);font:18px/1.7 Georgia,Charter,"Times New Roman",serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:700px;margin:0 auto;padding:44px 24px 72px}
-.brand{display:inline-flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;font:700 26px/1 Georgia,serif;letter-spacing:-.03em;margin-bottom:56px}
-.brand img{width:22px;height:22px}
-h1{margin:0 0 6px;font-size:clamp(32px,6vw,44px);line-height:1.1;letter-spacing:-.035em;font-weight:500}
-.meta{margin:0 0 36px;font:14px/1.4 -apple-system,"Segoe UI",Arial,sans-serif;color:var(--muted)}
-.lead{font-size:21px;line-height:1.55;margin:0 0 36px;color:#33382f}
-h2{margin:40px 0 8px;font-size:22px;line-height:1.25;letter-spacing:-.02em;font-weight:600}
+body{margin:0;color:var(--ink);background:var(--paper);font:19px/1.6 "Newsreader","Times New Roman",Times,serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:44px 24px 72px}
+.brand{display:inline-flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;font:500 28px/1 "Newsreader",serif;margin-bottom:56px}
+.brand img{display:none}
+h1{margin:0 0 6px;font-size:clamp(30px,5vw,40px);line-height:1.15;font-weight:400}
+.meta{margin:0 0 36px;font-size:16px}
+.lead{font-size:21px;line-height:1.5;margin:0 0 36px}
+h2{margin:40px 0 8px;font-size:23px;line-height:1.25;font-weight:500}
 p{margin:0 0 16px}
 ul{margin:0 0 16px;padding-left:22px}li{margin:6px 0}
 a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}
-footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font:14px/1.5 -apple-system,"Segoe UI",Arial,sans-serif;color:var(--muted);display:flex;gap:18px;flex-wrap:wrap}
-footer a{color:var(--muted)}
-.cta{display:inline-block;margin-top:8px;padding:14px 22px;background:var(--ink);color:#f7f5ef;text-decoration:none;border-radius:10px;font:600 15px/1 -apple-system,"Segoe UI",Arial,sans-serif}
-@media(max-width:600px){body{font-size:17px}.wrap{padding-top:28px}.brand{margin-bottom:36px}}
+footer{margin-top:64px;padding-top:20px;font-size:15px;display:flex;gap:22px;flex-wrap:wrap}
+footer a{color:var(--ink);text-decoration:none}
+.cta{display:inline-block;margin-top:8px;font-size:19px;color:var(--ink);text-decoration:underline}
+@media(max-width:600px){body{font-size:18px}.wrap{padding-top:28px}.brand{margin-bottom:36px}}

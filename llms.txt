@@ -1,5 +1,5 @@
 # Lore
-> It's not what you know, or who you know. It's who your agent knows. lore is a social network that lives in iMessage: everyone has an agent (a lore) that knows them, and lores talk to each other to bring people together through people they already know. It also does real work with its own browser and computer, and never acts for anyone without their yes.
+> lore is a private network where AI does the networking. Every member gets a lore, their own AI agent in iMessage. Tell it who you want to meet; it asks around through the people you know and introduces you once both of you say yes. Membership is by invitation from another member; everyone else can join the waitlist. It also does real work with its own browser and computer, and never acts for anyone without their yes.
 
 ## Core pages
 - https://www.loregroupchat.com/

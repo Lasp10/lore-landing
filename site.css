@@ -1,17 +1,26 @@
-/* The homepage look (2026-10-25) for every other page: white, Inter Tight, bold tight headings, ink pill buttons,
-   hairline fields. Loaded last on each page so it wins over the page's own older styles. */
-html,body{background:#ffffff!important;color:#1c1a17!important}
+/* The homepage look (2026-10-30) for every other page: white, Newsreader serif, one ink color, plain underlined links,
+   no pills, no greys. Loaded last on each page so it wins over the page's own older styles. */
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:200 800;font-display:swap;src:url(/fonts/newsreader-latin-v26.woff2) format("woff2")}
+html,body{background:#ffffff!important;color:#161616!important}
 body::before,body::after{display:none!important}
-body,body :not(code):not(pre):not(kbd):not(samp){font-family:"Inter Tight",-apple-system,"Helvetica Neue",Arial,sans-serif!important}
-body{-webkit-font-smoothing:antialiased}
-h1,h2,h3{font-weight:700!important;letter-spacing:-.035em!important;color:#1c1a17!important}
-h1{letter-spacing:-.045em!important;line-height:1.05!important}
-p,li,label,small,span,dd,dt,td,th{color:inherit}
-a{color:#1c1a17}
-button:not(.copy),input[type=submit],.btn,.cta,a.button{background:#1c1a17!important;color:#ffffff!important;border:1px solid #1c1a17!important;border-radius:999px!important;box-shadow:none!important;font-weight:600!important}
-button:not(.copy):hover,input[type=submit]:hover,.btn:hover,.cta:hover{background:#000000!important}
-input:not([type=submit]):not([type=checkbox]):not([type=radio]),textarea,select{background:#ffffff!important;color:#1c1a17!important;border:1px solid #dedad2!important;box-shadow:none!important}
-input:not([type=submit]):not([type=checkbox]):not([type=radio]),select{border-radius:999px!important;padding-left:18px!important;padding-right:18px!important}
-textarea{border-radius:18px!important;padding:12px 16px!important}
-input:focus,textarea:focus,select:focus{outline:none!important;border-color:#1c1a17!important}
-::placeholder{color:#a8a49c!important}
+body,body :not(code):not(pre):not(kbd):not(samp){font-family:"Newsreader","Times New Roman",Times,serif!important;font-optical-sizing:auto}
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body *{color:#161616!important;text-shadow:none!important}
+h1,h2,h3,h4{font-weight:400!important;letter-spacing:-.01em!important;line-height:1.2!important}
+b,strong{font-weight:600!important}
+a{color:#161616!important;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+a:hover{opacity:.65}
+/* the old face mark next to the name: the name alone is the wordmark now */
+.mark img,.brand img,.ttl .mk,.mark picture{display:none!important}
+.mark,.brand,.ttl b{font-weight:500!important;letter-spacing:-.01em!important;text-decoration:none!important}
+button:not(.copy),input[type=submit],.btn,.cta,a.button{background:transparent!important;color:#161616!important;border:0!important;border-radius:0!important;box-shadow:none!important;font-weight:400!important;font-size:19px!important;padding:6px 0!important;text-decoration:underline!important;text-decoration-thickness:1px!important;text-underline-offset:5px!important;cursor:pointer;width:auto!important}
+button:not(.copy):hover,input[type=submit]:hover,.btn:hover,.cta:hover{background:transparent!important;opacity:.65}
+input:not([type=submit]):not([type=checkbox]):not([type=radio]),textarea,select{background:#ffffff!important;color:#161616!important;border:1px solid #161616!important;border-radius:0!important;box-shadow:none!important;font-size:18px!important}
+input:not([type=submit]):not([type=checkbox]):not([type=radio]),select{padding-left:14px!important;padding-right:14px!important}
+textarea{padding:12px 14px!important}
+input:focus,textarea:focus,select:focus{outline:2px solid #161616!important;outline-offset:1px}
+::placeholder{color:#161616!important;opacity:.4!important}
+hr,footer{border-color:transparent!important}
+/* the serif's lowercase runs smaller than the old sans: keep every page's sizes reading the same */
+body *{font-size-adjust:.5}
+body *:not(input):not(textarea):not(select){border-color:transparent!important}
