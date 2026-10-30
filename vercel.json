@@ -39,6 +39,10 @@
     {
       "source": "/docs/:path*",
       "destination": "https://host.loregroupchat.com/docs/:path*"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "https://host.loregroupchat.com/admin/:path*"
     }
   ],
   "redirects": [
