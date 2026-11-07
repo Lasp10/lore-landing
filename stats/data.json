@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-07T11:13:00-08:00",
-  "as_of_label": "Nov 7, 2026, 11:13 am PT",
-  "window24_start": "2026-11-06T11:13:00-08:00",
-  "window168_start": "2026-10-31T12:13:00-07:00",
+  "as_of": "2026-11-07T13:01:56-08:00",
+  "as_of_label": "Nov 7, 2026, 1:01 pm PT",
+  "window24_start": "2026-11-06T13:01:56-08:00",
+  "window168_start": "2026-10-31T13:01:56-07:00",
   "registered": {
-    "total_including_founder": 102,
-    "non_founder": 101
+    "total_including_founder": 103,
+    "non_founder": 102
   },
   "new_registrations_per_day_non_founder": [
     {
@@ -35,7 +35,7 @@
     },
     {
       "day": "2026-11-07",
-      "count": 1,
+      "count": 2,
       "partial": true
     }
   ],
@@ -45,22 +45,27 @@
   },
   "completed_day_growth": {
     "day": "2026-11-06",
-    "prior_end_base": 79,
-    "current_end_base": 101,
+    "prior_end_base": 78,
+    "current_end_base": 100,
     "new": 22,
-    "pct": 27.8,
+    "pct": 28.2,
     "pct_label": "28%"
   },
-  "human_dm_senders_24h": 43,
-  "human_dm_senders_168h": 95,
-  "human_dm_messages_168h": 1175,
-  "human_dm_messages_all_recorded": 1425,
+  "human_dm_senders_24h": 44,
+  "human_dm_senders_168h": 94,
+  "human_dm_messages_168h": 1144,
+  "human_dm_messages_all_recorded": 1348,
   "all_recorded_since": "2026-10-28",
   "daily_human_dm": [
     {
+      "day": "2026-10-31",
+      "unique_senders": 3,
+      "messages": 51
+    },
+    {
       "day": "2026-11-01",
-      "unique_senders": 20,
-      "messages": 109
+      "unique_senders": 18,
+      "messages": 94
     },
     {
       "day": "2026-11-02",
@@ -70,12 +75,12 @@
     {
       "day": "2026-11-03",
       "unique_senders": 28,
-      "messages": 260
+      "messages": 258
     },
     {
       "day": "2026-11-04",
       "unique_senders": 21,
-      "messages": 165
+      "messages": 155
     },
     {
       "day": "2026-11-05",
@@ -89,8 +94,8 @@
     },
     {
       "day": "2026-11-07",
-      "unique_senders": 9,
-      "messages": 29,
+      "unique_senders": 10,
+      "messages": 34,
       "partial": true
     }
   ],
@@ -98,5 +103,11 @@
     "registered": "An account in the member registry, counted separately from the founder. Excludes merged-away duplicate accounts. Having an account is not active use.",
     "human_message": "A direct text from a registered member to their own lore - founder, groups, previews and automation excluded. Any human text counts: sign-ups, short replies, complaints and opt-outs included.",
     "windows": "Last 24 hours and last 168 hours are exact elapsed-time windows ending at the snapshot time. Daily charts use Pacific calendar days; the current day is partial."
+  },
+  "avg_daily_growth": {
+    "pct_label": "42%",
+    "window_label": "Nov 1-6",
+    "from_base": 12,
+    "to_base": 100
   }
 }
