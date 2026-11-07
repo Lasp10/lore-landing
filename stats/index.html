@@ -2,6 +2,9 @@
 <meta property="og:title" content="lore · usage and stats"><meta property="og:description" content="lore's network numbers, in the open. Aggregate counts only."><meta property="og:image" content="https://loresocial.net/brand/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <style>
 .stats-row{display:flex;gap:44px;flex-wrap:wrap;margin:20px 0 26px}
+<meta property="og:title" content="lore · usage and stats"><meta property="og:description" content="lore's network numbers, in the open. Aggregate counts only."><meta property="og:image" content="https://loresocial.net/brand/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<style>
+.stats-row{display:flex;gap:44px;flex-wrap:wrap;margin:20px 0 26px}
 .stat .n{font-size:44px;line-height:1.1;font-weight:400;letter-spacing:-.01em}
 .stat .l{font-size:15px;opacity:.75;max-width:170px;margin-top:2px}
 figure{margin:6px 0 10px}
@@ -68,7 +71,6 @@ var got=function(d){
   document.getElementById('network-stats').innerHTML=
     stat(d.registered.non_founder,'members (excluding founder)')
     +stat(d.best_day.count,'best day of new members so far ('+bday+')')
-    +stat(g.pct_label,'DoD growth ('+gday+')')
     +(d.avg_daily_growth?stat(d.avg_daily_growth.pct_label,'avg daily growth '+d.avg_daily_growth.window_label+' ('+d.avg_daily_growth.from_base+' to '+d.avg_daily_growth.to_base+')'):'');
   document.getElementById('network-chart').innerHTML=bars(d.new_registrations_per_day_non_founder,d.new_registrations_per_day_non_founder.map(function(x){return dayLabel(x.day)}),'count');
 
