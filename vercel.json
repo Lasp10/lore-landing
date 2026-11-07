@@ -43,6 +43,10 @@
     {
       "source": "/admin/:path*",
       "destination": "https://host.loresocial.net/admin/:path*"
+    },
+    {
+      "source": "/stats/live.json",
+      "destination": "https://host.loresocial.net/stats/live.json"
     }
   ],
   "redirects": [
