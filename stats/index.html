@@ -66,9 +66,10 @@ var got=function(d){
   var gday=new Date(g.day+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
   var bday=new Date(d.best_day.day+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
   document.getElementById('network-stats').innerHTML=
-    stat(d.registered.total_including_founder,'registered accounts')
+    stat(d.registered.non_founder,'registered accounts')
     +stat(d.best_day.count,'best day of new members so far ('+bday+')')
-    +stat(g.pct_label,'DoD growth');
+    +stat(g.pct_label,'DoD growth')
+    +(d.avg_daily_growth?stat(d.avg_daily_growth.pct_label,'avg daily growth '+d.avg_daily_growth.window_label+' ('+d.avg_daily_growth.from_base+' to '+d.avg_daily_growth.to_base+')'):'');
   document.getElementById('network-chart').innerHTML=bars(d.new_registrations_per_day_non_founder,d.new_registrations_per_day_non_founder.map(function(x){return dayLabel(x.day)}),'count');
 
   var since=new Date(d.all_recorded_since+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
