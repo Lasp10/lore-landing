@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>lore · usage and stats</title><meta name="description" content="lore's network numbers, in the open: what is growing, what is active, and what cannot be honestly measured yet. Aggregate counts only."><link rel="canonical" href="https://loresocial.net/stats/"><link rel="icon" href="/favicon.ico?v=3" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png?v=3"><link rel="apple-touch-icon" href="/lore-icon-180.png?v=3"><link rel="stylesheet" href="/legal.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/site.css">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>lore · usage and stats</title><meta name="description" content="lore's network numbers, in the open. Aggregate counts only."><link rel="canonical" href="https://loresocial.net/stats/"><link rel="icon" href="/favicon.ico?v=3" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png?v=3"><link rel="apple-touch-icon" href="/lore-icon-180.png?v=3"><link rel="stylesheet" href="/legal.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/site.css">
 <meta property="og:title" content="lore · usage and stats"><meta property="og:description" content="lore's network numbers, in the open. Aggregate counts only."><meta property="og:image" content="https://loresocial.net/brand/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <style>
 .stats-row{display:flex;gap:44px;flex-wrap:wrap;margin:20px 0 26px}
@@ -7,9 +7,6 @@
 figure{margin:6px 0 10px}
 figcaption{font-size:14px;opacity:.7;margin-top:4px}
 .note{font-size:15px;opacity:.85;border-left:2px solid #16161633;padding-left:12px;margin:14px 0}
-.hero{margin:8px 0 0}
-.hero img{width:100%;border-radius:8px;display:block}
-.hero figcaption{font-size:12px;opacity:.55}
 .defs dt{font-weight:600;margin-top:14px}
 .defs dd{margin:2px 0 0;opacity:.9}
 .fresh{margin-top:56px;padding-top:20px;border-top:1px solid #16161622;font-size:15px;opacity:.8}
@@ -17,33 +14,32 @@ svg text{font-family:"Inter Tight",-apple-system,sans-serif}
 </style>
 </head><body><div class="wrap"><a class="brand" href="/"><img src="/lore-logo-512.png" alt="">lore</a>
 <h1>Usage and stats</h1><p class="meta" id="asof">Loading the latest numbers&hellip;</p>
-<p class="lead">lore's network numbers, in the open: what is growing, what is active, and what we cannot honestly measure yet. Everything on this page is an aggregate count. No names, no chat content, no school breakdowns.</p>
+<p class="lead">lore's network numbers, in the open. Aggregate counts only - no names, no chat content.</p>
 
 <h2>The network</h2>
 <div class="stats-row" id="network-stats"></div>
 <figure id="network-chart"></figure>
-<p class="note">New registered members per day. &ldquo;Registered&rdquo; means an account exists - it includes people who signed up and never came back, so it is not a measure of active use.</p>
+<p class="note">New registered members per day. An account existing is not active use.</p>
 
 <h2>Messages</h2>
 <div class="stats-row" id="message-stats"></div>
 <figure id="message-chart"></figure>
 <figure id="sender-chart"></figure>
-<p class="note">Messages per day (dark) and distinct members messaging (lighter). Any human text to their lore counts here - sign-ups, short replies, complaints and opt-outs included - so this is activity, not proof of meaningful use.</p>
+<p class="note">Messages per day (dark) and distinct members messaging (lighter). Every human text counts - activity, not proof of meaningful use.</p>
 
 <h2>Introductions</h2>
 <p><b>Not yet audited.</b></p>
-<p>Introductions only count when both people said yes and a conversation actually happened. Our internal &ldquo;done&rdquo; flags are unverified and we have not run the full audit, so we are not publishing a number rather than publishing one we cannot stand behind.</p>
 
 <h2>How to read this page</h2>
 <dl class="defs">
 <dt>Registered member</dt>
-<dd id="def-registered"></dd>
+<dd id="def-registered">An account in the member registry, excluding merged-away duplicates. Having an account is not active use.</dd>
 <dt>Human message</dt>
-<dd id="def-message"></dd>
+<dd id="def-message">A direct text from a registered member to their own lore - founder, groups, previews and automation excluded. Any human text counts: sign-ups, short replies, complaints and opt-outs included.</dd>
 <dt>Windows</dt>
-<dd id="def-windows"></dd>
+<dd id="def-windows">Last 24 hours and last 168 hours are exact elapsed-time windows ending at the snapshot time. Daily charts use Pacific calendar days; the current day is partial.</dd>
 <dt>Privacy</dt>
-<dd>Aggregate counts only. The numbers are pre-computed by a scheduled job into a small public data file; this page never reads member-level data. No names, handles, chat text or school breakdowns, here or in the underlying job output.</dd>
+<dd>Aggregate counts only - no names, handles, chat text or school breakdowns, here or in the numbers behind this page.</dd>
 </dl>
 
 <div class="fresh" id="freshness"></div>
@@ -76,14 +72,14 @@ function bars(series,labels,valueKey,w,h){
 function dayLabel(iso){var p=iso.split('-');return String(parseInt(p[1],10))+'/'+String(parseInt(p[2],10));}
 function stat(n,l){return '<div class="stat"><div class="n">'+esc(n)+'</div><div class="l">'+esc(l)+'</div></div>';}
 
-fetch('/stats/data.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(d){
+var got=function(d){
   document.getElementById('asof').textContent='As of '+d.as_of_label+' \u00b7 the hatched bar is today, still in progress';
 
   var g=d.completed_day_growth;
   var gday=new Date(g.day+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
   var bday=new Date(d.best_day.day+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
   document.getElementById('network-stats').innerHTML=
-    stat(d.registered.total_including_founder,'registered accounts ('+d.registered.non_founder+' members plus the founder)')
+    stat(d.registered.total_including_founder,'registered accounts')
     +stat(d.best_day.count,'best day of new members so far ('+bday+')')
     +stat(g.pct_label,'growth on '+gday+' ('+g.new+' new on a base of '+g.prior_end_base+')');
   document.getElementById('network-chart').innerHTML=bars(d.new_registrations_per_day_non_founder,d.new_registrations_per_day_non_founder.map(function(x){return dayLabel(x.day)}),'count');
@@ -97,15 +93,18 @@ fetch('/stats/data.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new
   document.getElementById('sender-chart').innerHTML=bars(d.daily_human_dm,d.daily_human_dm.map(function(x){return dayLabel(x.day)}),'unique_senders');
   document.getElementById('sender-chart').style.opacity='.55';
 
-  document.getElementById('def-registered').textContent=d.definitions.registered;
-  document.getElementById('def-message').textContent=d.definitions.human_message;
-  document.getElementById('def-windows').textContent=d.definitions.windows;
-
-  document.getElementById('freshness').textContent='Snapshot taken '+d.as_of_label+'. This page reads a small public data file that is regenerated on a schedule; if a refresh ever fails, the page keeps the last good numbers with their real timestamp.';
-}).catch(function(){
-  document.getElementById('asof').textContent='The numbers are temporarily unavailable - the page copy below still applies.';
-  document.getElementById('freshness').textContent='This page reads a small public data file that is regenerated on a schedule.';
-});
+  document.getElementById('freshness').textContent='Snapshot '+d.as_of_label+' - this page checks for new numbers every minute.';
+};
+var fail=function(){
+  if(document.getElementById('asof').textContent.indexOf('Loading')===0)document.getElementById('asof').textContent='The numbers are temporarily unavailable.';
+};
+function load(){
+fetch('/stats/live.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){
+  return fetch('/stats/data.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()});
+}).then(got).catch(fail);
+}
+load();
+setInterval(load,60000);
 })();
 </script>
 </body></html>
