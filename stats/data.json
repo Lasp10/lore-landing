@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-11-07T10:35:42-08:00",
+  "as_of_label": "Nov 7, 2026, 10:35 am PT",
+  "window24_start": "2026-11-06T10:35:42-08:00",
+  "window168_start": "2026-10-31T11:35:42-07:00",
+  "registered": {
+    "total_including_founder": 102,
+    "non_founder": 101
+  },
+  "new_registrations_per_day_non_founder": [
+    {
+      "day": "2026-11-01",
+      "count": 15
+    },
+    {
+      "day": "2026-11-02",
+      "count": 9
+    },
+    {
+      "day": "2026-11-03",
+      "count": 23
+    },
+    {
+      "day": "2026-11-04",
+      "count": 7
+    },
+    {
+      "day": "2026-11-05",
+      "count": 12
+    },
+    {
+      "day": "2026-11-06",
+      "count": 22
+    },
+    {
+      "day": "2026-11-07",
+      "count": 1,
+      "partial": true
+    }
+  ],
+  "best_day": {
+    "day": "2026-11-03",
+    "count": 23
+  },
+  "completed_day_growth": {
+    "day": "2026-11-06",
+    "prior_end_base": 79,
+    "current_end_base": 101,
+    "new": 22,
+    "pct": 27.8,
+    "pct_label": "28%"
+  },
+  "human_dm_senders_24h": 43,
+  "human_dm_senders_168h": 95,
+  "human_dm_messages_168h": 1169,
+  "human_dm_messages_all_recorded": 1419,
+  "all_recorded_since": "2026-10-28",
+  "daily_human_dm": [
+    {
+      "day": "2026-11-01",
+      "unique_senders": 20,
+      "messages": 109
+    },
+    {
+      "day": "2026-11-02",
+      "unique_senders": 17,
+      "messages": 107
+    },
+    {
+      "day": "2026-11-03",
+      "unique_senders": 28,
+      "messages": 260
+    },
+    {
+      "day": "2026-11-04",
+      "unique_senders": 21,
+      "messages": 165
+    },
+    {
+      "day": "2026-11-05",
+      "unique_senders": 33,
+      "messages": 173
+    },
+    {
+      "day": "2026-11-06",
+      "unique_senders": 45,
+      "messages": 275
+    },
+    {
+      "day": "2026-11-07",
+      "unique_senders": 7,
+      "messages": 23,
+      "partial": true
+    }
+  ],
+  "definitions": {
+    "registered": "An account in the member registry, counted separately from the founder. Excludes merged-away duplicate accounts; group chats and public card previews never become accounts. Having an account is not active use - it includes people who joined and never came back.",
+    "human_message": "A direct text from a registered member to their own lore - founder, groups, previews and automation excluded. Any human text counts: sign-ups, short replies, complaints and opt-outs included.",
+    "windows": "Last 24 hours and last 168 hours are exact elapsed-time windows ending at the snapshot time. Daily charts use Pacific calendar days; the current day is partial."
+  }
+}
