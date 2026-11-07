@@ -69,7 +69,7 @@ var got=function(d){
     stat(d.registered.total_including_founder,'registered accounts')
     +stat(d.best_day.count,'best day of new members so far ('+bday+')')
     +stat(g.pct_label,'DoD growth');
-  document.getElementById('network-chart').innerHTML=bars(d.new_registrations_per_day_non_founder,d.new_registrations_per_day_non_founder.map(function(x){return dayLabel(x.day)}),'count')+'<figcaption>New registered members per day</figcaption>';
+  document.getElementById('network-chart').innerHTML=bars(d.new_registrations_per_day_non_founder,d.new_registrations_per_day_non_founder.map(function(x){return dayLabel(x.day)}),'count');
 
   var since=new Date(d.all_recorded_since+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
   document.getElementById('message-stats').innerHTML=
