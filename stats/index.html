@@ -19,28 +19,15 @@ svg text{font-family:"Inter Tight",-apple-system,sans-serif}
 <h2>The network</h2>
 <div class="stats-row" id="network-stats"></div>
 <figure id="network-chart"></figure>
-<p class="note">New registered members per day. An account existing is not active use.</p>
+
 
 <h2>Messages</h2>
 <div class="stats-row" id="message-stats"></div>
 <figure id="message-chart"></figure>
 <figure id="sender-chart"></figure>
-<p class="note">Messages per day (dark) and distinct members messaging (lighter). Every human text counts - activity, not proof of meaningful use.</p>
 
-<h2>Introductions</h2>
-<p><b>Not yet audited.</b></p>
 
-<h2>How to read this page</h2>
-<dl class="defs">
-<dt>Registered member</dt>
-<dd id="def-registered">An account in the member registry, excluding merged-away duplicates. Having an account is not active use.</dd>
-<dt>Human message</dt>
-<dd id="def-message">A direct text from a registered member to their own lore - founder, groups, previews and automation excluded. Any human text counts: sign-ups, short replies, complaints and opt-outs included.</dd>
-<dt>Windows</dt>
-<dd id="def-windows">Last 24 hours and last 168 hours are exact elapsed-time windows ending at the snapshot time. Daily charts use Pacific calendar days; the current day is partial.</dd>
-<dt>Privacy</dt>
-<dd>Aggregate counts only - no names, handles, chat text or school breakdowns, here or in the numbers behind this page.</dd>
-</dl>
+
 
 <div class="fresh" id="freshness"></div>
 
@@ -81,16 +68,16 @@ var got=function(d){
   document.getElementById('network-stats').innerHTML=
     stat(d.registered.total_including_founder,'registered accounts')
     +stat(d.best_day.count,'best day of new members so far ('+bday+')')
-    +stat(g.pct_label,'registered member base growth day over day on '+gday+' ('+g.prior_end_base+' to '+g.current_end_base+', +'+g.new+')');
-  document.getElementById('network-chart').innerHTML=bars(d.new_registrations_per_day_non_founder,d.new_registrations_per_day_non_founder.map(function(x){return dayLabel(x.day)}),'count');
+    +stat(g.pct_label,'DoD growth');
+  document.getElementById('network-chart').innerHTML=bars(d.new_registrations_per_day_non_founder,d.new_registrations_per_day_non_founder.map(function(x){return dayLabel(x.day)}),'count')+'<figcaption>New registered members per day</figcaption>';
 
   var since=new Date(d.all_recorded_since+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
   document.getElementById('message-stats').innerHTML=
     stat(d.human_dm_senders_24h,'members messaged their lore in the last 24 hours')
     +stat(d.human_dm_senders_168h,'distinct members in the last 168 hours ('+d.human_dm_messages_168h.toLocaleString()+' messages)')
     +stat(d.human_dm_messages_all_recorded.toLocaleString(),'human messages recorded since '+since);
-  document.getElementById('message-chart').innerHTML=bars(d.daily_human_dm,d.daily_human_dm.map(function(x){return dayLabel(x.day)}),'messages');
-  document.getElementById('sender-chart').innerHTML=bars(d.daily_human_dm,d.daily_human_dm.map(function(x){return dayLabel(x.day)}),'unique_senders');
+  document.getElementById('message-chart').innerHTML=bars(d.daily_human_dm,d.daily_human_dm.map(function(x){return dayLabel(x.day)}),'messages')+'<figcaption>Messages per day</figcaption>';
+  document.getElementById('sender-chart').innerHTML=bars(d.daily_human_dm,d.daily_human_dm.map(function(x){return dayLabel(x.day)}),'unique_senders')+'<figcaption>Members messaging per day</figcaption>';
   document.getElementById('sender-chart').style.opacity='.55';
 
   document.getElementById('freshness').textContent='Snapshot '+d.as_of_label+' - this page checks for new numbers every minute.';
