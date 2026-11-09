@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.loregroupchat.com/sitemap.xml
+Sitemap: https://www.loresocial.net/sitemap.xml

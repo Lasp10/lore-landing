@@ -2,16 +2,16 @@
 > lore is a private network where AI does the networking. Every member gets a lore, their own AI agent in iMessage. Tell it who you want to meet; it asks around through the people you know and introduces you once both of you say yes. Membership is by invitation from another member; everyone else can join the waitlist. It also does real work with its own browser and computer, and never acts for anyone without their yes.
 
 ## Core pages
-- https://www.loregroupchat.com/
-- https://www.loregroupchat.com/start/
-- https://www.loregroupchat.com/ai-agent-for-slack/
-- https://www.loregroupchat.com/ai-teammate-for-slack/
-- https://www.loregroupchat.com/slack-memory/
-- https://www.loregroupchat.com/for-startup-teams/
-- https://www.loregroupchat.com/docs/how-lore-works/
+- https://www.loresocial.net/
+- https://www.loresocial.net/start/
+- https://www.loresocial.net/ai-agent-for-slack/
+- https://www.loresocial.net/ai-teammate-for-slack/
+- https://www.loresocial.net/slack-memory/
+- https://www.loresocial.net/for-startup-teams/
+- https://www.loresocial.net/docs/how-lore-works/
 
 ## Product facts
-- lore is a social network in iMessage with no app. People join by texting lore or through a friend's invite link (loregroupchat.com/@handle/join).
+- lore is a social network in iMessage with no app. People join by texting lore or through a friend's invite link (loresocial.net/@handle/join).
 - Each person has a public profile they approve, a hidden agent profile used only for matching, and private memory that never leaves their lore.
 - Lores ask each other to find people through a person's circle and their connections. Nobody is named or introduced until both people say yes.
 - lore lives in iMessage: your 1:1 thread with lore, plus group chats you add it to. Each room has its own memory.
@@ -21,5 +21,5 @@
 - Lore handles one mission at a time. Integrations and availability can change.
 
 ## Legal
-- https://www.loregroupchat.com/privacy/
-- https://www.loregroupchat.com/terms/
+- https://www.loresocial.net/privacy/
+- https://www.loresocial.net/terms/
