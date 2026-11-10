@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "as_of": "2026-11-09T00:18:16-08:00",
-  "as_of_label": "Nov 9, 2026, 12:18 am PT",
-  "window24_start": "2026-11-08T00:18:16-08:00",
-  "window168_start": "2026-11-02T00:18:16-08:00",
+  "as_of": "2026-11-10T00:18:23-08:00",
+  "as_of_label": "Nov 10, 2026, 12:18 am PT",
+  "window24_start": "2026-11-09T00:18:23-08:00",
+  "window168_start": "2026-11-03T00:18:23-08:00",
   "registered": {
-    "total_including_founder": 105,
-    "non_founder": 104
+    "total_including_founder": 106,
+    "non_founder": 105
   },
   "new_registrations_per_day_non_founder": [
     {
@@ -43,6 +43,10 @@
     },
     {
       "day": "2026-11-09",
+      "count": 1
+    },
+    {
+      "day": "2026-11-10",
       "count": 0,
       "partial": true
     }
@@ -52,17 +56,17 @@
     "count": 23
   },
   "completed_day_growth": {
-    "day": "2026-11-08",
-    "prior_end_base": 102,
-    "current_end_base": 104,
-    "new": 2,
-    "pct": 2.0,
-    "pct_label": "2%"
+    "day": "2026-11-09",
+    "prior_end_base": 104,
+    "current_end_base": 105,
+    "new": 1,
+    "pct": 1.0,
+    "pct_label": "1%"
   },
-  "human_dm_senders_24h": 11,
-  "human_dm_senders_168h": 90,
-  "human_dm_messages_168h": 1079,
-  "human_dm_messages_all_recorded": 1425,
+  "human_dm_senders_24h": 15,
+  "human_dm_senders_168h": 86,
+  "human_dm_messages_168h": 1031,
+  "human_dm_messages_all_recorded": 1484,
   "all_recorded_since": "2026-10-28",
   "daily_human_dm": [
     {
@@ -107,6 +111,11 @@
     },
     {
       "day": "2026-11-09",
+      "unique_senders": 15,
+      "messages": 59
+    },
+    {
+      "day": "2026-11-10",
       "unique_senders": 0,
       "messages": 0,
       "partial": true
@@ -120,18 +129,18 @@
   },
   "compound_average_daily_growth": {
     "start_day": "2026-11-01",
-    "end_exclusive_day": "2026-11-09",
-    "completed_days": 8,
+    "end_exclusive_day": "2026-11-10",
+    "completed_days": 9,
     "start_non_founder": 12,
-    "end_non_founder": 104,
-    "pct": 30.988,
-    "pct_label": "31%",
+    "end_non_founder": 105,
+    "pct": 27.2529,
+    "pct_label": "27%",
     "definition": "Compound average daily change in canonical non-founder account count over completed Pacific calendar days. Not a claim about each day or a forecast."
   },
   "avg_daily_growth": {
-    "pct_label": "31%",
-    "window_label": "Nov 1 to Nov 8, 8 completed days",
+    "pct_label": "27%",
+    "window_label": "Nov 1 to Nov 9, 9 completed days",
     "from_base": 12,
-    "to_base": 104
+    "to_base": 105
   }
 }
