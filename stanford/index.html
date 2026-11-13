@@ -3,8 +3,9 @@
 main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:28px;padding:56px 16px}
 .mark{display:flex;align-items:center;gap:9px;font-weight:700;font-size:22px;letter-spacing:-.03em;text-decoration:none;color:inherit}.mark img{width:30px;height:30px;border-radius:8px}
 .btn{display:inline-block;background:#1c1a17;color:#fff;text-decoration:none;font-weight:600;font-size:18px;letter-spacing:-.01em;padding:16px 28px;border-radius:999px;min-width:240px}
-.btn:focus-visible{outline:2px solid #1c1a17;outline-offset:3px}
-@media (prefers-color-scheme:dark){body{background:#161513;color:#f3efe8}.btn{background:#f3efe8;color:#161513}.btn:focus-visible{outline-color:#f3efe8}}</style>
+#named{font-size:18px;line-height:1.4;max-width:22em;color:#3a3732}.btn:focus-visible{outline:2px solid #1c1a17;outline-offset:3px}
+@media (prefers-color-scheme:dark){body{background:#161513;color:#f3efe8}.btn{background:#f3efe8;color:#161513}#named{color:#cfc9bf}.btn:focus-visible{outline-color:#f3efe8}}</style>
 <meta property="og:title" content="Lore · Stanford"><meta property="og:description" content="Text your assistant to join."><meta property="og:image" content="https://www.loregroupchat.com/brand/og.png"><meta name="twitter:card" content="summary_large_image">
 </head>
-<body><main><a class="mark" href="/"><img src="/lore-logo-512.png" alt="">lore</a><a class="btn" id="text" href="sms:+19362833328?&amp;body=Hi%2C%20I%27m%20a%20Stanford%20student%20and%20I%27d%20like%20to%20join%20Lore.">Text your assistant</a></main></body></html>
+<body><main><a class="mark" href="/"><img src="/lore-logo-512.png" alt="">lore</a><p id="named" hidden>someone at stanford named you as one of the people worth knowing.</p><a class="btn" id="text" href="sms:+19362833328?&amp;body=Hi%2C%20I%27m%20a%20Stanford%20student%20and%20I%27d%20like%20to%20join%20Lore.">Text your assistant</a></main>
+<script>{const q=new URLSearchParams(location.search);const ok=v=>/^[A-Za-z0-9_-]{1,32}$/.test(v||'');const n=q.get('n'),s=q.get('src');let t="Hi, I'm a Stanford student and I'd like to join Lore.";const tags=[];if(ok(n)){tags.push('n:'+n);document.getElementById('named').hidden=false}if(ok(s))tags.push('src:'+s.toLowerCase());else if(ok(n))tags.push('src:nomination');if(tags.length)t+=' ('+tags.join(' ')+')';document.getElementById('text').href='sms:+19362833328?&body='+encodeURIComponent(t)}</script></body></html>
