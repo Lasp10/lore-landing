@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>lore · Harvard</title><meta name="description" content="harvard only. 50 spots. 11/25 · 8pm et. someone already asked about you."><link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="apple-touch-icon" href="/lore-icon-180.png?v=2">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>lore · Harvard</title><meta name="description" content="harvard only. 50 spots. 11/25 · 8pm et. find out who named you."><link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="apple-touch-icon" href="/lore-icon-180.png?v=2">
 <link rel="preload" href="../fonts/inter-tight-latin-v9.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{font-family:"Inter Tight";src:url(../fonts/inter-tight-latin-v9.woff2) format("woff2");font-weight:100 900;font-display:swap}
 *{box-sizing:border-box;margin:0;padding:0}body{background:#f1ede6;color:#161513;font-family:"Inter Tight",-apple-system,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
@@ -7,22 +7,24 @@ main{flex:1;display:flex;flex-direction:column;align-items:center;justify-conten
 h1{font-weight:750;font-size:clamp(46px,9vw,76px);line-height:.98;letter-spacing:-.05em}
 .when{font-weight:650;font-size:clamp(22px,3.6vw,28px);letter-spacing:-.03em;margin-top:14px;white-space:nowrap}
 .named{font-weight:600;font-size:19px;letter-spacing:-.02em;margin-top:34px}
-.copy{font-size:18px;line-height:1.45;letter-spacing:-.015em;color:#4a463f;max-width:24em;margin-top:30px}
+.copy{text-wrap:pretty;font-size:18px;line-height:1.45;letter-spacing:-.015em;color:#4a463f;max-width:24em;margin-top:30px}
 .named+.copy{margin-top:12px}
+.fine{font-size:14px;line-height:1.45;letter-spacing:-.005em;color:#8a847a;max-width:28em;margin-top:14px}
 .btn{display:inline-block;background:#161513;color:#f1ede6;text-decoration:none;font-weight:650;font-size:18px;letter-spacing:-.02em;padding:17px 34px;border-radius:999px;min-width:220px;margin-top:34px}
 .btn:focus-visible{outline:2px solid #161513;outline-offset:3px}
 .desk{display:none;margin-top:30px;align-items:center;gap:18px;text-align:left}
 .desk .qr{width:112px;height:112px;background:#fff;border-radius:14px;padding:8px;flex:none}.desk .qr svg{display:block;width:100%;height:100%}
 .desk p{font-size:15px;line-height:1.45;color:#4a463f;letter-spacing:-.01em;max-width:16em}.desk b{color:#161513;font-weight:650;white-space:nowrap}
 @media (hover:hover) and (pointer:fine){.desk{display:flex}}
-@media (prefers-color-scheme:dark){body{background:#161513;color:#f1ede6}.mark img{filter:invert(1)}.copy,.desk p{color:#bdb7ad}.desk b{color:#f1ede6}.btn{background:#f1ede6;color:#161513}.btn:focus-visible{outline-color:#f1ede6}}</style>
-<meta property="og:title" content="harvard only. 50 spots. 11/25 · 8pm et."><meta property="og:description" content="someone already asked about you. text lore what you're building and who you want at your table."><meta property="og:image" content="https://www.loregroupchat.com/brand/og.png"><meta name="twitter:card" content="summary_large_image">
+@media (prefers-color-scheme:dark){body{background:#161513;color:#f1ede6}.mark img{filter:invert(1)}.copy,.desk p{color:#bdb7ad}.fine{color:#8f897f}.desk b{color:#f1ede6}.btn{background:#f1ede6;color:#161513}.btn:focus-visible{outline-color:#f1ede6}}</style>
+<meta property="og:title" content="harvard only. 50 spots. 11/25 · 8pm et."><meta property="og:description" content="someone already named you. find out who."><meta property="og:image" content="https://www.loregroupchat.com/brand/og.png"><meta name="twitter:card" content="summary_large_image">
 </head>
 <body><main><a class="mark" href="/" aria-label="lore"><img src="../brand/lore-wordmark.svg" alt="lore"></a>
 <h1>harvard only.</h1>
 <div class="when">50 spots. 11/25 · 8pm et.</div>
 <p id="named" class="named" hidden>someone at harvard named you.</p>
-<p class="copy">text lore what you're building and who you want at your table. verify your harvard email and you're in.</p>
+<p class="copy">text lore what you're building and who you want to meet. at 8pm on 11/25, the introductions go out and you'll see who named you.</p>
+<p class="fine">lore introduces harvard students to each other over text. verify your harvard email to get in.</p>
 <a class="btn" id="text" href="sms:+19362833328?&amp;body=Hi%2C%20I%27m%20a%20Harvard%20student%20and%20I%27d%20like%20to%20join%20Lore.">text lore</a>
 <div class="desk" id="desk"><div class="qr" id="qr" aria-hidden="true"></div><p>on your laptop? scan with your phone camera, or text <b>(936) 283-3328</b>.</p></div></main>
 <script>{const q=new URLSearchParams(location.search);const ok=v=>/^[A-Za-z0-9_-]{1,32}$/.test(v||'');const n=q.get('n'),r=q.get('r'),s=q.get('src');let t="Hi, I'm a Harvard student and I'd like to join Lore.";const tags=[];if(ok(n)){tags.push('n:'+n);document.getElementById('named').hidden=false}if(ok(r))tags.push('r:'+r);if(ok(s))tags.push('src:'+s.toLowerCase());else if(ok(n))tags.push('src:nomination');else if(ok(r))tags.push('src:post');else tags.push('src:web');if(tags.length)t+=' ('+tags.join(' ')+')';document.getElementById('text').href='sms:+19362833328?&body='+encodeURIComponent(t);const qa=q.get('qa')==='1';const ev=e=>{try{fetch('https://host.loregroupchat.com/growth/campus-event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({page:'/harvard',event:e,qa:qa}),keepalive:true,mode:'cors',credentials:'omit'}).catch(()=>{})}catch(_){}};ev('page_view');document.getElementById('text').addEventListener('click',()=>ev('sms_cta_tap'));
