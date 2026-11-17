@@ -1,2 +1,29 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=https://tally.so/r/J1dyb4"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="canonical" href="https://tally.so/r/J1dyb4"><title>lore</title></head><body><p><a href="https://tally.so/r/J1dyb4">Continue</a></p><script>location.replace('https://tally.so/r/J1dyb4');</script></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>lore · Brown</title><meta name="description" content="brown only. 11/21 · 8pm et. someone already asked about you."><link rel="icon" href="/favicon.ico?v=2" sizes="any"><link rel="apple-touch-icon" href="/lore-icon-180.png?v=2">
+<link rel="preload" href="../fonts/inter-tight-latin-v9.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{font-family:"Inter Tight";src:url(../fonts/inter-tight-latin-v9.woff2) format("woff2");font-weight:100 900;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}body{background:#f1ede6;color:#161513;font-family:"Inter Tight",-apple-system,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
+main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:56px 20px;width:100%;max-width:640px;margin:0 auto}
+.mark{display:block;margin-bottom:44px}.mark img{display:block;height:30px;width:auto}
+h1{font-weight:750;font-size:clamp(46px,9vw,76px);line-height:.98;letter-spacing:-.05em}
+.when{font-weight:650;font-size:clamp(22px,3.6vw,28px);letter-spacing:-.03em;margin-top:14px;white-space:nowrap}
+.named{font-weight:600;font-size:19px;letter-spacing:-.02em;margin-top:34px}
+.copy{font-size:18px;line-height:1.45;letter-spacing:-.015em;color:#4a463f;max-width:24em;margin-top:30px}
+.named+.copy{margin-top:12px}
+.btn{display:inline-block;background:#161513;color:#f1ede6;text-decoration:none;font-weight:650;font-size:18px;letter-spacing:-.02em;padding:17px 34px;border-radius:999px;min-width:220px;margin-top:34px}
+.btn:focus-visible{outline:2px solid #161513;outline-offset:3px}
+.desk{display:none;margin-top:30px;align-items:center;gap:18px;text-align:left}
+.desk .qr{width:112px;height:112px;background:#fff;border-radius:14px;padding:8px;flex:none}.desk .qr svg{display:block;width:100%;height:100%}
+.desk p{font-size:15px;line-height:1.45;color:#4a463f;letter-spacing:-.01em;max-width:16em}.desk b{color:#161513;font-weight:650;white-space:nowrap}
+@media (hover:hover) and (pointer:fine){.desk{display:flex}}
+@media (prefers-color-scheme:dark){body{background:#161513;color:#f1ede6}.mark img{filter:invert(1)}.copy,.desk p{color:#bdb7ad}.desk b{color:#f1ede6}.btn{background:#f1ede6;color:#161513}.btn:focus-visible{outline-color:#f1ede6}}</style>
+<meta property="og:title" content="brown only. 11/21 · 8pm et."><meta property="og:description" content="someone already asked about you. text lore what you're building and who you want at your table."><meta property="og:image" content="https://www.loregroupchat.com/brand/og.png"><meta name="twitter:card" content="summary_large_image">
+</head>
+<body><main><a class="mark" href="/" aria-label="lore"><img src="../brand/lore-wordmark.svg" alt="lore"></a>
+<h1>brown only.</h1>
+<div class="when">11/21 · 8pm et.</div>
+<p id="named" class="named" hidden>someone at brown named you.</p>
+<p class="copy">text lore what you're building and who you want at your table. verify your brown email and you're in.</p>
+<a class="btn" id="text" href="sms:+19362833328?&amp;body=Hi%2C%20I%27m%20a%20Brown%20student%20and%20I%27d%20like%20to%20join%20Lore.">text lore</a>
+<div class="desk" id="desk"><div class="qr" id="qr" aria-hidden="true"></div><p>on your laptop? scan with your phone camera, or text <b>(936) 283-3328</b>.</p></div></main>
+<script>{const q=new URLSearchParams(location.search);const ok=v=>/^[A-Za-z0-9_-]{1,32}$/.test(v||'');const n=q.get('n'),r=q.get('r'),s=q.get('src');let t="Hi, I'm a Brown student and I'd like to join Lore.";const tags=[];if(ok(n)){tags.push('n:'+n);document.getElementById('named').hidden=false}if(ok(r))tags.push('r:'+r);if(ok(s))tags.push('src:'+s.toLowerCase());else if(ok(n))tags.push('src:nomination');else if(ok(r))tags.push('src:post');else tags.push('src:web');if(tags.length)t+=' ('+tags.join(' ')+')';document.getElementById('text').href='sms:+19362833328?&body='+encodeURIComponent(t);const qa=q.get('qa')==='1';const ev=e=>{try{fetch('https://host.loregroupchat.com/growth/campus-event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({page:'/brown',event:e,qa:qa},ok(r)?{ref:'r:'+r}:ok(n)?{ref:'n:'+n}:{})),keepalive:true,mode:'cors',credentials:'omit'}).catch(()=>{})}catch(_){}};ev('page_view');document.getElementById('text').addEventListener('click',()=>ev('sms_cta_tap'));
+if(matchMedia('(hover:hover) and (pointer:fine)').matches){const sc=document.createElement('script');sc.src='../qr.js';sc.onload=()=>{try{const c=qrcode(0,'M');c.addData('SMSTO:+19362833328:'+t,'Byte');c.make();document.getElementById('qr').innerHTML=c.createSvgTag({cellSize:4,margin:0,scalable:true})}catch(_){document.getElementById('desk').querySelector('.qr').remove()}};document.head.appendChild(sc)}}</script></body></html>
