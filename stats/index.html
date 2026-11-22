@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>lore · usage and stats</title><meta name="description" content="lore's network numbers, in the open. Aggregate counts only."><link rel="canonical" href="https://loresocial.net/stats/"><link rel="icon" href="/favicon.ico?v=3" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png?v=3"><link rel="apple-touch-icon" href="/lore-icon-180.png?v=3"><link rel="stylesheet" href="/legal.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/site.css">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>lore · usage and engagement</title><meta name="description" content="lore's network numbers, in the open. Aggregate counts only."><link rel="canonical" href="https://loresocial.net/stats/"><link rel="icon" href="/favicon.ico?v=3" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/lore-icon-32.png?v=3"><link rel="apple-touch-icon" href="/lore-icon-180.png?v=3"><link rel="stylesheet" href="/legal.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/site.css">
 <meta property="og:title" content="lore · usage and stats"><meta property="og:description" content="lore's network numbers, in the open. Aggregate counts only."><meta property="og:image" content="https://loresocial.net/brand/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <style>
 .stats-row{display:flex;gap:44px;flex-wrap:wrap;margin:20px 0 26px}
@@ -12,86 +12,26 @@ figcaption{font-size:14px;opacity:.7;margin-top:4px}
 .fresh{margin-top:56px;padding-top:20px;border-top:1px solid #16161622;font-size:15px;opacity:.8}
 svg text{font-family:"Inter Tight",-apple-system,sans-serif}
 </style>
+
+<style>.stat .l{max-width:320px}.wrap{max-width:760px}.stats-row{margin-bottom:16px}p{line-height:1.5}h2{margin-top:40px}</style>
 </head><body><div class="wrap"><a class="brand" href="/"><img src="/lore-logo-512.png" alt="">lore</a>
-<h1>Usage and stats</h1><p class="meta" id="asof">Loading the latest numbers&hellip;</p>
-<p class="lead">lore's network numbers, in the open. Aggregate counts only - no names, no chat content.</p>
-
+<h1>Usage and engagement</h1>
+<p>As of November 22, 2026, 12:05 pm PT</p>
+<p>Aggregate counts only. No names or chat content.</p>
 <h2>The network</h2>
-<div class="stats-row" id="network-stats"></div>
-<figure id="network-chart"></figure>
-
-
-<h2>Messages</h2>
-<div class="stats-row" id="message-stats"></div>
-<figure id="message-chart"></figure>
-<figure id="sender-chart"></figure>
-
-
-
-
-<div class="fresh" id="freshness"></div>
-
-<footer><a href="/">Home</a><a href="/docs/how-lore-works/">How lore works</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><span>San Francisco, CA</span></footer></div>
-<script>
-(function(){
-var esc=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')};
-var ink='#161616';
-function bars(series,labels,valueKey,w,h){
-  w=w||560;h=h||140;
-  var values=series.map(function(d){return d[valueKey]});
-  var maxv=Math.max.apply(null,values.concat([1]));
-  var bw=w/values.length,out=[];
-  for(var i=0;i<values.length;i++){
-    var v=values[i],last=!!series[i].partial;
-    var bh=Math.max(2,(v/maxv)*(h-44));
-    var x=i*bw+6,y=h-18-bh;
-    var fill=last?'url(#hatch)':ink;
-    var op=last?'':'';
-    out.push('<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+(bw-12).toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2" fill="'+fill+'"/>');
-    out.push('<text x="'+(x+(bw-12)/2).toFixed(1)+'" y="'+(y-5).toFixed(1)+'" text-anchor="middle" font-size="12" opacity=".7">'+v+'</text>');
-    out.push('<text x="'+(x+(bw-12)/2).toFixed(1)+'" y="'+(h-4)+'" text-anchor="middle" font-size="11" opacity=".55">'+labels[i]+'</text>');
-  }
-  return '<svg viewBox="0 0 '+w+' '+h+'" width="100%" style="max-width:'+w+'px" role="img">'
-    +'<defs><pattern id="hatch" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">'
-    +'<rect width="6" height="6" fill="#f0f0ec"/><line x1="0" y1="0" x2="0" y2="6" stroke="#161616" stroke-opacity=".45" stroke-width="1.5"/></pattern></defs>'
-    +out.join('')+'</svg>';
-}
-function dayLabel(iso){var p=iso.split('-');return String(parseInt(p[1],10))+'/'+String(parseInt(p[2],10));}
-function stat(n,l){return '<div class="stat"><div class="n">'+esc(n)+'</div><div class="l">'+esc(l)+'</div></div>';}
-
-var got=function(d){
-  document.getElementById('asof').textContent='As of '+d.as_of_label+' \u00b7 the hatched bar is today, still in progress';
-
-  var g=d.completed_day_growth;
-  var gday=new Date(g.day+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
-  var bday=new Date(d.best_day.day+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
-  document.getElementById('network-stats').innerHTML=
-    stat(d.registered.non_founder,'members (excluding founder)')
-    +stat(d.best_day.count,'best day of new members so far ('+bday+')')
-    +(d.avg_daily_growth?stat(d.avg_daily_growth.pct_label,'avg daily growth '+d.avg_daily_growth.window_label+' ('+d.avg_daily_growth.from_base+' to '+d.avg_daily_growth.to_base+')'):'');
-  document.getElementById('network-chart').innerHTML=bars(d.new_registrations_per_day_non_founder,d.new_registrations_per_day_non_founder.map(function(x){return dayLabel(x.day)}),'count');
-
-  var since=new Date(d.all_recorded_since+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
-  document.getElementById('message-stats').innerHTML=
-    stat(d.human_dm_senders_24h,'members messaged their lore in the last 24 hours')
-    +stat(d.human_dm_senders_168h,'distinct members in the last 168 hours ('+d.human_dm_messages_168h.toLocaleString()+' messages)')
-    +stat(d.human_dm_messages_all_recorded.toLocaleString(),'human messages recorded since '+since);
-  document.getElementById('message-chart').innerHTML=bars(d.daily_human_dm,d.daily_human_dm.map(function(x){return dayLabel(x.day)}),'messages')+'<figcaption>Messages per day</figcaption>';
-  document.getElementById('sender-chart').innerHTML=bars(d.daily_human_dm,d.daily_human_dm.map(function(x){return dayLabel(x.day)}),'unique_senders')+'<figcaption>Members messaging per day</figcaption>';
-  document.getElementById('sender-chart').style.opacity='.55';
-
-  document.getElementById('freshness').textContent='Snapshot '+d.as_of_label+' - this page checks for new numbers every minute.';
-};
-var fail=function(){
-  if(document.getElementById('asof').textContent.indexOf('Loading')===0)document.getElementById('asof').textContent='The numbers are temporarily unavailable.';
-};
-function load(){
-fetch('/stats/live.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){
-  return fetch('/stats/data.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()});
-}).then(got).catch(fail);
-}
-load();
-setInterval(load,60000);
-})();
-</script>
-</body></html>
+<div class="stats-row"><div class="stat"><div class="n">about 200</div><div class="l">admitted members</div></div></div>
+<p>199 admitted members map to a phone, including 96 school members: 62 Stanford and 34 Harvard. Five additional legacy admission records do not map to a phone and are not included in this member count.</p>
+<h2>Messages processed</h2>
+<div class="stats-row"><div class="stat"><div class="n">12,000+</div><div class="l">messages processed</div></div></div>
+<p>12,267 total recorded messages across member, group, founder and test traffic, including messages in both directions. This is a total-traffic metric, not a count of messages written by members.</p>
+<h2>Member activity</h2>
+<div class="stats-row"><div class="stat"><div class="n">7,000+</div><div class="l">one-to-one DMs with members</div></div></div>
+<p>7,155 DMs excluding founder and test traffic: 2,918 inbound from members and 4,237 from Lore.</p>
+<div class="stats-row"><div class="stat"><div class="n">1,565</div><div class="l">group-chat messages</div></div></div>
+<p>1,396 inbound group messages and 169 from Lore. Group participants are not added to the admitted-member count merely for being in a group chat.</p>
+<p>8,720 messages across member DMs and groups, in both directions. The remaining recorded traffic includes founder and test activity.</p>
+<h2>What these numbers cover</h2>
+<p>The member count uses admitted members mapped to a phone and deduplicated by phone. Unverified signups, waitlists and non-member texters are not counted as members. Friends and family of the founder are not separately removed.</p>
+<p>Messages include onboarding and short replies, not only completed tasks. Processed messages include both inbound and outbound traffic. These totals are not completed-task or completed-introduction counts. Completed introductions are not measurable in this snapshot.</p>
+<p>Snapshot updated November 22, 2026, 12:05 pm PT. This is a dated snapshot, not a live feed.</p>
+<footer><a href="/">Home</a><a href="/docs/how-lore-works/">How lore works</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><span>San Francisco, CA</span></footer></div></body></html>
